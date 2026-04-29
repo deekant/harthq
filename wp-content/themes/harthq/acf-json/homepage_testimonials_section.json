@@ -1,0 +1,220 @@
+{
+    "key": "group_harthq_homepage_testimonials_section",
+    "title": "Homepage Testimonials Section",
+    "fields": [
+        {
+            "key": "field_harthq_testimonials_section_tag",
+            "label": "Section Tag",
+            "name": "testimonials_section_tag",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "What practitioners say",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_harthq_testimonials_section_heading",
+            "label": "Section Heading",
+            "name": "testimonials_section_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Use <em></em> and <br> for emphasis and line breaks.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Built for the way<br><em>clinicians actually work.</em>",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_harthq_testimonials_section_intro",
+            "label": "Section Intro",
+            "name": "testimonials_section_intro",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "From psychologists across Australia - here's what working with The Hart Centre looks like in practice.",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_harthq_testimonials_items",
+            "label": "Testimonials Items",
+            "name": "testimonials_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Testimonials cards shown in the homepage grid.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add More",
+            "rows_per_page": 20,
+            "default_value": [
+                {
+                    "quote_text": "Hart is excellent! I have worked with them for years and most of my clients are from them. I don't like to do marketing and it's an expensive business, so I allocate my marketing budget in my accounts to them because I get a steady stream of work. The booking service is excellent. They book straight into Google Calendar and you can sync that with whatever you're using presently.",
+                    "author_initial": "K",
+                    "author_name": "Kathrine",
+                    "author_role": "Psychologist · Perth, WA"
+                },
+                {
+                    "quote_text": "As a Hart Associate, I have been extremely well supported in my professional practice through a responsible and client-focused referral process. The Reception/Administration team at Hart also make communication an absolute pleasure and navigate the complexities of scheduling with grace and efficiency. Their understanding and attention to detail is integral in enhancing my ability to focus on my role as therapist.",
+                    "author_initial": "A",
+                    "author_name": "Anita",
+                    "author_role": "Psychologist · Camberwell, VIC"
+                },
+                {
+                    "quote_text": "I have been with Hart for several years now and can't speak more highly of the service. The Hart Centre admin staff are amazing, always working for the best interests of the client and the associates. They are efficient, friendly and always willing to help with any issues that may arise.",
+                    "author_initial": "S",
+                    "author_name": "Sanja",
+                    "author_role": "Psychologist · Hampton, VIC"
+                }
+            ],
+            "sub_fields": [
+                {
+                    "key": "field_harthq_testimonial_quote_text",
+                    "label": "Quote Text",
+                    "name": "quote_text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "55",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 4,
+                    "new_lines": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_harthq_testimonials_items"
+                },
+                {
+                    "key": "field_harthq_testimonial_author_initial",
+                    "label": "Author Initial",
+                    "name": "author_initial",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "10",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "2",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_harthq_testimonials_items"
+                },
+                {
+                    "key": "field_harthq_testimonial_author_name",
+                    "label": "Author Name",
+                    "name": "author_name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "15",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_harthq_testimonials_items"
+                },
+                {
+                    "key": "field_harthq_testimonial_author_role",
+                    "label": "Author Role",
+                    "name": "author_role",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "20",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_harthq_testimonials_items"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_type",
+                "operator": "==",
+                "value": "front_page"
+            }
+        ]
+    ],
+    "menu_order": 5,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Editable content for the homepage Testimonials section.",
+    "show_in_rest": 0,
+    "modified": 1777495500
+}

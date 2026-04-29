@@ -155,3 +155,172 @@ function harthq_seed_homepage_about_acf_once() {
 	update_option( 'harthq_about_acf_seeded_v1', 1, false );
 }
 add_action( 'admin_init', 'harthq_seed_homepage_about_acf_once' );
+
+/**
+ * Seed homepage heartbeat-section ACF values once.
+ *
+ * Repeater defaults from local JSON may not hydrate reliably on existing posts,
+ * so we write initial repeater rows directly to the front page when empty.
+ */
+function harthq_seed_homepage_heartbeat_acf_once() {
+	if ( ! is_admin() || ! function_exists( 'update_field' ) ) {
+		return;
+	}
+
+	if ( get_option( 'harthq_heartbeat_acf_seeded_v1' ) ) {
+		return;
+	}
+
+	$front_page_id = (int) get_option( 'page_on_front' );
+	if ( ! $front_page_id ) {
+		return;
+	}
+
+	$heartbeat_dimensions = array(
+		array(
+			'label'             => 'Capacity',
+			'score'             => 82,
+			'bar_width_percent' => 82,
+			'bar_background'    => 'linear-gradient(90deg,var(--teal-mid),var(--teal))',
+			'score_color'       => '',
+		),
+		array(
+			'label'             => 'Revenue integrity',
+			'score'             => 65,
+			'bar_width_percent' => 65,
+			'bar_background'    => 'linear-gradient(90deg,var(--purple-light),var(--purple))',
+			'score_color'       => '',
+		),
+		array(
+			'label'             => 'Conversion',
+			'score'             => 71,
+			'bar_width_percent' => 71,
+			'bar_background'    => 'linear-gradient(90deg,var(--teal-light),var(--teal-mid))',
+			'score_color'       => '',
+		),
+		array(
+			'label'             => 'Retention',
+			'score'             => 40,
+			'bar_width_percent' => 40,
+			'bar_background'    => 'linear-gradient(90deg,#f5a0a0,#e05555)',
+			'score_color'       => '#f5a0a0',
+		),
+		array(
+			'label'             => 'Efficiency',
+			'score'             => 78,
+			'bar_width_percent' => 78,
+			'bar_background'    => 'linear-gradient(90deg,var(--teal-mid),var(--teal))',
+			'score_color'       => '',
+		),
+	);
+
+	$heartbeat_visual_dimensions = array(
+		array(
+			'dot_color'     => 'var(--teal-mid)',
+			'name'          => 'Capacity utilisation',
+			'percent_text'  => '82%',
+			'percent_color' => '',
+		),
+		array(
+			'dot_color'     => 'var(--purple-light)',
+			'name'          => 'Revenue integrity',
+			'percent_text'  => '65%',
+			'percent_color' => '',
+		),
+		array(
+			'dot_color'     => 'var(--teal-light)',
+			'name'          => 'Enquiry conversion',
+			'percent_text'  => '71%',
+			'percent_color' => '',
+		),
+		array(
+			'dot_color'     => '#e05555',
+			'name'          => 'Client retention',
+			'percent_text'  => '40% ⚠️',
+			'percent_color' => '#f5a0a0',
+		),
+		array(
+			'dot_color'     => 'var(--teal-mid)',
+			'name'          => 'Operational efficiency',
+			'percent_text'  => '78%',
+			'percent_color' => '',
+		),
+	);
+
+	$heartbeat_visual = array(
+		'title'              => 'Practice Health Report',
+		'badge'              => 'Sample',
+		'score_value'        => 67,
+		'overall_score_line' => 'Overall HartBeat score - <strong>Needs attention</strong>',
+		'dimensions'         => $heartbeat_visual_dimensions,
+	);
+
+	$existing_dimensions = get_field( 'heartbeat_dimensions', $front_page_id );
+	$existing_visual     = get_field( 'heartbeat_visual', $front_page_id );
+	$existing_visual_rows = is_array( $existing_visual ) && ! empty( $existing_visual['dimensions'] )
+		? $existing_visual['dimensions']
+		: array();
+
+	if ( ! empty( $existing_dimensions ) || ! empty( $existing_visual_rows ) ) {
+		update_option( 'harthq_heartbeat_acf_seeded_v1', 1, false );
+		return;
+	}
+
+	update_field( 'field_harthq_heartbeat_dimensions', $heartbeat_dimensions, $front_page_id );
+	update_field( 'field_harthq_heartbeat_visual', $heartbeat_visual, $front_page_id );
+
+	update_option( 'harthq_heartbeat_acf_seeded_v1', 1, false );
+}
+add_action( 'admin_init', 'harthq_seed_homepage_heartbeat_acf_once' );
+
+/**
+ * Seed homepage testimonials-section ACF values once.
+ *
+ * Local JSON repeater defaults are not always applied to existing posts, so
+ * this writes initial testimonial rows directly when the field is empty.
+ */
+function harthq_seed_homepage_testimonials_acf_once() {
+	if ( ! is_admin() || ! function_exists( 'update_field' ) ) {
+		return;
+	}
+
+	if ( get_option( 'harthq_testimonials_acf_seeded_v1' ) ) {
+		return;
+	}
+
+	$front_page_id = (int) get_option( 'page_on_front' );
+	if ( ! $front_page_id ) {
+		return;
+	}
+
+	$testimonials_items = array(
+		array(
+			'quote_text'     => "Hart is excellent! I have worked with them for years and most of my clients are from them. I don't like to do marketing and it's an expensive business, so I allocate my marketing budget in my accounts to them because I get a steady stream of work. The booking service is excellent. They book straight into Google Calendar and you can sync that with whatever you're using presently.",
+			'author_initial' => 'K',
+			'author_name'    => 'Kathrine',
+			'author_role'    => 'Psychologist · Perth, WA',
+		),
+		array(
+			'quote_text'     => 'As a Hart Associate, I have been extremely well supported in my professional practice through a responsible and client-focused referral process. The Reception/Administration team at Hart also make communication an absolute pleasure and navigate the complexities of scheduling with grace and efficiency. Their understanding and attention to detail is integral in enhancing my ability to focus on my role as therapist.',
+			'author_initial' => 'A',
+			'author_name'    => 'Anita',
+			'author_role'    => 'Psychologist · Camberwell, VIC',
+		),
+		array(
+			'quote_text'     => "I have been with Hart for several years now and can't speak more highly of the service. The Hart Centre admin staff are amazing, always working for the best interests of the client and the associates. They are efficient, friendly and always willing to help with any issues that may arise.",
+			'author_initial' => 'S',
+			'author_name'    => 'Sanja',
+			'author_role'    => 'Psychologist · Hampton, VIC',
+		),
+	);
+
+	$existing_testimonials = get_field( 'testimonials_items', $front_page_id );
+	if ( ! empty( $existing_testimonials ) ) {
+		update_option( 'harthq_testimonials_acf_seeded_v1', 1, false );
+		return;
+	}
+
+	update_field( 'field_harthq_testimonials_items', $testimonials_items, $front_page_id );
+	update_option( 'harthq_testimonials_acf_seeded_v1', 1, false );
+}
+add_action( 'admin_init', 'harthq_seed_homepage_testimonials_acf_once' );

@@ -43,6 +43,18 @@ $services_section_intro    = get_field( 'services_section_intro' );
 $services_concierge_label  = get_field( 'services_concierge_label' );
 $services_concierge_intro  = get_field( 'services_concierge_intro' );
 $services_cards            = get_field( 'services_cards' );
+
+$heartbeat_section_tag     = get_field( 'heartbeat_section_tag' );
+$heartbeat_section_heading = get_field( 'heartbeat_section_heading' );
+$heartbeat_section_intro   = get_field( 'heartbeat_section_intro' );
+$heartbeat_dimensions      = get_field( 'heartbeat_dimensions' );
+$heartbeat_cta             = get_field( 'heartbeat_cta' );
+$heartbeat_visual          = get_field( 'heartbeat_visual' );
+
+$testimonials_section_tag     = get_field( 'testimonials_section_tag' );
+$testimonials_section_heading = get_field( 'testimonials_section_heading' );
+$testimonials_section_intro   = get_field( 'testimonials_section_intro' );
+$testimonials_items           = get_field( 'testimonials_items' );
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -279,91 +291,47 @@ $services_cards            = get_field( 'services_cards' );
 <section class="heartbeat" id="heartbeat">
   <div class="heartbeat-inner">
     <div class="heartbeat-content">
-      <span class="tag">Free tool</span>
-      <h2>What's your<br><em>HartBeat score?</em></h2>
-      <p>A 5-minute quiz that shows you exactly where your practice stands across five key dimensions - and where the biggest opportunities are.</p>
+      <span class="tag"><?php echo esc_html( $heartbeat_section_tag ); ?></span>
+      <h2><?php echo wp_kses( $heartbeat_section_heading, array( 'em' => array(), 'br' => array() ) ); ?></h2>
+      <p><?php echo esc_html( $heartbeat_section_intro ); ?></p>
 
       <div class="hb-dimensions">
-        <div class="hb-dim">
-          <div class="hb-dim-label">Capacity</div>
-          <div class="hb-dim-bar-wrap">
-            <div class="hb-dim-bar" style="width:82%;background:linear-gradient(90deg,var(--teal-mid),var(--teal))"></div>
+        <?php foreach ( $heartbeat_dimensions as $heartbeat_dimension ) : ?>
+          <div class="hb-dim">
+            <div class="hb-dim-label"><?php echo esc_html( $heartbeat_dimension['label'] ); ?></div>
+            <div class="hb-dim-bar-wrap">
+              <div class="hb-dim-bar" style="width:<?php echo esc_attr( $heartbeat_dimension['bar_width_percent'] ); ?>%;background:<?php echo esc_attr( $heartbeat_dimension['bar_background'] ); ?>"></div>
+            </div>
+            <div class="hb-dim-score" style="<?php echo '' !== trim( (string) $heartbeat_dimension['score_color'] ) ? 'color:' . esc_attr( $heartbeat_dimension['score_color'] ) : ''; ?>"><?php echo esc_html( $heartbeat_dimension['score'] ); ?></div>
           </div>
-          <div class="hb-dim-score">82</div>
-        </div>
-        <div class="hb-dim">
-          <div class="hb-dim-label">Revenue integrity</div>
-          <div class="hb-dim-bar-wrap">
-            <div class="hb-dim-bar" style="width:65%;background:linear-gradient(90deg,var(--purple-light),var(--purple))"></div>
-          </div>
-          <div class="hb-dim-score">65</div>
-        </div>
-        <div class="hb-dim">
-          <div class="hb-dim-label">Conversion</div>
-          <div class="hb-dim-bar-wrap">
-            <div class="hb-dim-bar" style="width:71%;background:linear-gradient(90deg,var(--teal-light),var(--teal-mid))"></div>
-          </div>
-          <div class="hb-dim-score">71</div>
-        </div>
-        <div class="hb-dim">
-          <div class="hb-dim-label">Retention</div>
-          <div class="hb-dim-bar-wrap">
-            <div class="hb-dim-bar" style="width:40%;background:linear-gradient(90deg,#f5a0a0,#e05555)"></div>
-          </div>
-          <div class="hb-dim-score" style="color:#f5a0a0">40</div>
-        </div>
-        <div class="hb-dim">
-          <div class="hb-dim-label">Efficiency</div>
-          <div class="hb-dim-bar-wrap">
-            <div class="hb-dim-bar" style="width:78%;background:linear-gradient(90deg,var(--teal-mid),var(--teal))"></div>
-          </div>
-          <div class="hb-dim-score">78</div>
-        </div>
+        <?php endforeach; ?>
       </div>
 
-      <a href="#" class="btn btn-teal">Take the free HartBeat quiz →</a>
+      <a href="<?php echo esc_url( $heartbeat_cta['url'] ); ?>" class="btn btn-teal"><?php echo esc_html( $heartbeat_cta['label'] ); ?></a>
     </div>
 
     <!-- Visual -->
     <div class="hb-visual">
       <div class="hb-visual-header">
-        <div class="hb-visual-title">Practice Health Report</div>
-        <div class="hb-badge">Sample</div>
+        <div class="hb-visual-title"><?php echo esc_html( $heartbeat_visual['title'] ); ?></div>
+        <div class="hb-badge"><?php echo esc_html( $heartbeat_visual['badge'] ); ?></div>
       </div>
 
       <div class="hb-score-big">
         <div class="hb-score-circle">
-          <div class="hb-score-number">67<sub>/100</sub></div>
+          <div class="hb-score-number"><?php echo esc_html( $heartbeat_visual['score_value'] ); ?><sub>/100</sub></div>
         </div>
-        <div class="hb-score-desc">Overall HartBeat score - <strong style="color:rgba(255,255,255,0.7)">Needs attention</strong></div>
+        <div class="hb-score-desc"><?php echo wp_kses( $heartbeat_visual['overall_score_line'], array( 'strong' => array() ) ); ?></div>
       </div>
 
       <div class="hb-dim-list">
-        <div class="hb-dim-row">
-          <div class="hb-dim-dot" style="background:var(--teal-mid)"></div>
-          <div class="hb-dim-name">Capacity utilisation</div>
-          <div class="hb-dim-pct">82%</div>
-        </div>
-        <div class="hb-dim-row">
-          <div class="hb-dim-dot" style="background:var(--purple-light)"></div>
-          <div class="hb-dim-name">Revenue integrity</div>
-          <div class="hb-dim-pct">65%</div>
-        </div>
-        <div class="hb-dim-row">
-          <div class="hb-dim-dot" style="background:var(--teal-light)"></div>
-          <div class="hb-dim-name">Enquiry conversion</div>
-          <div class="hb-dim-pct">71%</div>
-        </div>
-        <div class="hb-dim-row">
-          <div class="hb-dim-dot" style="background:#e05555"></div>
-          <div class="hb-dim-name">Client retention</div>
-          <div class="hb-dim-pct" style="color:#f5a0a0">40% ⚠️</div>
-        </div>
-        <div class="hb-dim-row">
-          <div class="hb-dim-dot" style="background:var(--teal-mid)"></div>
-          <div class="hb-dim-name">Operational efficiency</div>
-          <div class="hb-dim-pct">78%</div>
-        </div>
+        <?php foreach ( $heartbeat_visual['dimensions'] as $heartbeat_visual_dimension ) : ?>
+          <div class="hb-dim-row">
+            <div class="hb-dim-dot" style="background:<?php echo esc_attr( $heartbeat_visual_dimension['dot_color'] ); ?>"></div>
+            <div class="hb-dim-name"><?php echo esc_html( $heartbeat_visual_dimension['name'] ); ?></div>
+            <div class="hb-dim-pct" style="<?php echo '' !== trim( (string) $heartbeat_visual_dimension['percent_color'] ) ? 'color:' . esc_attr( $heartbeat_visual_dimension['percent_color'] ) : ''; ?>"><?php echo esc_html( $heartbeat_visual_dimension['percent_text'] ); ?></div>
+          </div>
+        <?php endforeach; ?>
       </div>
     </div>
   </div>
@@ -372,43 +340,23 @@ $services_cards            = get_field( 'services_cards' );
 <!-- TESTIMONIALS -->
 <section class="testimonials" id="testimonials">
   <div class="testimonials-inner">
-    <span class="tag">What practitioners say</span>
-    <h2>Built for the way<br><em>clinicians actually work.</em></h2>
-    <p class="testimonials-intro">From psychologists across Australia - here's what working with The Hart Centre looks like in practice.</p>
+    <span class="tag"><?php echo esc_html( $testimonials_section_tag ); ?></span>
+    <h2><?php echo wp_kses( $testimonials_section_heading, array( 'em' => array(), 'br' => array() ) ); ?></h2>
+    <p class="testimonials-intro"><?php echo esc_html( $testimonials_section_intro ); ?></p>
 
     <div class="testi-grid">
-      <div class="testi-card">
-        <p class="testi-text">Hart is excellent! I have worked with them for years and most of my clients are from them. I don't like to do marketing and it's an expensive business, so I allocate my marketing budget in my accounts to them because I get a steady stream of work. The booking service is excellent. They book straight into Google Calendar and you can sync that with whatever you're using presently.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">K</div>
-          <div>
-            <div class="testi-name">Kathrine</div>
-            <div class="testi-role">Psychologist · Perth, WA</div>
+      <?php foreach ( $testimonials_items as $testimonials_item ) : ?>
+        <div class="testi-card">
+          <p class="testi-text"><?php echo esc_html( $testimonials_item['quote_text'] ); ?></p>
+          <div class="testi-author">
+            <div class="testi-avatar"><?php echo esc_html( $testimonials_item['author_initial'] ); ?></div>
+            <div>
+              <div class="testi-name"><?php echo esc_html( $testimonials_item['author_name'] ); ?></div>
+              <div class="testi-role"><?php echo esc_html( $testimonials_item['author_role'] ); ?></div>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="testi-card">
-        <p class="testi-text">As a Hart Associate, I have been extremely well supported in my professional practice through a responsible and client-focused referral process. The Reception/Administration team at Hart also make communication an absolute pleasure and navigate the complexities of scheduling with grace and efficiency. Their understanding and attention to detail is integral in enhancing my ability to focus on my role as therapist.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">A</div>
-          <div>
-            <div class="testi-name">Anita</div>
-            <div class="testi-role">Psychologist · Camberwell, VIC</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testi-card">
-        <p class="testi-text">I have been with Hart for several years now and can't speak more highly of the service. The Hart Centre admin staff are amazing, always working for the best interests of the client and the associates. They are efficient, friendly and always willing to help with any issues that may arise.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">S</div>
-          <div>
-            <div class="testi-name">Sanja</div>
-            <div class="testi-role">Psychologist · Hampton, VIC</div>
-          </div>
-        </div>
-      </div>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>
