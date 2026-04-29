@@ -69,6 +69,28 @@ function harthq_acf_json_load_point( $paths ) {
 add_filter( 'acf/settings/load_json', 'harthq_acf_json_load_point' );
 
 /**
+ * Register ACF options page (footer, future shared menus).
+ */
+function harthq_acf_options_page() {
+	if ( ! function_exists( 'acf_add_options_page' ) ) {
+		return;
+	}
+
+	acf_add_options_page(
+		array(
+			'page_title' => 'HartHQ Site Options',
+			'menu_title' => 'Site Options',
+			'menu_slug'  => 'harthq-site-options',
+			'capability' => 'manage_options',
+			'redirect'   => false,
+			'position'   => 61,
+			'icon_url'   => 'dashicons-admin-generic',
+		)
+	);
+}
+add_action( 'acf/init', 'harthq_acf_options_page' );
+
+/**
  * Seed homepage about-section ACF values once.
  *
  * This helper runs one time in admin, writes initial values for

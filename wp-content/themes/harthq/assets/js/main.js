@@ -6,6 +6,27 @@
   const isHeartbeat = path.indexOf('/heartbeat') !== -1 || path.indexOf('/hartbeat') !== -1;
   const isPrivacy = path.indexOf('/privacy') !== -1;
 
+  function initMobileNav() {
+    const nav = document.getElementById('nav');
+    const toggle = document.getElementById('mobileToggle');
+
+    if (!nav || !toggle) {
+      return;
+    }
+
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('nav-open');
+    });
+
+    nav.querySelectorAll('.nav-links a, .nav-cta').forEach((link) => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('nav-open');
+      });
+    });
+  }
+
+  initMobileNav();
+
   if (isHome) {
     try {
       // Nav scroll effect

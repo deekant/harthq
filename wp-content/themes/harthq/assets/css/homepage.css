@@ -167,6 +167,8 @@ em { font-style: italic; }
 
 .nav-links a:hover { color: white; }
 
+.nav-mobile-cta-item { display: none; }
+
 .nav-cta {
   font-family: var(--ff-body);
   font-size: 14px;
@@ -180,6 +182,20 @@ em { font-style: italic; }
 }
 
 .nav-cta:hover { background: #6960C0; }
+
+.nav-mobile-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ff-body);
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--purple);
+  color: white;
+  padding: 10px 22px;
+  border-radius: 100px;
+  text-decoration: none;
+}
 
 .nav-mobile-toggle {
   display: none;
@@ -1263,7 +1279,8 @@ em { font-style: italic; }
   color: white;
 }
 
-.footer-logo-text span { color: var(--purple-light); }
+.footer-logo-text span,
+.footer-logo-text em { color: var(--purple-light); font-style: normal; }
 
 .footer-col h4 {
   font-family: var(--ff-body);
@@ -1343,6 +1360,17 @@ em { font-style: italic; }
 
 /* ─── MOBILE ─── */
 @media (max-width: 900px) {
+  .nav {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    row-gap: 0;
+    position: fixed;
+  }
+  .nav.nav-open {
+    background: rgba(9,20,46,0.98);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
   .hero-inner { grid-template-columns: 1fr; }
   .hero-card { display: none; }
   .problem-inner { grid-template-columns: 1fr; gap: 40px; }
@@ -1353,7 +1381,32 @@ em { font-style: italic; }
   .testi-grid { grid-template-columns: 1fr; }
   .calc-teaser-inner { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr 1fr; }
-  .nav-links { display: none; }
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 0;
+    padding: 48px 16px;
+    background: rgba(9,20,46,0.98);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+  .nav.nav-open .nav-links {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  .nav-mobile-cta-item { display: block; margin-top: 32px; }
+  .nav-cta { display: none; }
   .nav-mobile-toggle { display: flex; }
   .proof-bar-inner { gap: 14px; }
   .proof-divider { display: none; }

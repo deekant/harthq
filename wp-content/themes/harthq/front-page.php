@@ -108,6 +108,7 @@ $cta_section_note             = get_field( 'cta_section_note' );
     <li><a href="#services">Services</a></li>
     <li><a href="#heartbeat">HartBeat</a></li>
     <li><a href="#resources">Resources</a></li>
+    <li class="nav-mobile-cta-item"><a href="#get-started" class="nav-mobile-cta">Get started</a></li>
   </ul>
 
   <a href="#get-started" class="nav-cta">Get started</a>
