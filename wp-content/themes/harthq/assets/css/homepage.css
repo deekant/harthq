@@ -850,7 +850,7 @@ em { font-style: italic; }
 
 .hb-dim-label {
   width: 140px;
-  font-size: 16px;
+  font-size: 14px;
   font-family: var(--ff-body);
   color: rgba(255,255,255,0.65);
   flex-shrink: 0;
@@ -873,7 +873,7 @@ em { font-style: italic; }
 .hb-dim-score {
   width: 36px;
   text-align: right;
-  font-size: 13px;
+  font-size: 16px;
   font-family: var(--ff-head);
   color: white;
 }
@@ -946,7 +946,7 @@ em { font-style: italic; }
 }
 
 .hb-score-number sub {
-  font-size: 16px;
+  font-size: 14px;
   color: rgba(255,255,255,0.4);
   vertical-align: baseline;
   font-family: var(--ff-body);
@@ -957,6 +957,10 @@ em { font-style: italic; }
   font-size: 13px;
   color: rgba(255,255,255,0.5);
   font-family: var(--ff-body);
+}
+
+.hb-score-desc strong {
+  color: white
 }
 
 .hb-dim-list {
@@ -982,7 +986,7 @@ em { font-style: italic; }
 }
 
 .hb-dim-name {
-  font-size: 13px;
+  font-size: 14px;
   color: rgba(255,255,255,0.7);
   font-family: var(--ff-body);
   flex: 1;
@@ -1154,7 +1158,7 @@ em { font-style: italic; }
 .calc-row:last-child { margin-bottom: 0; }
 
 .calc-label {
-  font-size: 13px;
+  font-size: 14px;
   font-family: var(--ff-body);
   color: var(--text-muted);
 }
@@ -1175,7 +1179,7 @@ em { font-style: italic; }
   display: flex;
   justify-content: space-between;
   margin-bottom: 6px;
-  font-size: 12px;
+  font-size: 14px;
   font-family: var(--ff-body);
   color: var(--text-muted);
 }
