@@ -10,6 +10,7 @@ $hero_subtext      = get_field( 'hero_subtext' );
 $hero_primary_cta   = get_field( 'hero_primary_cta' );
 $hero_secondary_cta = get_field( 'hero_secondary_cta' );
 $hero_trust         = get_field( 'hero_trust' );
+$hero_card          = get_field( 'hero_card' );
 $proof_bar          = get_field( 'proof_bar' );
 $problem_section    = get_field( 'problem_section' );
 $how_steps          = get_field( 'how_steps' );
@@ -55,6 +56,18 @@ $testimonials_section_tag     = get_field( 'testimonials_section_tag' );
 $testimonials_section_heading = get_field( 'testimonials_section_heading' );
 $testimonials_section_intro   = get_field( 'testimonials_section_intro' );
 $testimonials_items           = get_field( 'testimonials_items' );
+
+$calculator_section_tag    = get_field( 'calculator_section_tag' );
+$calculator_section_heading = get_field( 'calculator_section_heading' );
+$calculator_section_intro   = get_field( 'calculator_section_intro' );
+$calculator_section_button  = get_field( 'calculator_section_button' );
+
+$cta_section_tag              = get_field( 'cta_section_tag' );
+$cta_section_heading          = get_field( 'cta_section_heading' );
+$cta_section_intro            = get_field( 'cta_section_intro' );
+$cta_section_primary_button   = get_field( 'cta_section_primary_button' );
+$cta_section_secondary_button = get_field( 'cta_section_secondary_button' );
+$cta_section_note             = get_field( 'cta_section_note' );
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -146,9 +159,9 @@ $testimonials_items           = get_field( 'testimonials_items' );
 
     <!-- Hero right card -->
     <div class="hero-card fade-up delay-3">
-      <div class="hero-card-label">HartBeat Score Preview</div>
-      <h3>Practice Health at a Glance</h3>
-      <p class="hero-card-sub">Five dimensions. One monthly score. Know exactly where your practice is leaking.</p>
+      <div class="hero-card-label"><?php echo esc_html( $hero_card['label'] ); ?></div>
+      <h3><?php echo esc_html( $hero_card['title'] ); ?></h3>
+      <p class="hero-card-sub"><?php echo esc_html( $hero_card['subtitle'] ); ?></p>
 
       <div class="heartbeat-preview">
         <div class="hb-bars">
@@ -159,17 +172,15 @@ $testimonials_items           = get_field( 'testimonials_items' );
           <div class="hb-bar hb-bar-5"></div>
         </div>
         <div class="hb-labels">
-          <div class="hb-label">Capacity</div>
-          <div class="hb-label">Revenue</div>
-          <div class="hb-label">Conversion</div>
-          <div class="hb-label">Retention</div>
-          <div class="hb-label">Efficiency</div>
+          <?php foreach ( $hero_card['dimensions'] as $hero_card_dimension ) : ?>
+            <div class="hb-label"><?php echo esc_html( $hero_card_dimension['name'] ); ?></div>
+          <?php endforeach; ?>
         </div>
       </div>
 
       <div class="hb-score-row">
-        <span class="hb-score-label">Your HartBeat score</span>
-        <span class="hb-score-val">72 <span>/ 100</span></span>
+        <span class="hb-score-label"><?php echo esc_html( $hero_card['score_label'] ); ?></span>
+        <span class="hb-score-val"><?php echo esc_html( $hero_card['score_value'] ); ?> <span>/ 100</span></span>
       </div>
 
     </div>
@@ -365,10 +376,10 @@ $testimonials_items           = get_field( 'testimonials_items' );
 <section class="calc-teaser" id="calculator">
   <div class="calc-teaser-inner">
     <div class="calc-content">
-      <span class="tag">Practice calculator</span>
-      <h2>See what your<br>practice <em>could</em> earn.</h2>
-      <p>Enter your session fee and current hours and we'll show you exactly what six recovered hours per week adds up to across a year - plus what your blended hourly rate actually looks like right now.</p>
-      <a href="#" class="btn btn-primary">Open the full calculator →</a>
+      <span class="tag"><?php echo esc_html( $calculator_section_tag ); ?></span>
+      <h2><?php echo wp_kses( $calculator_section_heading, array( 'em' => array(), 'br' => array() ) ); ?></h2>
+      <p><?php echo esc_html( $calculator_section_intro ); ?></p>
+      <a href="<?php echo esc_url( $calculator_section_button['url'] ); ?>" class="btn btn-primary"><?php echo esc_html( $calculator_section_button['label'] ); ?></a>
     </div>
 
     <div class="calc-preview">
@@ -411,14 +422,14 @@ $testimonials_items           = get_field( 'testimonials_items' );
 <!-- CTA FINAL -->
 <section class="cta-final" id="get-started">
   <div class="cta-final-inner">
-    <span class="tag">Get started today</span>
-    <h2>Your practice deserves<br>to <em>run properly.</em></h2>
-    <p>Start with your free HartBeat score. See where admin is costing you. Then let us handle it.</p>
+    <span class="tag"><?php echo esc_html( $cta_section_tag ); ?></span>
+    <h2><?php echo wp_kses( $cta_section_heading, array( 'em' => array(), 'br' => array() ) ); ?></h2>
+    <p><?php echo esc_html( $cta_section_intro ); ?></p>
     <div class="cta-final-actions">
-      <a href="#heartbeat" class="btn btn-primary">Get your free HartBeat score</a>
-      <a href="https://hart-hq.zohobookings.com/#/intro" target="_blank" class="btn btn-outline">Book a free call</a>
+      <a href="<?php echo esc_url( $cta_section_primary_button['url'] ); ?>" class="btn btn-primary"><?php echo esc_html( $cta_section_primary_button['label'] ); ?></a>
+      <a href="<?php echo esc_url( $cta_section_secondary_button['url'] ); ?>" target="_blank" class="btn btn-outline"><?php echo esc_html( $cta_section_secondary_button['label'] ); ?></a>
     </div>
-    <p class="cta-note">No lock-in. Cancel anytime. Built by the team behind The Hart Centre.</p>
+    <p class="cta-note"><?php echo esc_html( $cta_section_note ); ?></p>
   </div>
 </section>
 
