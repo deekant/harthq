@@ -10,6 +10,8 @@ $hero_subtext      = get_field( 'hero_subtext' );
 $hero_primary_cta   = get_field( 'hero_primary_cta' );
 $hero_secondary_cta = get_field( 'hero_secondary_cta' );
 $hero_trust         = get_field( 'hero_trust' );
+$proof_bar          = get_field( 'proof_bar' );
+$problem_section    = get_field( 'problem_section' );
 
 $primary_cta_label = $hero_primary_cta['label'] ?? '';
 $primary_cta_url   = $hero_primary_cta['url'] ?? '';
@@ -19,6 +21,15 @@ $secondary_cta_url   = $hero_secondary_cta['url'] ?? '';
 
 $trust_text  = $hero_trust['text'] ?? '';
 $trust_stats = ! empty( $hero_trust['stats'] ) && is_array( $hero_trust['stats'] ) ? $hero_trust['stats'] : array();
+
+$proof_items         = ! empty( $proof_bar['items'] ) && is_array( $proof_bar['items'] ) ? $proof_bar['items'] : array();
+$proof_show_dividers = isset( $proof_bar['show_dividers'] ) ? (bool) $proof_bar['show_dividers'] : true;
+
+$problem_tag     = $problem_section['tag'] ?? '';
+$problem_heading = $problem_section['heading'] ?? '';
+$problem_body    = $problem_section['body_text'] ?? '';
+$problem_cta     = $problem_section['cta'] ?? array();
+$problem_quotes  = ! empty( $problem_section['quotes'] ) && is_array( $problem_section['quotes'] ) ? $problem_section['quotes'] : array();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -143,65 +154,17 @@ $trust_stats = ! empty( $hero_trust['stats'] ) && is_array( $hero_trust['stats']
 <!-- PROOF BAR -->
 <div class="proof-bar">
   <div class="proof-bar-inner">
-    <div class="proof-item">
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="16" cy="16" r="11.4286" fill="#E7E4FB"/>
-<path d="M5.66671 12C6.95537 12 8.00004 10.9553 8.00004 9.66668C8.00004 8.37801 6.95537 7.33334 5.66671 7.33334C4.37804 7.33334 3.33337 8.37801 3.33337 9.66668C3.33337 10.9553 4.37804 12 5.66671 12Z" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M0.666626 10.6667C2.66663 10.6667 5.37396 11.8793 6.98396 13.3013L12.872 18.4993C13.4813 19.0367 14.266 19.3333 15.0786 19.3333H30V24C30 24.7367 29.4033 25.3333 28.6666 25.3333H28C27.2633 25.3333 26.6666 24.7367 26.6666 24V23.3333C26.6666 22.9653 26.368 22.6667 26 22.6667H10.6666C10.2986 22.6667 9.99996 22.9653 9.99996 23.3333V24C9.99996 24.7367 9.40329 25.3333 8.66663 25.3333H7.99996C7.26329 25.3333 6.66663 24.7367 6.66663 24V19.3333L2.58929 13.444" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M9.66669 15.6967C8.65936 14.8067 8.59402 13.2473 9.54802 12.276C10.4427 11.3647 11.9327 11.4067 12.8894 12.252L15.09 14.1733C15.4547 14.4913 15.922 14.6667 16.4054 14.6667H17.7087C18.078 14.6667 18.44 14.5647 18.7547 14.3713L22.832 11.87C23.382 11.5327 24.094 11.6373 24.5234 12.118L28.876 16.9913C29.3914 17.5687 29.334 18.4567 28.7474 18.962C28.1994 19.434 27.38 19.4053 26.8674 18.8953L23.5714 15.6173L20.058 19.3333" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linejoin="round"/>
-</svg>
-      Registered psychologists &amp; counsellors only
-    </div>
-    <div class="proof-divider"></div>
-    <div class="proof-item">
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="16" cy="16" r="11.4286" fill="#D5EBE0"/>
-<path d="M20.6694 13.0006L15.2207 20.3339L11.3361 17.0006" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M27.8348 16.3338C27.8348 17.5458 26.4742 18.5278 26.1188 19.6211C25.7508 20.7545 26.2615 22.3458 25.5755 23.2891C24.8822 24.2418 23.2062 24.2445 22.2535 24.9378C21.3102 25.6245 20.7935 27.2218 19.6602 27.5898C18.5668 27.9451 17.2148 26.9678 16.0028 26.9678C14.7908 26.9678 13.4388 27.9444 12.3455 27.5898C11.2122 27.2218 10.6955 25.6245 9.75218 24.9378C8.79951 24.2445 7.12351 24.2418 6.43018 23.2891C5.74351 22.3458 6.25484 20.7545 5.88684 19.6211C5.53218 18.5278 4.17151 17.5458 4.17151 16.3338C4.17151 15.1218 5.53218 14.1398 5.88751 13.0465C6.25551 11.9131 5.74484 10.3218 6.43084 9.37845C7.12418 8.42578 8.80018 8.42312 9.75284 7.72978C10.6962 7.04312 11.2128 5.44578 12.3462 5.07778C13.4395 4.72245 14.7915 5.69978 16.0035 5.69978C17.2155 5.69978 18.5675 4.72312 19.6608 5.07778C20.7942 5.44578 21.3108 7.04312 22.2542 7.72978C23.2068 8.42312 24.8828 8.42578 25.5762 9.37845C26.2628 10.3218 25.7515 11.9131 26.1195 13.0465C26.4742 14.1398 27.8348 15.1218 27.8348 16.3338Z" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-      AHPRA, APS, PACFA aware
-    </div>
-    <div class="proof-divider"></div>
-    <div class="proof-item">
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="16" cy="16" r="11.4286" fill="#E7E4FB"/>
-<path d="M25.3333 22.6667V25.3333L26.6666 26.6667" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M25.3333 30.6667C28.2789 30.6667 30.6667 28.2789 30.6667 25.3333C30.6667 22.3878 28.2789 20 25.3333 20C22.3878 20 20 22.3878 20 25.3333C20 28.2789 22.3878 30.6667 25.3333 30.6667Z" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round"/>
-<path d="M17.3334 26.6667H5.33335C3.86069 26.6667 2.66669 25.4727 2.66669 24V8.66666C2.66669 7.19399 3.86069 5.99999 5.33335 5.99999H6.66669V3.33332C6.66669 2.96666 6.96669 2.66666 7.33335 2.66666H10C10.3667 2.66666 10.6667 2.96666 10.6667 3.33332V5.99999" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M26.7127 6.384C27.4847 6.85067 28 7.69867 28 8.66667V20.6667" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M13.3333 5.99999H20V3.33332C20 2.96666 20.3 2.66666 20.6666 2.66666H23.3333C23.7 2.66666 24 2.96666 24 3.33332V5.99999" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M7.33331 16.6667H9.99998V14.6667" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14 16.6667H16.6667V14.6667" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M7.33331 22.6667H9.99998V20.6667" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14 22.6667H16.6667V20.6667" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M20.6667 16.6667H23.3334V14.6667" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-      No lock-in, cancel anytime
-    </div>
-    <div class="proof-divider"></div>
-    <div class="proof-item">
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="16.0001" cy="16" r="13.7143" fill="#E7E4FB"/>
-<path d="M7.08663 15.3333C8.37529 15.3333 9.41996 14.2887 9.41996 13C9.41996 11.7113 8.37529 10.6667 7.08663 10.6667C5.79796 10.6667 4.7533 11.7113 4.7533 13C4.7533 14.2887 5.79796 15.3333 7.08663 15.3333Z" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M25.0866 15.3333C26.3753 15.3333 27.42 14.2887 27.42 13C27.42 11.7113 26.3753 10.6667 25.0866 10.6667C23.798 10.6667 22.7533 11.7113 22.7533 13C22.7533 14.2887 23.798 15.3333 25.0866 15.3333Z" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M25.426 22.6667H28.678C29.4994 22.6667 30.0814 21.88 29.8267 21.114L29.6494 20.58C29.0047 18.6433 27.1634 17.3333 25.0867 17.3333C23.572 17.3333 22.182 18.0307 21.2914 19.1593" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M6.74785 22.6667H3.49585C2.67451 22.6667 2.09251 21.88 2.34718 21.114L2.52451 20.58C3.16918 18.6433 5.00985 17.3333 7.08651 17.3333C8.60118 17.3333 9.99118 18.0307 10.8818 19.1593" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M11.244 24H20.93C22.038 24 22.8226 22.918 22.4793 21.8647L22.24 21.1307C21.3706 18.468 18.888 16.6667 16.0866 16.6667C13.286 16.6667 10.8026 18.468 9.93396 21.1307L9.69463 21.8647C9.3513 22.918 10.136 24 11.244 24Z" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M16.0865 14C17.7434 14 19.0865 12.6569 19.0865 11C19.0865 9.34315 17.7434 8 16.0865 8C14.4297 8 13.0865 9.34315 13.0865 11C13.0865 12.6569 14.4297 14 16.0865 14Z" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-      Built by the team behind The Hart Centre
-    </div>
-    <div class="proof-divider"></div>
-    <div class="proof-item">
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="16" cy="16" r="11.4286" fill="#C8E8E4"/>
-<path d="M20.2734 17.4547L22.6874 19.8687C23.392 20.5733 23.392 21.716 22.6874 22.4207C21.9827 23.1253 20.84 23.1253 20.1354 22.4207L17.7214 20.0067" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M17.7213 20.0073L20.1352 22.4213C20.8399 23.126 20.8399 24.2687 20.1352 24.9733C19.4306 25.678 18.2879 25.678 17.5833 24.9733L15.1693 22.5593" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M28.0613 16.572L28.6667 15.9667C31.244 13.3893 31.244 9.21067 28.6667 6.63333C26.0893 4.056 21.9107 4.056 19.3333 6.63333L14.2 11.7667C14.8187 12.928 16.136 13.5467 17.4193 13.2567C18.236 13.072 19.0293 12.752 20.1287 12.1953L25.2393 17.3167C25.944 18.0213 25.944 19.164 25.2393 19.8687C24.5347 20.5733 23.392 20.5733 22.6873 19.8687L20.2733 17.4547" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M15.1693 22.5593L17.5833 24.9733C18.288 25.678 18.288 26.8207 17.5833 27.5253C16.8787 28.23 15.736 28.23 15.0313 27.5253L4.49532 17.0013C1.69599 14.2053 1.67465 9.67534 4.44665 6.852C7.24865 3.99867 11.8387 3.97267 14.6733 6.794L14.98 7.124" stroke="#1C1C1E" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-      Australia-based support team
-    </div>
+    <?php foreach ( $proof_items as $proof_item_index => $proof_item ) : ?>
+      <div class="proof-item">
+        <?php if ( ! empty( $proof_item['icon_svg'] ) ) : ?>
+          <?php echo wp_kses( $proof_item['icon_svg'], array( 'svg' => array( 'xmlns' => true, 'width' => true, 'height' => true, 'viewbox' => true, 'fill' => true, 'class' => true ), 'path' => array( 'd' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true, 'stroke-linecap' => true, 'stroke-linejoin' => true, 'stroke-miterlimit' => true ), 'circle' => array( 'cx' => true, 'cy' => true, 'r' => true, 'fill' => true ) ) ); ?>
+        <?php endif; ?>
+        <?php echo esc_html( $proof_item['text'] ?? '' ); ?>
+      </div>
+      <?php if ( $proof_show_dividers && $proof_item_index < ( count( $proof_items ) - 1 ) ) : ?>
+        <div class="proof-divider"></div>
+      <?php endif; ?>
+    <?php endforeach; ?>
   </div>
 </div>
 
@@ -209,29 +172,18 @@ $trust_stats = ! empty( $hero_trust['stats'] ) && is_array( $hero_trust['stats']
 <section class="problem" id="about">
   <div class="problem-inner">
     <div class="problem-content">
-      <span class="tag">The real problem</span>
-      <h2>You didn't train for <em>six years</em> to spend your afternoons on admin.</h2>
-      <p>Most practitioners running private practices are losing 7-13 hours a week to tasks that have nothing to do with clinical work. Chasing cancellations. Updating notes. Following up missed appointments. Trying to figure out why referrals dried up.</p>
-      <p>The numbers in your practice don't lie - but unless someone's watching them, they'll quietly erode your income, your time, and eventually your energy for the work you love.</p>
-      <a href="#services" class="btn btn-ghost">See what HartHQ does →</a>
+      <span class="tag"><?php echo esc_html( $problem_tag ); ?></span>
+      <h2><?php echo wp_kses( $problem_heading, array( 'em' => array() ) ); ?></h2>
+      <p><?php echo esc_html( $problem_body ); ?></p>
+      <a href="<?php echo esc_url( $problem_cta['url'] ?? '' ); ?>" class="btn btn-ghost"><?php echo esc_html( $problem_cta['label'] ?? '' ); ?></a>
     </div>
 
     <div class="problem-quotes">
-      <div class="problem-quote">
-        <p>"I don't have a work-life balance problem. I have an admin problem that looks like a work-life balance problem."</p>
-      </div>
-      <div class="problem-quote">
-        <p>"Every hour on admin is an hour I could have billed. You don't always do that maths, but when you do it's uncomfortable."</p>
-      </div>
-      <div class="problem-quote">
-        <p>"I'm essentially paying myself $30 an hour to do admin I hate, instead of $150 an hour to do work I love."</p>
-      </div>
-      <div class="problem-quote">
-        <p>"I went part-time because I was burning out - but half of it wasn't the clients, it was everything around the clients."</p>
-      </div>
-      <div class="problem-quote">
-        <p>"The admin doesn't stay in its lane, it bleeds into everything. I'm thinking about a referral letter while I'm trying to be present with a client."</p>
-      </div>
+      <?php foreach ( $problem_quotes as $problem_quote ) : ?>
+        <div class="problem-quote">
+          <p><?php echo esc_html( $problem_quote['quote_text'] ?? '' ); ?></p>
+        </div>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>
