@@ -29,7 +29,7 @@
             "name": "hero_heading_line_1",
             "aria-label": "",
             "type": "text",
-            "instructions": "Full heading text. Wrap emphasized words with <em> in template output.",
+            "instructions": "Full heading text. Wrap emphasized words with <em></em> in template output.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {

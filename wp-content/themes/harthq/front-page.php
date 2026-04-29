@@ -2,6 +2,23 @@
 /**
  * Front page template.
  */
+
+$hero_eyebrow_text = get_field( 'hero_eyebrow_text' );
+$hero_heading      = get_field( 'hero_heading_line_1' );
+$hero_subtext      = get_field( 'hero_subtext' );
+
+$hero_primary_cta   = get_field( 'hero_primary_cta' );
+$hero_secondary_cta = get_field( 'hero_secondary_cta' );
+$hero_trust         = get_field( 'hero_trust' );
+
+$primary_cta_label = $hero_primary_cta['label'] ?? '';
+$primary_cta_url   = $hero_primary_cta['url'] ?? '';
+
+$secondary_cta_label = $hero_secondary_cta['label'] ?? '';
+$secondary_cta_url   = $hero_secondary_cta['url'] ?? '';
+
+$trust_text  = $hero_trust['text'] ?? '';
+$trust_stats = ! empty( $hero_trust['stats'] ) && is_array( $hero_trust['stats'] ) ? $hero_trust['stats'] : array();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,38 +79,31 @@
     <div class="hero-content">
       <div class="hero-eyebrow fade-up">
         <div class="hero-eyebrow-dot"></div>
-        <span>For psychologists &amp; counsellors in private practice</span>
+        <span><?php echo esc_html( $hero_eyebrow_text ?? '' ); ?></span>
       </div>
 
       <h1 class="fade-up delay-1">
-        Your practice,<br>
-        <em>running properly.</em>
+        <?php echo wp_kses( $hero_heading ?? '', array( 'em' => array(), 'br' => array() ) ); ?>
       </h1>
 
       <p class="hero-sub fade-up delay-2">
-        Most practitioners don't need more clients - they need a practice that runs properly. HartHQ is the admin, reporting and systems layer that gets your time back so you can focus on clinical work.
+        <?php echo esc_html( $hero_subtext ?? '' ); ?>
       </p>
 
       <div class="hero-actions fade-up delay-3">
-        <a href="#heartbeat" class="btn btn-primary">Get your free HartBeat score →</a>
-        <a href="https://hart-hq.zohobookings.com/#/intro" target="_blank" class="btn btn-outline">Book a free call</a>
+        <a href="<?php echo esc_url( $primary_cta_url ); ?>" class="btn btn-primary"><?php echo esc_html( $primary_cta_label ); ?></a>
+        <a href="<?php echo esc_url( $secondary_cta_url ); ?>" target="_blank" class="btn btn-outline"><?php echo esc_html( $secondary_cta_label ); ?></a>
       </div>
 
       <div class="hero-trust fade-up delay-4">
-        <span class="hero-trust-text">Trusted by practitioners across Australia</span>
+        <span class="hero-trust-text"><?php echo esc_html( $trust_text ); ?></span>
         <div class="hero-trust-stats">
-          <div class="hero-stat">
-            <span class="hero-stat-num">400+</span>
-            <span class="hero-stat-label">Practitioners</span>
-          </div>
-          <div class="hero-stat">
-            <span class="hero-stat-num">6 hrs</span>
-            <span class="hero-stat-label">Avg time saved/wk</span>
-          </div>
-          <div class="hero-stat">
-            <span class="hero-stat-num">$0</span>
-            <span class="hero-stat-label">Lock-in contract</span>
-          </div>
+          <?php foreach ( $trust_stats as $trust_stat ) : ?>
+            <div class="hero-stat">
+              <span class="hero-stat-num"><?php echo esc_html( $trust_stat['value'] ?? '' ); ?></span>
+              <span class="hero-stat-label"><?php echo esc_html( $trust_stat['label'] ?? '' ); ?></span>
+            </div>
+          <?php endforeach; ?>
         </div>
       </div>
     </div>
