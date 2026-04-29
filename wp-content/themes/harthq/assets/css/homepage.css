@@ -50,7 +50,7 @@ body {
   font-weight: 600;
   letter-spacing: 1.4px;
   text-transform: uppercase;
-  color: var(--teal-mid);
+  color: var(--teal);
   margin-bottom: 16px;
 }
 
@@ -60,7 +60,7 @@ h1 { font-size: clamp(42px, 6vw, 72px); font-weight: 400; }
 h2 { font-size: clamp(32px, 4vw, 52px); font-weight: 400; }
 h3 { font-size: clamp(22px, 2.5vw, 32px); font-weight: 400; }
 
-p { font-family: var(--ff-body); line-height: 1.75; color: var(--text-muted); }
+p { font-family: var(--ff-body); line-height: 1.7; color: var(--text-muted); }
 
 em { font-style: italic; }
 
@@ -281,9 +281,9 @@ em { font-style: italic; }
 }
 
 .hero-sub {
-  font-size: 18px;
+  font-size: 17px;
   color: rgba(255,255,255,0.65);
-  line-height: 1.65;
+  line-height: 1.7;
   margin-bottom: 40px;
   max-width: 520px;
 }
@@ -495,7 +495,7 @@ em { font-style: italic; }
 .problem-content h2 em { color: var(--purple); }
 
 .problem-content p {
-  font-size: 18px;
+  font-size: 17px;
   margin-bottom: 16px;
 }
 
@@ -566,7 +566,8 @@ em { font-style: italic; }
 .how-inner h2 em { color: var(--purple-light); }
 
 .how-intro {
-  font-size: 18px;
+  font-size: 17px;
+  line-height: 1.7;
   color: rgba(255,255,255,0.6);
   max-width: 580px;
   margin: 0 auto 60px;
@@ -661,7 +662,7 @@ em { font-style: italic; }
 .services-header h2 em { color: var(--teal); }
 
 .services-header p {
-  font-size: 18px;
+  font-size: 17px;
   line-height: 1.7;
 }
 
@@ -829,7 +830,8 @@ em { font-style: italic; }
 
 .heartbeat-content p {
   color: rgba(255,255,255,0.65);
-  font-size: 18px;
+  font-size: 17px;
+  line-height: 1.7;
   margin-bottom: 32px;
 }
 
@@ -848,7 +850,7 @@ em { font-style: italic; }
 
 .hb-dim-label {
   width: 140px;
-  font-size: 13px;
+  font-size: 16px;
   font-family: var(--ff-body);
   color: rgba(255,255,255,0.65);
   flex-shrink: 0;
@@ -987,7 +989,7 @@ em { font-style: italic; }
 }
 
 .hb-dim-pct {
-  font-size: 13px;
+  font-size: 16px;
   font-family: var(--ff-head);
   color: white;
 }
@@ -1026,7 +1028,7 @@ em { font-style: italic; }
 
 .testimonials-inner h2 { color: var(--dark); margin-bottom: 12px; }
 .testimonials-inner h2 em { color: var(--purple); }
-.testimonials-intro { font-size: 18px; max-width: 500px; margin: 0 auto 52px; }
+.testimonials-intro { font-size: 17px; max-width: 500px; margin: 0 auto 52px; }
 
 .testi-grid {
   display: grid;
@@ -1131,7 +1133,7 @@ em { font-style: italic; }
 .calc-content .tag { color: var(--purple); }
 .calc-content h2 { color: var(--dark); margin-bottom: 14px; }
 .calc-content h2 em { color: var(--teal); }
-.calc-content p { font-size: 18px; margin-bottom: 28px; }
+.calc-content p { font-size: 17px; line-height: 1.7; margin-bottom: 28px; }
 
 .calc-preview {
   position: relative;
@@ -1210,7 +1212,7 @@ em { font-style: italic; }
 .cta-final .tag { color: var(--teal-light); }
 .cta-final h2 { color: white; margin-bottom: 16px; }
 .cta-final h2 em { color: var(--purple-light); }
-.cta-final p { font-size: 18px; color: rgba(255,255,255,0.6); max-width: 500px; margin: 0 auto 40px; }
+.cta-final p { font-size: 17px; line-height: 1.7; color: rgba(255,255,255,0.6); max-width: 500px; margin: 0 auto 40px; }
 
 .cta-final-actions {
   display: flex;
