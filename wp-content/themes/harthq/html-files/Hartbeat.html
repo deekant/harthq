@@ -1,0 +1,2014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HartBeat Score - Free Practice Health Assessment | HartHQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ─── BRAND TOKENS ─── */
+:root {
+  --navy:        #0F1A3E;
+  --purple:      #7B6FD4;
+  --purple-light:#B8B0E8;
+  --purple-pale: #E8E5F7;
+  --teal-dark:   #1A4A42;
+  --teal:        #2D7A6A;
+  --teal-mid:    #5AADA0;
+  --teal-light:  #A8D5CD;
+  --teal-pale:   #D6EFEC;
+  --off-white:   #F5F4F0;
+  --light-grey:  #E8E7E3;
+  --dark:        #1C1C1E;
+  --text:        #2A2A35;
+  --text-muted:  #6B6B78;
+  --white:       #FFFFFF;
+
+  /* Dimension colours mapped to brand palette */
+  --d1: #5AADA0;   /* teal-mid - Capacity */
+  --d1-bg: #D6EFEC;
+  --d2: #7B6FD4;   /* purple - Clinical Continuity */
+  --d2-bg: #E8E5F7;
+  --d3: #2D7A6A;   /* teal - Revenue */
+  --d3-bg: #D6EFEC;
+  --d4: #4A6FA5;   /* blue-navy - Admin */
+  --d4-bg: #E0E8F5;
+  --d5: #7A6040;   /* warm - Resilience */
+  --d5-bg: #F0E8DA;
+
+  --red: #c0392b;
+  --red-bg: #fdecea;
+  --amber: #b5820a;
+  --amber-bg: #fdf3d9;
+
+  --ff-head: 'Playfair Display', Georgia, serif;
+  --ff-body: 'Figtree', system-ui, sans-serif;
+  --border: #E0DED8;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--ff-body);
+  background: var(--off-white);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── NAV ─── */
+.nav {
+  background: var(--navy);
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo-mark { width: 32px; height: 32px; }
+
+.nav-logo-text {
+  font-family: var(--ff-body);
+  font-size: 17px;
+  font-weight: 700;
+  color: white;
+}
+.nav-logo-text span { color: var(--purple-light); }
+
+.nav-tag {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+
+.nav-back {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-family: var(--ff-body);
+  transition: color 0.2s;
+}
+.nav-back:hover { color: white; }
+
+/* ─── HERO ─── */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--teal-dark) 100%);
+  padding: 64px 40px 52px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 60%, rgba(123,111,212,0.14) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 30%, rgba(90,173,160,0.12) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-watermark {
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.04;
+  width: 400px;
+  color: white;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  font-family: var(--ff-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--teal-mid);
+  margin-bottom: 16px;
+}
+
+.hero h1 {
+  font-family: var(--ff-head);
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 400;
+  color: white;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.hero h1 em { color: var(--purple-light); font-style: italic; }
+
+.hero-sub {
+  font-size: 16px;
+  color: rgba(255,255,255,0.6);
+  max-width: 480px;
+  margin: 0 auto 28px;
+  line-height: 1.65;
+}
+
+.hero-pills {
+  display: inline-flex;
+  gap: 0;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 100px;
+  padding: 2px;
+}
+
+.hero-pill {
+  font-size: 12px;
+  font-family: var(--ff-body);
+  color: rgba(255,255,255,0.65);
+  padding: 7px 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hero-pill + .hero-pill {
+  border-left: 1px solid rgba(255,255,255,0.1);
+}
+
+.pill-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--teal-mid);
+  flex-shrink: 0;
+}
+
+/* ─── PROGRESS BAR ─── */
+.progress-bar {
+  background: var(--navy);
+  padding: 0 40px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  margin-bottom: 7px;
+}
+
+.pl-text {
+  font-size: 10px;
+  font-family: var(--ff-body);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.35);
+}
+
+.pl-count {
+  font-size: 11px;
+  font-family: var(--ff-body);
+  color: var(--teal-mid);
+  font-weight: 500;
+}
+
+.progress-track {
+  height: 3px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--purple) 0%, var(--teal-mid) 100%);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+  width: 0%;
+}
+
+/* ─── MAIN ─── */
+.main {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 44px 20px 100px;
+}
+
+/* ─── DIMENSION ─── */
+.dimension {
+  margin-bottom: 52px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.dimension.visible { opacity: 1; transform: translateY(0); }
+
+.dim-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.dim-number {
+  font-family: var(--ff-head);
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--light-grey);
+  flex-shrink: 0;
+  width: 44px;
+}
+
+.dim-info { flex: 1; }
+
+.dim-tag {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  font-family: var(--ff-body);
+}
+
+.dim-title {
+  font-family: var(--ff-head);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 5px;
+}
+
+.dim-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  font-family: var(--ff-body);
+}
+
+.dim-score-badge {
+  flex-shrink: 0;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.dsb-val {
+  font-family: var(--ff-head);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--text-muted);
+  transition: color 0.3s;
+}
+
+.dsb-max { font-size: 9px; color: var(--text-muted); font-family: var(--ff-body); }
+
+/* Dimension colour theming */
+.d1 .dim-tag, .d1 .dim-title { color: var(--d1); }
+.d1.scoring .dim-score-badge { border-color: var(--d1); background: var(--d1-bg); }
+.d1.scoring .dsb-val { color: var(--d1); }
+
+.d2 .dim-tag, .d2 .dim-title { color: var(--d2); }
+.d2.scoring .dim-score-badge { border-color: var(--d2); background: var(--d2-bg); }
+.d2.scoring .dsb-val { color: var(--d2); }
+
+.d3 .dim-tag, .d3 .dim-title { color: var(--d3); }
+.d3.scoring .dim-score-badge { border-color: var(--d3); background: var(--d3-bg); }
+.d3.scoring .dsb-val { color: var(--d3); }
+
+.d4 .dim-tag, .d4 .dim-title { color: var(--d4); }
+.d4.scoring .dim-score-badge { border-color: var(--d4); background: var(--d4-bg); }
+.d4.scoring .dsb-val { color: var(--d4); }
+
+.d5 .dim-tag, .d5 .dim-title { color: var(--d5); }
+.d5.scoring .dim-score-badge { border-color: var(--d5); background: var(--d5-bg); }
+.d5.scoring .dsb-val { color: var(--d5); }
+
+/* ─── QUESTIONS ─── */
+.questions { display: flex; flex-direction: column; gap: 14px; }
+
+.question {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.question.answered { box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+
+.d1 .question.answered { border-color: var(--d1); }
+.d2 .question.answered { border-color: var(--d2); }
+.d3 .question.answered { border-color: var(--d3); }
+.d4 .question.answered { border-color: var(--d4); }
+.d5 .question.answered { border-color: var(--d5); }
+
+.q-text {
+  font-size: 14px;
+  font-family: var(--ff-body);
+  color: var(--text);
+  margin-bottom: 13px;
+  line-height: 1.55;
+  font-weight: 500;
+}
+
+.options { display: flex; flex-direction: column; gap: 6px; }
+
+.opt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 13px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--off-white);
+  cursor: pointer;
+  font-size: 13px;
+  font-family: var(--ff-body);
+  color: var(--text-muted);
+  transition: all 0.15s;
+  text-align: left;
+  width: 100%;
+  line-height: 1.4;
+}
+
+.opt:hover { background: white; border-color: #bbb; color: var(--text); }
+
+.opt-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+
+.opt.selected { background: white; color: var(--text); }
+.opt.selected .opt-dot { border-width: 4px; }
+
+.d1 .opt.selected { border-color: var(--d1); }
+.d1 .opt.selected .opt-dot { border-color: var(--d1); }
+.d2 .opt.selected { border-color: var(--d2); }
+.d2 .opt.selected .opt-dot { border-color: var(--d2); }
+.d3 .opt.selected { border-color: var(--d3); }
+.d3 .opt.selected .opt-dot { border-color: var(--d3); }
+.d4 .opt.selected { border-color: var(--d4); }
+.d4 .opt.selected .opt-dot { border-color: var(--d4); }
+.d5 .opt.selected { border-color: var(--d5); }
+.d5 .opt.selected .opt-dot { border-color: var(--d5); }
+
+.opt-score {
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  opacity: 0.5;
+}
+
+/* ─── SUBMIT ─── */
+.submit-wrap {
+  text-align: center;
+  padding: 36px 0 0;
+  display: none;
+}
+.submit-wrap.visible { display: block; }
+
+.submit-btn {
+  background: var(--purple);
+  color: white;
+  border: none;
+  border-radius: 100px;
+  padding: 16px 52px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--ff-body);
+  transition: all 0.2s;
+  letter-spacing: 0.2px;
+}
+
+.submit-btn:hover { background: #6960C0; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(123,111,212,0.35); }
+.submit-btn:disabled { background: #bbb; cursor: not-allowed; transform: none; box-shadow: none; }
+
+.submit-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 10px;
+  font-family: var(--ff-body);
+}
+
+/* ─── RESULTS ─── */
+#results { display: none; opacity: 0; transition: opacity 0.6s ease; }
+#results.visible { display: block; opacity: 1; }
+
+.results-hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--teal-dark) 100%);
+  border-radius: 20px;
+  padding: 48px 40px;
+  text-align: center;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.results-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 100%, rgba(90,173,160,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.rh-tag {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 10px;
+  font-family: var(--ff-body);
+  font-weight: 600;
+}
+
+.score-display {
+  font-family: var(--ff-head);
+  font-size: 100px;
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 4px;
+  transition: color 0.5s;
+}
+
+.score-max {
+  font-size: 28px;
+  color: rgba(255,255,255,0.3);
+  font-family: var(--ff-head);
+}
+
+.score-band {
+  font-family: var(--ff-head);
+  font-size: 30px;
+  font-style: italic;
+  margin-bottom: 10px;
+  transition: color 0.5s;
+}
+
+.score-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  max-width: 460px;
+  margin: 0 auto;
+  line-height: 1.65;
+  font-family: var(--ff-body);
+}
+
+/* DIM BARS */
+/* ── BURNOUT INDICATOR ── */
+.burnout-flag {
+  margin: 0 auto 32px;
+  max-width: 680px;
+  border-radius: 14px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.burnout-flag.low {
+  background: #F0FAF7;
+  border: 1.5px solid #A8D5CD;
+}
+.burnout-flag.moderate {
+  background: #FFF8EC;
+  border: 1.5px solid #F5C87A;
+}
+.burnout-flag.high {
+  background: #FEF0EF;
+  border: 1.5px solid #F5A49A;
+}
+.bf-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+.low .bf-dot { background: #2D7A6A; }
+.moderate .bf-dot { background: #D4860A; }
+.high .bf-dot { background: #C0392B; }
+.bf-label {
+  font-family: var(--ff-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.low .bf-label { color: #2D7A6A; }
+.moderate .bf-label { color: #D4860A; }
+.high .bf-label { color: #C0392B; }
+.bf-text {
+  font-family: var(--ff-body);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.dim-bars {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 20px;
+}
+
+.db-title {
+  font-family: var(--ff-head);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--dark);
+  margin-bottom: 24px;
+}
+
+.dim-bar-row { margin-bottom: 18px; }
+.dim-bar-row:last-child { margin-bottom: 0; }
+
+.dbr-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 7px;
+}
+
+.dbr-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  font-family: var(--ff-body);
+}
+
+.dbr-score {
+  font-size: 14px;
+  font-weight: 700;
+  font-family: var(--ff-head);
+}
+
+.dbr-track {
+  height: 8px;
+  background: var(--light-grey);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.dbr-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1s ease;
+  width: 0%;
+}
+
+.dbr-insight {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 5px;
+  line-height: 1.5;
+  font-style: italic;
+  font-family: var(--ff-body);
+}
+
+/* PRIORITY CARDS */
+.priority-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.priority-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.pc-num {
+  font-family: var(--ff-head);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 28px;
+}
+
+.pc-body { flex: 1; }
+.pc-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 4px; font-family: var(--ff-body); }
+.pc-title { font-size: 15px; font-weight: 600; color: var(--dark); margin-bottom: 5px; font-family: var(--ff-body); }
+.pc-desc { font-size: 13px; color: var(--text-muted); line-height: 1.55; font-family: var(--ff-body); }
+
+.pc-tag {
+  flex-shrink: 0;
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-weight: 600;
+  align-self: flex-start;
+  margin-top: 2px;
+  font-family: var(--ff-body);
+  letter-spacing: 0.3px;
+}
+
+/* HartHQ CTA */
+.hardhq-cta {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--teal-dark) 100%);
+  border-radius: 16px;
+  padding: 32px 36px;
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hardhq-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(123,111,212,0.15) 0%, transparent 60%);
+}
+
+.hcta-body { flex: 1; position: relative; z-index: 1; }
+.hcta-tag {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  color: var(--teal-mid);
+  margin-bottom: 6px;
+  font-weight: 700;
+  font-family: var(--ff-body);
+}
+.hcta-title {
+  font-family: var(--ff-head);
+  font-size: 24px;
+  font-weight: 400;
+  color: white;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.hcta-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+  font-family: var(--ff-body);
+}
+
+.hcta-btn {
+  flex-shrink: 0;
+  background: var(--purple);
+  color: white;
+  border: none;
+  border-radius: 100px;
+  padding: 13px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--ff-body);
+  transition: all 0.2s;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+}
+.hcta-btn:hover { background: #6960C0; transform: translateY(-1px); }
+
+/* MINI CALCULATOR */
+.mini-calc {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 20px;
+}
+
+.mini-calc-title {
+  font-family: var(--ff-head);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+
+.mini-calc-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 22px;
+  line-height: 1.5;
+  font-family: var(--ff-body);
+}
+
+.calc-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.calc-input-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  font-family: var(--ff-body);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.calc-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.calc-input-symbol { color: var(--text-muted); font-size: 14px; font-family: var(--ff-body); }
+
+.calc-input-wrap input {
+  border: none;
+  background: transparent;
+  font-size: 17px;
+  font-family: var(--ff-head);
+  font-weight: 600;
+  color: var(--dark);
+  width: 100%;
+  outline: none;
+}
+
+.calc-results {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+.calc-result-box {
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+
+.crb-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  font-family: var(--ff-body);
+}
+
+.crb-val {
+  font-family: var(--ff-head);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.crb-sub {
+  font-size: 10px;
+  margin-top: 4px;
+  opacity: 0.7;
+  font-family: var(--ff-body);
+}
+
+.crb-red { background: var(--red-bg); color: var(--red); }
+.crb-purple { background: var(--purple-pale); color: var(--purple); }
+.crb-teal { background: var(--teal-pale); color: var(--teal); }
+
+.calc-note {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 14px;
+  line-height: 1.55;
+  font-style: italic;
+  font-family: var(--ff-body);
+}
+
+/* PRODUCT CTA CARDS */
+.product-ctas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.product-cta-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  text-decoration: none;
+  transition: all 0.25s;
+  display: block;
+}
+
+.product-cta-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); border-color: var(--purple-light); }
+
+.pcc-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-family: var(--ff-body);
+}
+
+.pcc-title {
+  font-family: var(--ff-head);
+  font-size: 18px;
+  color: var(--dark);
+  margin-bottom: 6px;
+}
+
+.pcc-price {
+  font-family: var(--ff-head);
+  font-size: 22px;
+  color: var(--dark);
+  margin-bottom: 6px;
+}
+
+.pcc-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  font-family: var(--ff-body);
+  margin-bottom: 14px;
+}
+
+.pcc-link {
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--ff-body);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* DISCLAIMER */
+.disclaimer {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.65;
+  font-style: italic;
+  text-align: center;
+  padding: 0 10px;
+  font-family: var(--ff-body);
+  margin-bottom: 20px;
+}
+
+/* RESTART */
+.restart-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 10px 24px;
+  font-size: 13px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: var(--ff-body);
+  display: block;
+  margin: 0 auto;
+  transition: all 0.15s;
+}
+.restart-btn:hover { border-color: var(--purple-light); color: var(--purple); }
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.count-anim { animation: countUp 0.4s ease forwards; }
+
+/* ─── MOBILE ─── */
+@media (max-width: 640px) {
+  .hero { padding: 48px 20px 40px; }
+  .hero-pills { flex-wrap: wrap; border-radius: 12px; }
+  .hero-pill + .hero-pill { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); }
+  .nav { padding: 14px 20px; }
+  .progress-bar { padding: 0 20px 12px; }
+  .calc-inputs { grid-template-columns: 1fr 1fr; }
+  .calc-results { grid-template-columns: 1fr; }
+  .product-ctas { grid-template-columns: 1fr; }
+  .hardhq-cta { flex-direction: column; gap: 16px; }
+  .results-hero { padding: 36px 24px; }
+  .score-display { font-size: 72px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Shared heart mark symbol -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="hart-heart" viewBox="0 0 204 226" xmlns="http://www.w3.org/2000/svg">
+      <path fill="currentColor" d="M184.5,153.88c-3.5.61-18.27,3.02-38,4.02,2.53-3.92,4.74-8.05,6.58-12.37,14.03-32.9,15.95-94.39-17.63-122.62-33.6-28.21-59.36,1.23-60.73,21.78-1.39,20.55,11.65,43.33,11.65,43.33-19.33-2.76-65.79-3.15-68.32,31.51-2.45,33.52,40.1,48.16,83.73,49.92,6,.25,11.84.21,17.45-.05-20.34,25.16-49.38,39.52-55.95,42.57-.74.34-1.04,1.23-.66,1.95h0c.34.65,1.12.95,1.8.68,30.53-11.95,57.46-26.59,74.83-47,23.55-3.19,40.76-9.25,45.92-11.21.81-.31,1.11-1.31.59-2.01h0c-.3-.4-.79-.6-1.28-.52ZM136.38,138.1c-2.22,7.26-5.42,14.01-9.25,20.23-10.38-.07-21.42-.68-32.47-2.13-45.4-5.99-52.52-26.76-43.82-39.64,8.81-13.04,29.57-15.19,38.76-16.56,3.63-.55,6.99-1.2,9.77-1.8,2.01-.44,3.06-2.63,2.15-4.47-2.04-4.11-4.1-8.7-6.09-13.74-10.43-26.37,17.63-49.23,31.2-34.04,13.57,15.19,24.77,43.09,9.74,92.17Z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <svg class="nav-logo-mark" viewBox="0 0 204 226" style="color:#B8B0E8">
+      <use href="#hart-heart"/>
+    </svg>
+    <span class="nav-logo-text">Hart<span>HQ</span></span>
+  </a>
+  <span class="nav-tag">Practice Health Assessment</span>
+  <a href="/" class="nav-back">← Back to HartHQ</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <svg class="hero-watermark" viewBox="0 0 204 226">
+    <use href="#hart-heart"/>
+  </svg>
+  <div class="hero-eyebrow">HartBeat Score - Free</div>
+  <h1>How healthy is<br><em>your practice?</em></h1>
+  <p class="hero-sub">20 questions across 5 dimensions of practice health. Takes about 4 minutes. No right or wrong answers - just an honest look at where you are.</p>
+  <div class="hero-pills">
+    <div class="hero-pill"><div class="pill-dot"></div>5 dimensions</div>
+    <div class="hero-pill"><div class="pill-dot"></div>20 questions</div>
+    <div class="hero-pill"><div class="pill-dot"></div>Score out of 100</div>
+    <div class="hero-pill"><div class="pill-dot"></div>~4 minutes</div>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-bar">
+  <div class="progress-label">
+    <span class="pl-text">Your progress</span>
+    <span class="pl-count" id="progress-count">0 of 20 answered</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main" id="main-content">
+
+  <!-- ── DIMENSION 1: CAPACITY ── -->
+  <div class="dimension d1" id="dim-1">
+    <div class="dim-header">
+      <div class="dim-number">01</div>
+      <div class="dim-info">
+        <div class="dim-tag">Dimension 1</div>
+        <div class="dim-title">Capacity Utilisation</div>
+        <div class="dim-desc">Are you working at a volume that's sustainable - and are the sessions you schedule actually happening?</div>
+      </div>
+      <div class="dim-score-badge" id="badge-1">
+        <div class="dsb-val" id="score-d1">-</div>
+        <div class="dsb-max">/20</div>
+      </div>
+    </div>
+    <div class="questions">
+
+      <div class="question" data-dim="1" data-q="1">
+        <div class="q-text">What percentage of your scheduled sessions are actually delivered? (accounting for no-shows and same-day cancellations)</div>
+        <div class="options">
+          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>Under 70% - I lose a lot of sessions<div class="opt-score">1/5</div></button>
+          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>70–79% - fairly common gaps<div class="opt-score">2/5</div></button>
+          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>80–84% - occasional gaps<div class="opt-score">3/5</div></button>
+          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>85–92% - mostly solid<div class="opt-score">4/5</div></button>
+          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>93%+ - very few missed sessions<div class="opt-score">5/5</div></button>
+        </div>
+      </div>
+
+      <div class="question" data-dim="1" data-q="2">
+        <div class="q-text">How many client sessions do you typically see in a week?</div>
+        <div class="options">
+          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>Fewer than 10 - well below capacity<div class="opt-score">1/5</div></button>
+          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>10–14 - building but not full<div class="opt-score">2/5</div></button>
+          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>15–18 - comfortably occupied<div class="opt-score">3/5</div></button>
+          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>19–22 - near capacity<div class="opt-score">4/5</div></button>
+          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>23+ - full, sometimes overcommitted<div class="opt-score">5/5</div></button>
+        </div>
+      </div>
+
+      <div class="question" data-dim="1" data-q="3">
+        <div class="q-text">When a client cancels, how quickly can you typically fill that slot?</div>
+        <div class="options">
+          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>Rarely - gaps stay empty<div class="opt-score">1/5</div></button>
+          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>Sometimes - depends on the week<div class="opt-score">2/5</div></button>
+          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>Often - I have a short list to call<div class="opt-score">3/5</div></button>
+          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Usually - I have a waitlist<div class="opt-score">4/5</div></button>
+          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Always - waitlist means gaps never stay empty<div class="opt-score">5/5</div></button>
+        </div>
+      </div>
+
+      <div class="question" data-dim="1" data-q="4">
+        <div class="q-text">Do you have a written cancellation policy that you enforce consistently?</div>
+        <div class="options">
+          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>No policy - I handle it case by case<div class="opt-score">1/5</div></button>
+          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>I have a policy but rarely enforce it<div class="opt-score">2/5</div></button>
+          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>I have a policy but make frequent exceptions<div class="opt-score">3/5</div></button>
+          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>I have a policy and apply it most of the time<div class="opt-score">4/5</div></button>
+          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Clear policy, consistently applied - clients know upfront<div class="opt-score">5/5</div></button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── DIMENSION 2: CLINICAL CONTINUITY ── -->
+  <div class="dimension d2" id="dim-2">
+    <div class="dim-header">
+      <div class="dim-number">02</div>
+      <div class="dim-info">
+        <div class="dim-tag">Dimension 2</div>
+        <div class="dim-title">Clinical Continuity</div>
+        <div class="dim-desc">Are clients completing therapy - or dropping out before they get the outcomes they came for?</div>
+      </div>
+      <div class="dim-score-badge" id="badge-2">
+        <div class="dsb-val" id="score-d2">-</div>
+        <div class="dsb-max">/20</div>
+      </div>
+    </div>
+    <div class="questions">
+
+      <div class="question" data-dim="2" data-q="1">
+        <div class="q-text">On average, how many sessions does a typical client have with you before ending treatment?</div>
+        <div class="options">
+          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>1–3 sessions - most don't come back<div class="opt-score">1/5</div></button>
+          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>4–5 sessions - short courses<div class="opt-score">2/5</div></button>
+          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>6–8 sessions - reasonable completion<div class="opt-score">3/5</div></button>
+          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>9–12 sessions - good depth of work<div class="opt-score">4/5</div></button>
+          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>13+ sessions - clients complete full course of therapy<div class="opt-score">5/5</div></button>
+        </div>
+      </div>
+
+      <div class="question" data-dim="2" data-q="2">
+        <div class="q-text">How do most clients rebook their next appointment?</div>
+        <div class="options">
+          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>They contact us when they feel ready<div class="opt-score">1/5</div></button>
+          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>We send a reminder but many don't respond<div class="opt-score">2/5</div></button>
+          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>I suggest rebooking in session but don't always follow up<div class="opt-score">3/5</div></button>
+          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Most clients rebook before leaving or get an automated prompt<div class="opt-score">4/5</div></button>
+          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>We have a systematic rebooking process - most are booked before leaving<div class="opt-score">5/5</div></button>
+        </div>
+      </div>
+
+      <div class="question" data-dim="2" data-q="3">
+        <div class="q-text">How often do clients drop out of therapy without a planned ending?</div>
+        <div class="options">
+          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>Very often - it's the norm<div class="opt-score">1/5</div></button>
+          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>Often - maybe half don't have a formal ending<div class="opt-score">2/5</div></button>
+          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>Sometimes - maybe a third drop out unplanned<div class="opt-score">3/5</div></button>
+          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Occasionally - most clients have planned endings<div class="opt-score">4/5</div></button>
+          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Rarely - therapy endings are collaborative and planned<div class="opt-score">5/5</div></button>
+        </div>
+      </div>
+
+      <div class="question" data-dim="2" data-q="4">
+        <div class="q-text">Do you have a consistent process for following up clients who miss an appointment or go quiet?</div>
+        <div class="options">
+          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>No - if they don't rebook, we wait<div class="opt-score">1/5</div></button>
+          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>Sometimes - depends on the client<div class="opt-score">2/5</div></button>
+          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>We send a message but don't always follow through<div class="opt-score">3/5</div></button>
+          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Yes - we follow up within 48 hours<div class="opt-score">4/5</div></button>
+          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Yes - we have a clear protocol and it works well<div class="opt-score">5/5</div></button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── DIMENSION 3: REVENUE INTEGRITY ── -->
+  <div class="dimension d3" id="dim-3">
+    <div class="dim-header">
+      <div class="dim-number">03</div>
+      <div class="dim-info">
+        <div class="dim-tag">Dimension 3</div>
+        <div class="dim-title">Revenue Integrity</div>
+        <div class="dim-desc">Are you being appropriately compensated for your expertise - and is your fee structure working for you?</div>
+      </div>
+      <div class="dim-score-badge" id="badge-3">
+        <div class="dsb-val" id="score-d3">-</div>
+        <div class="dsb-max">/20</div>
+      </div>
+    </div>
+    <div class="questions">
+
+      <div class="question" data-dim="3" data-q="1">
+        <div class="q-text">When did you last review and adjust your session fee?</div>
+        <div class="options">
+          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>More than 3 years ago - or never<div class="opt-score">1/5</div></button>
+          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>2–3 years ago<div class="opt-score">2/5</div></button>
+          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>1–2 years ago<div class="opt-score">3/5</div></button>
+          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Within the last 12 months<div class="opt-score">4/5</div></button>
+          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Within the last 6 months - I review it regularly<div class="opt-score">5/5</div></button>
+        </div>
+      </div>
+
+      <div class="question" data-dim="3" data-q="2">
+        <div class="q-text">How does your fee compare to other practitioners in your area with similar experience?</div>
+        <div class="options">
+          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>I genuinely don't know<div class="opt-score">1/5</div></button>
+          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>Probably below average - I've kept fees low<div class="opt-score">2/5</div></button>
+          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>Around average for my area<div class="opt-score">3/5</div></button>
+          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Slightly above average - I've positioned deliberately<div class="opt-score">4/5</div></button>
+          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Above average - my niche and experience justify a premium<div class="opt-score">5/5</div></button>
+        </div>
+      </div>
+
+      <div class="question" data-dim="3" data-q="3">
+        <div class="q-text">What proportion of your clients pay your full private fee (vs. reduced gap fee via Medicare or concession)?</div>
+        <div class="options">
+          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>Under 20% - almost all are Medicare or concession<div class="opt-score">1/5</div></button>
+          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>20–40% full fee<div class="opt-score">2/5</div></button>
+          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>40–60% full fee<div class="opt-score">3/5</div></button>
+          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>60–80% full fee<div class="opt-score">4/5</div></button>
+          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Over 80% - mostly private, minimal Medicare dependency<div class="opt-score">5/5</div></button>
+        </div>
+      </div>
+
+      <div class="question" data-dim="3" data-q="4">
+        <div class="q-text">Do you accept clients through EAP panels, BetterHelp, or similar platforms that set the fee for you?</div>
+        <div class="options">
+          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>Yes - a significant portion of my caseload is platform-referred<div class="opt-score">1/5</div></button>
+          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>Yes - some EAP or platform clients<div class="opt-score">2/5</div></button>
+          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>A small number - I'm selective about panels<div class="opt-score">3/5</div></button>
+          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Very few - I've moved away from platform dependency<div class="opt-score">4/5</div></button>
+          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>No - I set my own fees across my entire caseload<div class="opt-score">5/5</div></button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── DIMENSION 4: ADMINISTRATIVE LOAD ── -->
+  <div class="dimension d4" id="dim-4">
+    <div class="dim-header">
+      <div class="dim-number">04</div>
+      <div class="dim-info">
+        <div class="dim-tag">Dimension 4</div>
+        <div class="dim-title">Administrative Load</div>
+        <div class="dim-desc">How much of your working week is spent on tasks that don't require your clinical expertise?</div>
+      </div>
+      <div class="dim-score-badge" id="badge-4">
+        <div class="dsb-val" id="score-d4">-</div>
+        <div class="dsb-max">/20</div>
+      </div>
+    </div>
+    <div class="questions">
+
+      <div class="question" data-dim="4" data-q="1">
+        <div class="q-text">How many hours per week do you personally spend on practice administration? (scheduling, invoicing, client communications, reports, insurance)</div>
+        <div class="options">
+          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>More than 12 hours<div class="opt-score">1/5</div></button>
+          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>9–12 hours<div class="opt-score">2/5</div></button>
+          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>6–8 hours<div class="opt-score">3/5</div></button>
+          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>3–5 hours<div class="opt-score">4/5</div></button>
+          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Under 3 hours - I have good systems or support<div class="opt-score">5/5</div></button>
+        </div>
+      </div>
+
+      <div class="question" data-dim="4" data-q="2">
+        <div class="q-text">When a new client enquires, how quickly are they typically responded to?</div>
+        <div class="options">
+          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>Often more than 48 hours - I miss some enquiries<div class="opt-score">1/5</div></button>
+          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>Usually within 24–48 hours<div class="opt-score">2/5</div></button>
+          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>Within same business day<div class="opt-score">3/5</div></button>
+          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Within a few hours<div class="opt-score">4/5</div></button>
+          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Within the hour - I have a system for this<div class="opt-score">5/5</div></button>
+        </div>
+      </div>
+
+      <div class="question" data-dim="4" data-q="3">
+        <div class="q-text">How automated is your client intake, reminders, and invoicing?</div>
+        <div class="options">
+          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>Almost nothing is automated - I do it manually<div class="opt-score">1/5</div></button>
+          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>Some automation - reminders only<div class="opt-score">2/5</div></button>
+          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>Moderate - reminders and invoicing, intake still manual<div class="opt-score">3/5</div></button>
+          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Mostly automated - I check and adjust but rarely input<div class="opt-score">4/5</div></button>
+          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Fully systemised - intake, reminders, invoicing run without me<div class="opt-score">5/5</div></button>
+        </div>
+      </div>
+
+      <div class="question" data-dim="4" data-q="4">
+        <div class="q-text">Do you review your practice's financial health (revenue trends, no-show rate, avg client value) on a regular basis?</div>
+        <div class="options">
+          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>Never - I don't really look at the numbers<div class="opt-score">1/5</div></button>
+          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>Once a year, around tax time<div class="opt-score">2/5</div></button>
+          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>Quarterly - I check in a few times a year<div class="opt-score">3/5</div></button>
+          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Monthly - I have a rough sense of how the practice is tracking<div class="opt-score">4/5</div></button>
+          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Monthly with a structured report - I know my key numbers<div class="opt-score">5/5</div></button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── DIMENSION 5: PRACTICE RESILIENCE ── -->
+  <div class="dimension d5" id="dim-5">
+    <div class="dim-header">
+      <div class="dim-number">05</div>
+      <div class="dim-info">
+        <div class="dim-tag">Dimension 5</div>
+        <div class="dim-title">Practice Resilience</div>
+        <div class="dim-desc">How vulnerable is your practice to disruption - and how would it hold up if life got complicated?</div>
+      </div>
+      <div class="dim-score-badge" id="badge-5">
+        <div class="dsb-val" id="score-d5">-</div>
+        <div class="dsb-max">/20</div>
+      </div>
+    </div>
+    <div class="questions">
+
+      <div class="question" data-dim="5" data-q="1">
+        <div class="q-text">How consistently does new client work arrive without you actively chasing it?</div>
+        <div class="options">
+          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>Rarely - I'm always actively hunting for new clients<div class="opt-score">1/5</div></button>
+          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>Inconsistently - good months and dry months<div class="opt-score">2/5</div></button>
+          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>Fairly regularly - I have some reliable sources<div class="opt-score">3/5</div></button>
+          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Consistently - referrals come in without much effort<div class="opt-score">4/5</div></button>
+          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Always - I have a waitlist and turn away work<div class="opt-score">5/5</div></button>
+        </div>
+      </div>
+
+      <div class="question" data-dim="5" data-q="2">
+        <div class="q-text">How would your weekly income be affected if your 3 longest-attending clients all ended therapy at the same time?</div>
+        <div class="options">
+          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>It would be a major blow - they make up most of my income<div class="opt-score">1/5</div></button>
+          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>Significant impact - it would take months to recover<div class="opt-score">2/5</div></button>
+          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>Noticeable but manageable - I have enough other clients<div class="opt-score">3/5</div></button>
+          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Modest impact - I have a good spread at different stages<div class="opt-score">4/5</div></button>
+          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Minimal - my caseload is well distributed across many clients<div class="opt-score">5/5</div></button>
+        </div>
+      </div>
+
+      <div class="question" data-dim="5" data-q="3">
+        <div class="q-text">How quickly can a new client get an appointment with you?</div>
+        <div class="options">
+          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>Same week - I have availability most weeks<div class="opt-score">1/5</div></button>
+          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>About 1 week wait<div class="opt-score">2/5</div></button>
+          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>About 2 weeks wait<div class="opt-score">3/5</div></button>
+          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>3-4 weeks wait<div class="opt-score">4/5</div></button>
+          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>5+ weeks - I have an active waitlist<div class="opt-score">5/5</div></button>
+        </div>
+      </div>
+
+      <div class="question" data-dim="5" data-q="4">
+        <div class="q-text">If you needed to take 4 weeks off unexpectedly, how would your practice hold up?</div>
+        <div class="options">
+          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>It would collapse - everything depends on me being present<div class="opt-score">1/5</div></button>
+          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>Very difficult - I'd lose clients and income significantly<div class="opt-score">2/5</div></button>
+          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>Manageable but painful - some systems exist<div class="opt-score">3/5</div></button>
+          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Mostly fine - admin could be covered, clients would hold<div class="opt-score">4/5</div></button>
+          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Well covered - I have documented processes and client communication plans<div class="opt-score">5/5</div></button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="submit-wrap" id="submit-wrap">
+    <button class="submit-btn" id="submit-btn" onclick="showResults()">Calculate my HartBeat Score →</button>
+    <div class="submit-note">Your responses are not stored or shared.</div>
+  </div>
+
+  <!-- ── RESULTS ── -->
+  <div id="results">
+
+    <div class="results-hero">
+      <div class="rh-tag">Your HartBeat Score</div>
+      <div class="score-display" id="final-score">-</div>
+      <div class="score-band" id="score-band">-</div>
+      <div class="score-desc" id="score-desc">-</div>
+      <div style="margin-top:20px;">
+        <button onclick="showEmailModal()" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--ff-body);font-size:14px;font-weight:600;padding:11px 22px;border-radius:100px;border:1.5px solid var(--purple-light);background:transparent;color:var(--purple);cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='var(--purple-pale)'" onmouseout="this.style.background='transparent'">
+          ✉ Email my results to myself
+        </button>
+      </div>
+    </div>
+
+    <!-- EMAIL MODAL -->
+    <div id="email-modal" style="display:none;position:fixed;inset:0;background:rgba(15,26,62,0.6);z-index:500;align-items:center;justify-content:center;">
+      <div style="background:white;border-radius:20px;padding:40px;max-width:440px;width:90%;position:relative;">
+        <button onclick="hideEmailModal()" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-muted);">×</button>
+        <h3 style="font-family:var(--ff-head);font-size:24px;font-weight:400;color:var(--navy);margin-bottom:8px;">Email my results</h3>
+        <p style="font-size:14px;color:var(--text-muted);margin-bottom:24px;line-height:1.6;">Enter your email and we'll open a pre-filled message with your full HartBeat results. Hit send from your email client to get a copy.</p>
+        <label style="font-size:12px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--text-muted);font-family:var(--ff-body);">Your email address</label>
+        <input type="email" id="email-input" placeholder="you@yourpractice.com.au" style="width:100%;margin-top:8px;margin-bottom:20px;padding:12px 16px;border:1.5px solid var(--light-grey);border-radius:10px;font-family:var(--ff-body);font-size:15px;outline:none;" onfocus="this.style.borderColor='var(--purple)'" onblur="this.style.borderColor='var(--light-grey)'">
+        <button onclick="sendResultsEmail()" style="width:100%;padding:14px;background:var(--purple);color:white;border:none;border-radius:100px;font-family:var(--ff-body);font-size:15px;font-weight:600;cursor:pointer;">Open in my email app →</button>
+        <p style="font-size:11px;color:var(--text-muted);margin-top:12px;text-align:center;">A copy will also go to the HartHQ team so we can follow up.</p>
+      </div>
+    </div>
+
+    <!-- BURNOUT INDICATOR -->
+    <div id="burnout-indicator"></div>
+
+    <!-- DIM BARS -->
+    <div class="dim-bars">
+      <div class="db-title">Score by dimension</div>
+
+      <div class="dim-bar-row">
+        <div class="dbr-header">
+          <span class="dbr-label">Capacity Utilisation</span>
+          <span class="dbr-score" style="color:var(--d1);" id="bar-score-1">0/20</span>
+        </div>
+        <div class="dbr-track"><div class="dbr-fill" id="bar-fill-1" style="background:var(--d1);"></div></div>
+        <div class="dbr-insight" id="bar-insight-1"></div>
+      </div>
+
+      <div class="dim-bar-row">
+        <div class="dbr-header">
+          <span class="dbr-label">Clinical Continuity</span>
+          <span class="dbr-score" style="color:var(--d2);" id="bar-score-2">0/20</span>
+        </div>
+        <div class="dbr-track"><div class="dbr-fill" id="bar-fill-2" style="background:var(--d2);"></div></div>
+        <div class="dbr-insight" id="bar-insight-2"></div>
+      </div>
+
+      <div class="dim-bar-row">
+        <div class="dbr-header">
+          <span class="dbr-label">Revenue Integrity</span>
+          <span class="dbr-score" style="color:var(--d3);" id="bar-score-3">0/20</span>
+        </div>
+        <div class="dbr-track"><div class="dbr-fill" id="bar-fill-3" style="background:var(--d3);"></div></div>
+        <div class="dbr-insight" id="bar-insight-3"></div>
+      </div>
+
+      <div class="dim-bar-row">
+        <div class="dbr-header">
+          <span class="dbr-label">Administrative Load</span>
+          <span class="dbr-score" style="color:var(--d4);" id="bar-score-4">0/20</span>
+        </div>
+        <div class="dbr-track"><div class="dbr-fill" id="bar-fill-4" style="background:var(--d4);"></div></div>
+        <div class="dbr-insight" id="bar-insight-4"></div>
+      </div>
+
+      <div class="dim-bar-row">
+        <div class="dbr-header">
+          <span class="dbr-label">Practice Resilience</span>
+          <span class="dbr-score" style="color:var(--d5);" id="bar-score-5">0/20</span>
+        </div>
+        <div class="dbr-track"><div class="dbr-fill" id="bar-fill-5" style="background:var(--d5);"></div></div>
+        <div class="dbr-insight" id="bar-insight-5"></div>
+      </div>
+
+    </div>
+
+    <!-- PRIORITY CARDS -->
+    <div class="priority-cards" id="priority-cards"></div>
+
+    <!-- HARDHQ CTA -->
+    <div class="hardhq-cta" id="hardhq-cta"></div>
+
+    <!-- MINI CALCULATOR -->
+    <div class="mini-calc">
+      <div class="mini-calc-title">What is your admin actually costing you?</div>
+      <div class="mini-calc-sub">Enter your numbers to see the revenue impact of getting your admin time back.</div>
+
+      <div class="calc-inputs">
+        <div>
+          <div class="calc-input-label">Your session fee</div>
+          <div class="calc-input-wrap">
+            <span class="calc-input-symbol">$</span>
+            <input type="number" id="calc-fee" value="200" min="80" max="500" step="10" oninput="updateMiniCalc()">
+          </div>
+        </div>
+        <div>
+          <div class="calc-input-label">Sessions / week</div>
+          <div class="calc-input-wrap">
+            <input type="number" id="calc-sessions" value="20" min="1" max="40" step="1" oninput="updateMiniCalc()">
+            <span class="calc-input-symbol" style="font-size:11px;white-space:nowrap">ses</span>
+          </div>
+          <div id="notes-hint" style="font-size:10px;color:var(--text-muted);margin-top:4px;font-style:italic;">+ 10 hrs notes + prep est.</div>
+        </div>
+        <div>
+          <div class="calc-input-label">Admin hrs / week</div>
+          <div class="calc-input-wrap">
+            <input type="number" id="calc-admin" value="8" min="3" max="20" step="1" oninput="updateMiniCalc()">
+            <span class="calc-input-symbol" style="font-size:11px;white-space:nowrap">hrs</span>
+          </div>
+        </div>
+        <div>
+          <div class="calc-input-label">Working weeks / yr</div>
+          <div class="calc-input-wrap">
+            <input type="number" id="calc-weeks" value="46" min="36" max="50" step="1" oninput="updateMiniCalc()">
+            <span class="calc-input-symbol" style="font-size:11px;white-space:nowrap">wks</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-results">
+        <div class="calc-result-box crb-red">
+          <div class="crb-label">Your admin costs you</div>
+          <div class="crb-val" id="mc-cost">$0</div>
+          <div class="crb-sub">per year at your rate</div>
+        </div>
+        <div class="calc-result-box crb-purple">
+          <div class="crb-label">Hours returned / week</div>
+          <div class="crb-val" id="mc-hours">0 hrs</div>
+          <div class="crb-sub">admin drops to ~2 hrs</div>
+        </div>
+        <div class="calc-result-box crb-teal">
+          <div class="crb-label">Net gain if hours filled</div>
+          <div class="crb-val" id="mc-gain">$0</div>
+          <div class="crb-sub" id="mc-gain-sub">after HartHQ from $250/wk</div>
+        </div>
+      </div>
+
+      <div class="calc-note">Assumes HartHQ reduces your admin to ~2 hrs/week. 75% of saved hours realistically become sessions. Net gain shown after estimated HartHQ Individual Support & Administration cost from $250/wk. Estimates only - run your own numbers with your accountant.</div>
+
+      <!-- BLENDED RATE ROW -->
+      <div style="margin-top:20px; padding-top:18px; border-top:1px solid var(--light-grey);">
+        <div style="font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-muted);font-family:var(--ff-body);margin-bottom:10px;">Your blended hourly rate</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+          <div style="background:var(--off-white);border:1px solid var(--light-grey);border-radius:10px;padding:14px;text-align:center;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--text-muted);font-family:var(--ff-body);margin-bottom:6px;line-height:1.3;">Your rate now</div>
+            <div style="font-family:var(--ff-head);font-size:22px;font-weight:600;color:var(--dark);line-height:1;" id="mc-blended-now">-</div>
+            <div style="font-size:9px;color:var(--text-muted);margin-top:4px;font-family:var(--ff-body);">per hour actually worked</div>
+          </div>
+          <div style="background:var(--purple-pale);border:1px solid var(--purple-light);border-radius:10px;padding:14px;text-align:center;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--purple);font-family:var(--ff-body);margin-bottom:6px;line-height:1.3;">Admin off your plate</div>
+            <div style="font-family:var(--ff-head);font-size:22px;font-weight:600;color:var(--purple);line-height:1;" id="mc-blended-mid">-</div>
+            <div style="font-size:9px;color:var(--purple);margin-top:4px;font-family:var(--ff-body);opacity:0.8;">same revenue, fewer hours</div>
+          </div>
+          <div style="background:var(--teal-pale);border:1px solid var(--teal-light);border-radius:10px;padding:14px;text-align:center;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--teal);font-family:var(--ff-body);margin-bottom:6px;line-height:1.3;">Admin off + hours filled</div>
+            <div style="font-family:var(--ff-head);font-size:22px;font-weight:600;color:var(--teal);line-height:1;" id="mc-blended-best">-</div>
+            <div style="font-size:9px;color:var(--teal);margin-top:4px;font-family:var(--ff-body);opacity:0.8;">more revenue, fewer hours</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WEEK BREAKDOWN TABLE -->
+      <div style="margin-top:16px;background:var(--off-white);border:1px solid var(--light-grey);border-radius:10px;padding:14px 16px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-muted);font-family:var(--ff-body);margin-bottom:10px;">Your working week, broken down</div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;font-family:var(--ff-body);padding:5px 0;border-bottom:1px solid var(--light-grey);color:var(--text-muted);">
+          <span>Client sessions</span><span id="wb-sessions">-</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;font-family:var(--ff-body);padding:5px 0;border-bottom:1px solid var(--light-grey);color:var(--text-muted);">
+          <span>Notes + Prep (est. 30 min each)</span><span id="wb-notes">-</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;font-family:var(--ff-body);padding:5px 0;border-bottom:1px solid var(--light-grey);color:var(--text-muted);">
+          <span>Admin</span><span id="wb-admin" style="color:#e05555;">-</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;font-family:var(--ff-body);padding:6px 0 0;font-weight:600;color:var(--text);">
+          <span>Total hours worked</span><span id="wb-total">-</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT CTA CARDS -->
+    <div class="product-ctas">
+      <a href="#concierge" class="product-cta-card">
+        <div class="pcc-tag" style="color:var(--purple);">Full admin support</div>
+        <div class="pcc-title">Individual Support & Administration</div>
+        <div class="pcc-price">From $250<span style="font-size:14px;color:var(--text-muted);font-family:var(--ff-body);font-weight:400;">/week</span></div>
+        <div class="pcc-desc">Our HartHQ admin team handles your calls, calendar and invoicing. Practitioners typically recover 6+ hours per week.</div>
+        <div class="pcc-link" style="color:var(--purple);">Enquire about Concierge <span>→</span></div>
+      </a>
+      <a href="#concierge" class="product-cta-card">
+        <div class="pcc-tag" style="color:var(--teal);">For group practices</div>
+        <div class="pcc-title">Group Support & Administration</div>
+        <div class="pcc-price">From $350<span style="font-size:14px;color:var(--text-muted);font-family:var(--ff-body);font-weight:400;">/week</span></div>
+        <div class="pcc-desc">Everything in Individual, scaled for a group practice. Coordinate across multiple clinicians with one dedicated support team.</div>
+        <div class="pcc-link" style="color:var(--teal);">Enquire about Group <span>→</span></div>
+      </a>
+    </div>
+
+    <div class="disclaimer">HartBeat Score is a self-reported practice health indicator. It is not a clinical or financial assessment and results should not be used as the basis for significant business decisions without independent advice. Scores reflect your responses at the time of completion and will change as your practice evolves.</div>
+
+    <button class="restart-btn" onclick="restartAssessment()">↩ Start over</button>
+
+  </div><!-- /results -->
+
+</div><!-- /main -->
+
+<script>
+  const scores = { 1: {}, 2: {}, 3: {}, 4: {}, 5: {} };
+  const totalQuestions = 20;
+  let answeredCount = 0;
+
+  function selectOpt(btn) {
+    const question = btn.closest('.question');
+    const dim = parseInt(question.dataset.dim);
+    const q   = parseInt(question.dataset.q);
+    const score = parseInt(btn.dataset.score);
+    const prev = scores[dim][q];
+
+    question.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+    btn.classList.add('selected');
+    question.classList.add('answered');
+
+    if (prev === undefined) answeredCount++;
+    scores[dim][q] = score;
+
+    updateDimScore(dim);
+    updateProgress();
+  }
+
+  function updateDimScore(dim) {
+    const vals = Object.values(scores[dim]);
+    const total = vals.reduce((a, b) => a + b, 0);
+    const dimEl = document.getElementById(`dim-${dim}`);
+    document.getElementById(`score-d${dim}`).textContent = total;
+    dimEl.classList.add('scoring');
+  }
+
+  function updateProgress() {
+    const pct = (answeredCount / totalQuestions) * 100;
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-count').textContent = `${answeredCount} of ${totalQuestions} answered`;
+    const submitWrap = document.getElementById('submit-wrap');
+    if (answeredCount === totalQuestions) {
+      submitWrap.classList.add('visible');
+      submitWrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  function showResults() {
+    const dimScores = {};
+    let total = 0;
+    for (let d = 1; d <= 5; d++) {
+      const s = Object.values(scores[d]).reduce((a, b) => a + b, 0);
+      dimScores[d] = s;
+      total += s;
+    }
+
+    document.getElementById('submit-wrap').style.display = 'none';
+
+    const band = getBand(total);
+    const finalScoreEl = document.getElementById('final-score');
+    finalScoreEl.innerHTML = `${total}<span class="score-max">/100</span>`;
+    finalScoreEl.style.color = band.color;
+    document.getElementById('score-band').textContent = band.band;
+    document.getElementById('score-band').style.color = band.color;
+    document.getElementById('score-desc').textContent = band.desc;
+
+    // Animate bars
+    setTimeout(() => {
+      for (let d = 1; d <= 5; d++) {
+        const s = dimScores[d];
+        document.getElementById(`bar-score-${d}`).textContent = `${s}/20`;
+        document.getElementById(`bar-fill-${d}`).style.width = `${(s / 20) * 100}%`;
+        document.getElementById(`bar-insight-${d}`).textContent = getDimInsight(d, s);
+      }
+    }, 300);
+
+    buildPriorities(dimScores);
+    buildCTA(dimScores[4], total);
+    buildBurnoutIndicator(dimScores, total);
+
+    const results = document.getElementById('results');
+    results.style.display = 'block';
+    setTimeout(() => results.classList.add('visible'), 50);
+    setTimeout(() => results.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+    setTimeout(updateMiniCalc, 600);
+  }
+
+  function getBand(score) {
+    if (score >= 80) return {
+      band: 'Optimised',
+      color: 'var(--teal-mid)',
+      desc: 'Your practice is running well. The focus now is maintaining this as your caseload evolves - and catching the small signals before they become bigger problems.'
+    };
+    if (score >= 60) return {
+      band: 'Functional',
+      color: 'var(--purple-light)',
+      desc: 'Your practice works but has some identifiable drag. One or two dimensions are pulling the score down - and addressing them would meaningfully change how the practice feels to run.'
+    };
+    if (score >= 40) return {
+      band: 'Strained',
+      color: 'var(--amber)',
+      desc: 'This is the most common band for practitioners at 3–6 years in private practice. Revenue looks reasonable but the hidden cost - in admin load, inconsistent continuity, or fee drift - is significant.'
+    };
+    return {
+      band: 'At Risk',
+      color: 'var(--red)',
+      desc: 'Your practice has some structural vulnerabilities worth addressing soon. The good news: most of these are fixable with the right systems - they don\'t require you to become a business expert.'
+    };
+  }
+
+  function getDimInsight(dim, score) {
+    const insights = {
+      1: [
+        'Significant capacity loss - no-shows and gaps are materially affecting revenue.',
+        'Below average utilisation - addressing cancellation policy and waitlist management would help.',
+        'Moderate - some leakage but manageable. A cancellation policy review is worth it.',
+        'Good capacity utilisation. Minor improvements to gap-filling would push this higher.',
+        'Excellent - you\'re maximising available clinical hours effectively.'
+      ],
+      2: [
+        'High dropout rate - clients are leaving before completing therapy. This is both a clinical and financial concern.',
+        'Below average completion - a more proactive rebooking approach would meaningfully change this.',
+        'Moderate continuity. A systematic post-session prompt could improve retention noticeably.',
+        'Good therapy completion. Outcome measures would strengthen this further.',
+        'Strong clinical continuity - clients are completing therapy and you\'re tracking outcomes well.'
+      ],
+      3: [
+        'Fee structure needs attention - you may be significantly undercharging relative to your expertise and local market.',
+        'Below market rate and/or high platform dependency. Book a call to talk through your fee and referral mix.',
+        'Average revenue integrity - room to improve fee positioning and reduce third-party dependency.',
+        'Good fee structure. Regular benchmarking will keep this strong as the market moves.',
+        'Strong revenue integrity - you\'re charging appropriately and maintaining independence from platforms.'
+      ],
+      4: [
+        'Very high admin load - this is likely your biggest drag on both income and wellbeing.',
+        'Above average admin hours - you\'re spending significant clinical-rate time on non-clinical work.',
+        'Moderate admin load. Systems and support could recover meaningful time each week.',
+        'Well-managed admin. Good systems in place - the goal is maintaining this.',
+        'Lean admin operation - your time is well-protected for clinical work.'
+      ],
+      5: [
+        'Practice is fragile - new clients require constant active effort. One quiet month has a real impact.',
+        'Below average flow. Some reliable sources exist but the pipeline feels uncertain.',
+        'Moderate - referrals come reasonably consistently but there are gaps.',
+        'Good referral flow. Forward booking depth and documented processes would complete the picture.',
+        'Resilient practice - well-supplied with work, good forward visibility, and systems to handle disruption.'
+      ]
+    };
+    const idx = Math.min(Math.floor((score - 1) / 4), 4);
+    return insights[dim][Math.max(0, idx)];
+  }
+
+  function buildPriorities(dimScores) {
+    const sorted = Object.entries(dimScores).sort((a, b) => a[1] - b[1]).slice(0, 3);
+
+    const actions = {
+      1: {
+        label: 'Capacity Utilisation',
+        color: 'var(--d1)', bg: 'var(--d1-bg)',
+        title: 'Introduce and enforce a cancellation policy',
+        desc: 'A clear, consistent cancellation policy is the single fastest way to reduce lost sessions. Clients need to know upfront, and it needs to be applied - not just written.',
+        tag: 'Quick win',
+        toolkit: 'Book a free call to find out how HartHQ admin support could help your practice.',
+        toolkitLink: 'https://hart-hq.zohobookings.com/#/intro'
+      },
+      2: {
+        label: 'Clinical Continuity',
+        color: 'var(--d2)', bg: 'var(--d2-bg)',
+        title: 'Add a systematic rebooking prompt to every session',
+        desc: 'Most dropout happens because the clinician waits for the client to initiate. Leading the rebooking - in session, before they leave - meaningfully changes completion rates.',
+        tag: 'High impact',
+        toolkit: null
+      },
+      3: {
+        label: 'Revenue Integrity',
+        color: 'var(--d3)', bg: 'var(--d3-bg)',
+        title: 'Schedule a fee benchmarking review',
+        desc: 'Fees often stay flat while costs and market rates move. A deliberate annual review - with local market data - is the simplest way to ensure you\'re being appropriately paid.',
+        tag: 'Annual task',
+        toolkit: 'Book a free call to find out how HartHQ admin support could help your practice.',
+        toolkitLink: 'https://hart-hq.zohobookings.com/#/intro'
+      },
+      4: {
+        label: 'Administrative Load',
+        color: 'var(--d4)', bg: 'var(--d4-bg)',
+        title: 'Your blended rate is lower than your session rate',
+        desc: 'The calculator below shows your real effective hourly rate once you factor in notes and admin time. For most practitioners, the gap is uncomfortable. That gap is your admin load, priced - and it grows every year you don\'t address it.',
+        tag: 'Do this today',
+        toolkit: 'Practitioners using HartHQ support typically recover 6+ hours per week - time that goes back into client work.',
+        toolkitLink: '#calculator'
+      },
+      5: {
+        label: 'Practice Resilience',
+        color: 'var(--d5)', bg: 'var(--d5-bg)',
+        title: 'Build a basic continuity plan',
+        desc: 'Document what happens to your clients, bookings, and admin if you need to step away for 4 weeks. Most practitioners never do this - and it shows when life gets complicated.',
+        tag: 'Strategic',
+        toolkit: null,
+        toolkitLink: null
+      }
+    };
+
+    const container = document.getElementById('priority-cards');
+    container.innerHTML = `<div style="font-family:var(--ff-head); font-size:22px; font-weight:400; color:var(--dark); margin-bottom:14px;">Your top 3 priorities</div>`;
+
+    sorted.forEach(([dim, score], i) => {
+      const a = actions[dim];
+      const toolkitHtml = a.toolkit
+        ? `<div style="margin-top:10px;padding:10px 12px;background:${a.bg};border-radius:8px;font-size:12px;color:var(--text);font-family:var(--ff-body);">
+            ${a.toolkit} <a href="${a.toolkitLink}" style="color:${a.color};font-weight:600;text-decoration:none;">View →</a>
+           </div>`
+        : '';
+      container.innerHTML += `
+        <div class="priority-card">
+          <div class="pc-num" style="color:${a.color};">${i + 1}</div>
+          <div class="pc-body">
+            <div class="pc-label" style="color:${a.color};">${a.label}</div>
+            <div class="pc-title">${a.title}</div>
+            <div class="pc-desc">${a.desc}</div>
+            ${toolkitHtml}
+          </div>
+          <div class="pc-tag" style="background:${a.bg}; color:${a.color};">${a.tag}</div>
+        </div>`;
+    });
+  }
+
+  function buildCTA(adminScore, total) {
+    const container = document.getElementById('hardhq-cta');
+
+    let tag, title, desc, btnText, btnHref;
+
+    if (adminScore <= 8) {
+      tag = 'Your biggest lever - Administrative Load';
+      title = 'Your admin load is costing you more than you think.';
+      desc = 'Your score suggests you\'re spending significant time on work that doesn\'t need your clinical skills. HartHQ Concierge takes your calls, calendar and invoicing off your plate - practitioners typically recover 6+ hours per week.';
+      btnText = 'Enquire about Concierge →';
+      btnHref = '#concierge';
+    } else if (total <= 55) {
+      tag = 'Real room for improvement';
+      title = 'A few targeted changes could free up significant time.';
+      desc = 'Your score shows a few dimensions under pressure. Book a free 20-minute call to find out if HartHQ admin support is right for your practice.';
+      btnText = 'Book a free call →';
+      btnHref = 'https://hart-hq.zohobookings.com/#/intro';
+    } else if (total <= 75) {
+      tag = 'Good foundation - time to plug the gaps';
+      title = 'Your practice works. A few targeted fixes would make it exceptional.';
+      desc = 'Your score shows a few priorities worth addressing. Book a free 20-minute call to find out if HartHQ admin support is right for your practice.';
+      btnText = 'Book a free call →';
+      btnHref = 'https://hart-hq.zohobookings.com/#/intro';
+    } else {
+      tag = 'Strong practice - keep it that way';
+      title = 'You\'re running well. The goal now is protecting that.';
+      desc = 'Practices at your level often drift when life gets busy. Having admin handled means the wheels keep turning even when you\'re flat out clinically. Book a call if you\'d like to talk through how Concierge could work for you.';
+      btnText = 'Book a free call →';
+      btnHref = 'https://hart-hq.zohobookings.com/#/intro';
+    }
+
+    container.innerHTML = `
+      <div class="hcta-body">
+        <div class="hcta-tag">${tag}</div>
+        <div class="hcta-title">${title}</div>
+        <div class="hcta-desc">${desc}</div>
+      </div>
+      <a href="${btnHref}" class="hcta-btn">${btnText}</a>`;
+  }
+
+  function restartAssessment() {
+    for (let d = 1; d <= 5; d++) scores[d] = {};
+    answeredCount = 0;
+    document.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+    document.querySelectorAll('.question').forEach(q => q.classList.remove('answered'));
+    document.querySelectorAll('.dimension').forEach(d => d.classList.remove('scoring'));
+    for (let d = 1; d <= 5; d++) {
+      document.getElementById(`score-d${d}`).textContent = '-';
+    }
+    document.getElementById('progress-fill').style.width = '0%';
+    document.getElementById('progress-count').textContent = '0 of 20 answered';
+    const sw = document.getElementById('submit-wrap');
+    sw.classList.remove('visible');
+    sw.style.display = '';
+    const results = document.getElementById('results');
+    results.style.display = 'none';
+    results.classList.remove('visible');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function updateMiniCalc() {
+    const fee      = parseFloat(document.getElementById('calc-fee').value) || 0;
+    const sessions = parseFloat(document.getElementById('calc-sessions').value) || 0;
+    const admin    = parseFloat(document.getElementById('calc-admin').value) || 0;
+    const weeks    = parseFloat(document.getElementById('calc-weeks').value) || 46;
+    const HARDHQ_WK  = 250;
+    const ADMIN_AFTER = 2;
+
+    // Notes estimated at 30 min per session
+    const notes = sessions * 0.5;
+
+    // Update notes hint
+    document.getElementById('notes-hint').textContent = '+ ' + notes.toFixed(1) + ' hrs notes + prep est.';
+
+    // Week breakdown
+    const totalHrs = sessions + notes + admin;
+    document.getElementById('wb-sessions').textContent = sessions + ' hrs';
+    document.getElementById('wb-notes').textContent    = notes.toFixed(1) + ' hrs';
+    document.getElementById('wb-admin').textContent    = admin + ' hrs';
+    document.getElementById('wb-total').textContent    = totalHrs.toFixed(1) + ' hrs';
+
+    // Existing calcs
+    const adminCost = admin * fee * weeks;
+    const hrsSaved  = Math.max(0, admin - ADMIN_AFTER);
+    const extraRev  = hrsSaved * 0.75 * fee * weeks;
+    const netGain   = extraRev - (HARDHQ_WK * weeks);
+    const fmt = n => '$' + Math.round(Math.abs(n)).toLocaleString();
+
+    document.getElementById('mc-cost').textContent  = fmt(adminCost);
+    document.getElementById('mc-hours').textContent = hrsSaved + ' hrs';
+
+    // Fix: show negative net gain correctly
+    if (netGain > 0) {
+      document.getElementById('mc-gain').textContent = '+' + fmt(netGain);
+      document.getElementById('mc-gain').style.color = 'var(--teal)';
+      document.getElementById('mc-gain-sub').textContent = 'after HartHQ from $250/wk';
+    } else {
+      document.getElementById('mc-gain').textContent = '-' + fmt(netGain);
+      document.getElementById('mc-gain').style.color = '#e05555';
+      document.getElementById('mc-gain-sub').textContent = 'not enough admin to offset cost';
+    }
+
+    // Blended rates - use weekly figures throughout
+    const weeklyRev = sessions * fee;
+    const fmtRate = n => n > 0 ? '$' + Math.round(n) + '/hr' : '-';
+
+    // Now: weekly revenue / total hours this week
+    const blendedNow = totalHrs > 0 ? weeklyRev / totalHrs : 0;
+
+    // Admin off plate: same revenue, hours reduced to ADMIN_AFTER
+    const totalAfterAdmin = sessions + notes + ADMIN_AFTER;
+    const blendedMid = totalAfterAdmin > 0 ? weeklyRev / totalAfterAdmin : 0;
+
+    // Admin off + hours filled: extra sessions in saved time (75% fill)
+    const extraSessions = hrsSaved * 0.75;
+    const weeklyRevFilled = (sessions + extraSessions) * fee;
+    const blendedBest = totalAfterAdmin > 0 ? weeklyRevFilled / totalAfterAdmin : 0;
+
+    document.getElementById('mc-blended-now').textContent  = fmtRate(blendedNow);
+    document.getElementById('mc-blended-mid').textContent  = fmtRate(blendedMid);
+    document.getElementById('mc-blended-best').textContent = fmtRate(blendedBest);
+  }
+
+  function showEmailModal() {
+    const modal = document.getElementById('email-modal');
+    modal.style.display = 'flex';
+  }
+
+  function hideEmailModal() {
+    document.getElementById('email-modal').style.display = 'none';
+  }
+
+  function sendResultsEmail() {
+    const email = document.getElementById('email-input').value.trim();
+    if (!email) {
+      document.getElementById('email-input').style.borderColor = '#e05555';
+      return;
+    }
+
+    // Build score summary
+    const score = document.getElementById('final-score').textContent;
+    const band  = document.getElementById('score-band').textContent;
+    const dimLabels = {1:'Capacity Utilisation',2:'Clinical Continuity',3:'Revenue Integrity',4:'Administrative Load',5:'Practice Resilience'};
+    let dimLines = '';
+    for (let d = 1; d <= 5; d++) {
+      const s = document.getElementById('bar-score-' + d);
+      if (s) dimLines += dimLabels[d] + ': ' + s.textContent + '%0A';
+    }
+
+    const subject = encodeURIComponent('My HartBeat Score - ' + score + '/100');
+    const body = encodeURIComponent(
+      'HartBeat Score: ' + score + '/100 (' + band + ')' +
+      '\n\nScore by dimension:\n' +
+      Object.entries(dimLabels).map(([d, label]) => {
+        const el = document.getElementById('bar-score-' + d);
+        return label + ': ' + (el ? el.textContent : '-');
+      }).join('\n') +
+      '\n\n---\nGenerated by HartBeat at harthq.com.au' +
+      '\nBook a free call: https://hart-hq.zohobookings.com/#/intro'
+    );
+
+    // mailto opens their email client, CC'd to HartHQ
+    window.location.href = 'mailto:' + email
+      + '?cc=hq%40thehartcentre.com.au'
+      + '&subject=' + subject
+      + '&body=' + body;
+
+    hideEmailModal();
+  }
+
+  // Close modal on backdrop click
+  document.getElementById('email-modal').addEventListener('click', function(e) {
+    if (e.target === this) hideEmailModal();
+  });
+
+  function buildBurnoutIndicator(dimScores, total) {
+    let risk = 0;
+
+    // Admin load - strongest signal (dim 4, lower = worse)
+    const admin = dimScores[4];
+    if (admin <= 8)       risk += 3;
+    else if (admin <= 12) risk += 2;
+    else if (admin <= 16) risk += 1;
+
+    // Clinical continuity - reactive practice = stress (dim 2)
+    const continuity = dimScores[2];
+    if (continuity <= 8)       risk += 2;
+    else if (continuity <= 12) risk += 1;
+
+    // Overall score - struggling across the board
+    if (total <= 40)      risk += 2;
+    else if (total <= 55) risk += 1;
+
+    // Also check calculator if filled in
+    const sessionsEl = document.getElementById('calc-sessions');
+    const adminEl    = document.getElementById('calc-admin');
+    const notesHrs   = sessionsEl ? (parseFloat(sessionsEl.value) || 0) * 0.5 : 0;
+    const adminHrs   = adminEl ? (parseFloat(adminEl.value) || 0) : 0;
+    const totalHrs   = (parseFloat(sessionsEl?.value) || 0) + notesHrs + adminHrs;
+    if (totalHrs > 50)      risk += 2;
+    else if (totalHrs > 40) risk += 1;
+
+    let level, label, text;
+
+    if (risk <= 3) {
+      level = 'low';
+      label = 'Low burnout risk';
+      text  = 'Your responses don\'t suggest immediate burnout risk. Worth keeping an eye on your admin load - it\'s the dimension most likely to shift this over time.';
+    } else if (risk <= 6) {
+      level = 'moderate';
+      label = 'Moderate burnout risk';
+      text  = 'Your responses suggest a moderate burnout risk. The combination of administrative work and clinical load you\'re currently carrying is significant. This is worth taking seriously - not as a crisis, but as a signal worth acting on before it becomes one.';
+    } else {
+      level = 'high';
+      label = 'High burnout risk';
+      text  = 'Your responses suggest a high burnout risk. The weight of what you\'re carrying - clinically and administratively - is a lot. You probably already know this. The admin piece is the one lever you can actually pull right now.';
+    }
+
+    document.getElementById('burnout-indicator').innerHTML = `
+      <div class="burnout-flag ${level}">
+        <div class="bf-dot"></div>
+        <div>
+          <div class="bf-label">${label}</div>
+          <div class="bf-text">${text}</div>
+        </div>
+      </div>`;
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.dimension').forEach(d => observer.observe(d));
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+.cursor/
+
+# Local environment / secrets
+wp-config.php
+local-xdebuginfo.php
+*.log
+
+# Dependencies and generated content
+wp-content/cache/
+wp-content/upgrade/
+wp-content/uploads/
+
+# Keep plugins/themes, ignore noisy plugin artifacts
+wp-content/plugins/**/*.log
+wp-content/plugins/**/vendor/
+
