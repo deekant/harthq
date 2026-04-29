@@ -12,6 +12,7 @@ $hero_secondary_cta = get_field( 'hero_secondary_cta' );
 $hero_trust         = get_field( 'hero_trust' );
 $proof_bar          = get_field( 'proof_bar' );
 $problem_section    = get_field( 'problem_section' );
+$how_steps          = get_field( 'how_steps' );
 
 $primary_cta_label = $hero_primary_cta['label'] ?? '';
 $primary_cta_url   = $hero_primary_cta['url'] ?? '';
@@ -30,6 +31,18 @@ $problem_heading = $problem_section['heading'] ?? '';
 $problem_body    = $problem_section['body_text'] ?? '';
 $problem_cta     = $problem_section['cta'] ?? array();
 $problem_quotes  = ! empty( $problem_section['quotes'] ) && is_array( $problem_section['quotes'] ) ? $problem_section['quotes'] : array();
+
+$how_section_tag     = get_field( 'how_section_tag' );
+$how_section_heading = get_field( 'how_section_heading' );
+$how_section_intro   = get_field( 'how_section_intro' );
+$how_steps = is_array( $how_steps ) ? $how_steps : array();
+
+$services_section_tag      = get_field( 'services_section_tag' );
+$services_section_heading  = get_field( 'services_section_heading' );
+$services_section_intro    = get_field( 'services_section_intro' );
+$services_concierge_label  = get_field( 'services_concierge_label' );
+$services_concierge_intro  = get_field( 'services_concierge_intro' );
+$services_cards            = get_field( 'services_cards' );
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -191,48 +204,23 @@ $problem_quotes  = ! empty( $problem_section['quotes'] ) && is_array( $problem_s
 <!-- HOW IT WORKS -->
 <section class="how" id="how">
   <div class="how-inner">
-    <span class="tag">How HartHQ works</span>
-    <h2>One path. <em>Less on your plate.</em></h2>
-    <p class="how-intro">Start with your free HartBeat score. See exactly where your practice is leaking time. Then let us handle the admin - so you can focus on clients.</p>
+    <span class="tag"><?php echo esc_html( $how_section_tag ); ?></span>
+    <h2><?php echo wp_kses( $how_section_heading, array( 'em' => array() ) ); ?></h2>
+    <p class="how-intro"><?php echo esc_html( $how_section_intro ); ?></p>
 
     <div class="how-steps">
-      <div class="how-step">
-        <div class="how-step-icon"><svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M6.23999 10.08C6.23999 7.95922 7.95922 6.23999 10.08 6.23999H37.92C40.0408 6.23999 41.76 7.95922 41.76 10.08V37.92C41.76 40.0408 40.0408 41.76 37.92 41.76H10.08C7.95922 41.76 6.23999 40.0408 6.23999 37.92V10.08Z" stroke="white" stroke-width="1.5"/>
-<path d="M23.5391 13.2517C23.7241 12.8628 24.2759 12.8628 24.4609 13.2517L27.4107 19.4542C27.4851 19.6107 27.6334 19.7188 27.8048 19.7415L34.5955 20.6396C35.0214 20.696 35.1919 21.2225 34.8803 21.5193L29.9127 26.2507C29.7874 26.3701 29.7307 26.5451 29.7622 26.7156L31.0093 33.4731C31.0875 33.8969 30.6411 34.2223 30.2635 34.0167L24.2436 30.7385C24.0917 30.6558 23.9084 30.6558 23.7564 30.7385L17.7365 34.0167C17.359 34.2223 16.9126 33.8969 16.9908 33.4731L18.2379 26.7156C18.2693 26.5451 18.2127 26.3701 18.0873 26.2507L13.1197 21.5193C12.8082 21.2225 12.9787 20.696 13.4046 20.6396L20.1952 19.7415C20.3666 19.7188 20.5149 19.6107 20.5894 19.4542L23.5391 13.2517Z" stroke="#B8B0E8" stroke-width="1.5"/>
-</svg>
-</div>
-        <div class="step-num">Step 01</div>
-        <h3>Get your HartBeat score</h3>
-        <p>The free HartBeat quiz takes 5 minutes and shows you exactly where admin is costing you time and money. Five dimensions. One clear picture of where your practice stands.</p>
-      </div>
-
-      <div class="how-step">
-        <div class="how-step-icon"><svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M16 9V5C16 4.45 15.55 4 15 4H11C10.45 4 10 4.45 10 5V9H8C5.791 9 4 10.791 4 13V36C4 38.209 5.791 40 8 40H38C40.209 40 42 38.209 42 36L42.0001 13C42.0001 11.548 41.2271 10.276 40.0691 9.57596" stroke="white" stroke-width="1.875" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M20 9H30V5C30 4.45 30.45 4 31 4H35C35.55 4 36 4.45 36 5V9" stroke="white" stroke-width="1.875" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M11 25H15V22" stroke="#A8D5CD" stroke-width="1.875" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21 25H25V22" stroke="#A8D5CD" stroke-width="1.875" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M11 34H15V31" stroke="#A8D5CD" stroke-width="1.875" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21 34H25V31" stroke="#A8D5CD" stroke-width="1.875" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M31 25H35V22" stroke="#A8D5CD" stroke-width="1.875" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-</div>
-        <div class="step-num">Step 02</div>
-        <h3>Book a free call</h3>
-        <p>We look at your score together and talk through what's actually weighing on your practice. No pitch. Just an honest conversation about what would make the biggest difference.</p>
-      </div>
-
-      <div class="how-step">
-        <div class="how-step-icon"><svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M42.0921 24.858L43.0001 23.95C46.8661 20.084 46.8661 13.816 43.0001 9.95004C39.1341 6.08404 32.8661 6.08404 29.0001 9.95004L21.3 17.65C22.228 19.392 24.2041 20.32 26.1291 19.885" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M30.41 26.182L34.031 29.803M34.031 29.803C35.088 30.86 35.088 32.574 34.031 33.631C32.974 34.688 31.26 34.688 30.203 33.631L26.582 30.01M34.031 29.803C35.088 30.86 36.8021 30.86 37.8591 29.803C38.9161 28.746 38.9161 27.032 37.8591 25.975L30.1931 18.293M26.5819 30.011L30.2029 33.632C31.2599 34.689 31.2599 36.403 30.2029 37.46C29.1459 38.517 27.4319 38.517 26.3749 37.46M26.3749 37.46L22.7539 33.839M26.3749 37.46C27.4319 38.517 27.432 40.231 26.375 41.288C25.318 42.345 23.604 42.345 22.547 41.288L6.74301 25.502C2.54401 21.308 2.51201 14.513 6.67001 10.278C10.873 5.99803 17.758 5.95903 22.01 10.191L22.47 10.686" stroke="#B8B0E8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-</div>
-        <div class="step-num">Step 03</div>
-        <h3>We handle the admin</h3>
-        <p>Our HartHQ admin team takes calls, manages your calendar, handles invoicing and client follow-up - in AU hours, allied health-trained. You get your time back. Your practice runs properly.</p>
-      </div>
+      <?php foreach ( $how_steps as $how_step ) : ?>
+        <div class="how-step">
+          <?php if ( ! empty( $how_step['icon_svg'] ) ) : ?>
+            <div class="how-step-icon">
+              <?php echo wp_kses( $how_step['icon_svg'], array( 'svg' => array( 'xmlns' => true, 'width' => true, 'height' => true, 'viewbox' => true, 'fill' => true, 'class' => true ), 'path' => array( 'd' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true, 'stroke-linecap' => true, 'stroke-linejoin' => true, 'stroke-miterlimit' => true ), 'circle' => array( 'cx' => true, 'cy' => true, 'r' => true, 'fill' => true ) ) ); ?>
+            </div>
+          <?php endif; ?>
+          <div class="step-num"><?php echo esc_html( $how_step['step_number'] ?? '' ); ?></div>
+          <h3><?php echo esc_html( $how_step['step_title'] ?? '' ); ?></h3>
+          <p><?php echo esc_html( $how_step['step_body'] ?? '' ); ?></p>
+        </div>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>
@@ -242,94 +230,46 @@ $problem_quotes  = ! empty( $problem_section['quotes'] ) && is_array( $problem_s
   <div class="services-inner">
     <div class="services-header">
       <div>
-        <span class="tag">Plans &amp; services</span>
-        <h2>Admin support, <em>handled.</em></h2>
+        <span class="tag"><?php echo esc_html( $services_section_tag ); ?></span>
+        <h2><?php echo wp_kses( $services_section_heading, array( 'em' => array() ) ); ?></h2>
       </div>
-      <p>Real people, AU hours, allied health-trained. Everything that isn't clinical work - off your plate. No lock-in.</p>
+      <p><?php echo esc_html( $services_section_intro ); ?></p>
     </div>
 
     <div class="services-grid">
 
       <!-- Concierge label row -->
       <div style="grid-column: 1 / -1; margin-bottom: -8px;">
-        <span class="tag" style="color:var(--teal);">HartHQ Concierge · Full service · Australia</span>
-        <p style="font-size:15px; margin-top: 6px; max-width: 600px;">Our HartHQ admin team runs your practice. Real people, AU hours, allied health-trained. Everything off your plate - including the phone.</p>
+        <span class="tag" style="color:var(--teal);"><?php echo esc_html( $services_concierge_label ); ?></span>
+        <p style="font-size:15px; margin-top: 6px; max-width: 600px;"><?php echo esc_html( $services_concierge_intro ); ?></p>
       </div>
 
-      <!-- Individual Support & Administration -->
-      <div class="service-card sc-concierge" style="grid-column: auto;">
-        <div>
-          <div class="service-badge badge-full">Individual · Solo practitioner</div>
-          <h3>Individual Support & Administration</h3>
-          <div class="service-price">From $250 <small style="font-size:18px;color:rgba(255,255,255,0.4)">/week</small></div>
-          <div class="service-price-note">For solo psychologists &amp; counsellors</div>
-          <p class="service-desc">Your own dedicated support - one practice, one team, everything handled. Built for the solo practitioner who wants their time back without building an admin team.</p>
-          <ul class="service-features">
-            <li>
-              <div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              Calls answered 9am-5pm, outbound from your number
-            </li>
-            <li>
-              <div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              Email management with clients, referrers and third parties
-            </li>
-            <li>
-              <div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              Bookings, cancellations and rescheduling across your calendar systems
-            </li>
-            <li>
-              <div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              Letters and reports for clients, doctors and health funds
-            </li>
-            <li>
-              <div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              Invoicing, Medicare, DVA and health fund claims
-            </li>
-            <li>
-              <div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              Client records - creation, maintenance and document filing
-            </li>
-          </ul>
-          <div class="guarantee-tag" style="margin-bottom:20px;">
-            ⏱️ Practitioners typically recover 6+ hours per week
+      <?php foreach ( $services_cards as $service_card_index => $service_card ) : ?>
+        <div class="service-card sc-concierge" style="grid-column: auto;<?php echo 1 === $service_card_index ? ' background: linear-gradient(145deg, #152240 0%, var(--teal-dark) 100%); border: 1px solid rgba(90,173,160,0.2); position:relative;' : ''; ?>">
+          <?php if ( '' !== trim( (string) $service_card['card_tag'] ) ) : ?>
+            <div style="position:absolute;top:20px;right:20px;background:var(--teal-mid);color:white;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:100px;font-family:var(--ff-body);"><?php echo esc_html( $service_card['card_tag'] ); ?></div>
+          <?php endif; ?>
+          <div>
+            <div class="service-badge badge-full"><?php echo esc_html( $service_card['badge'] ); ?></div>
+            <h3><?php echo esc_html( $service_card['title'] ); ?></h3>
+            <div class="service-price"><?php echo esc_html( $service_card['price'] ); ?> <small style="font-size:18px;color:rgba(255,255,255,0.4)"><?php echo esc_html( $service_card['price_suffix'] ); ?></small></div>
+            <div class="service-price-note"><?php echo esc_html( $service_card['price_note'] ); ?></div>
+            <p class="service-desc"><?php echo esc_html( $service_card['description'] ); ?></p>
+            <ul class="service-features">
+              <?php foreach ( $service_card['features'] as $service_feature ) : ?>
+                <li>
+                  <div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                  <?php echo esc_html( $service_feature['text'] ); ?>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+            <div class="guarantee-tag" style="margin-bottom:20px;<?php echo 1 === $service_card_index ? ' color:var(--teal-light); background:rgba(90,173,160,0.15);' : ''; ?>">
+              <?php echo esc_html( $service_card['guarantee_text'] ); ?>
+            </div>
+            <a href="<?php echo esc_url( $service_card['cta']['url'] ); ?>" target="_blank" class="btn <?php echo 1 === $service_card_index ? 'btn-teal' : 'btn-primary'; ?>" style="width:100%;justify-content:center;"><?php echo esc_html( $service_card['cta']['label'] ); ?></a>
           </div>
-          <a href="https://hart-hq.zohobookings.com/#/intro" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center;">Enquire about Individual →</a>
         </div>
-      </div>
-
-      <!-- Group Support & Administration -->
-      <div class="service-card sc-concierge" style="grid-column: auto; background: linear-gradient(145deg, #152240 0%, var(--teal-dark) 100%); border: 1px solid rgba(90,173,160,0.2); position:relative;">
-        <div style="position:absolute;top:20px;right:20px;background:var(--teal-mid);color:white;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:100px;font-family:var(--ff-body);">Best for groups</div>
-        <div>
-          <div class="service-badge badge-full">Group · Multi-practitioner</div>
-          <h3>Group Support & Administration</h3>
-          <div class="service-price">From $350 <small style="font-size:18px;color:rgba(255,255,255,0.4)">/week</small></div>
-          <div class="service-price-note">For group practices &amp; multi-clinician settings</div>
-          <p class="service-desc">Everything in Individual, scaled for a group practice. Coordinate across multiple clinicians, manage shared calendars, and keep the whole practice running smoothly.</p>
-          <ul class="service-features">
-            <li>
-              <div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              Everything in Individual Support &amp; Administration
-            </li>
-            <li>
-              <div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              Multi-clinician calendar and booking coordination
-            </li>
-            <li>
-              <div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              Billing and claims handled across all clinicians
-            </li>
-            <li>
-              <div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              Client records maintained per clinician
-            </li>
-          </ul>
-          <div class="guarantee-tag" style="margin-bottom:20px; color:var(--teal-light); background:rgba(90,173,160,0.15);">
-            ⏱️ Practitioners typically recover 6+ hours per week
-          </div>
-          <a href="https://hart-hq.zohobookings.com/#/intro" target="_blank" class="btn btn-teal" style="width:100%;justify-content:center;">Enquire about Group →</a>
-        </div>
-      </div>
+      <?php endforeach; ?>
 
     </div>
   </div>
