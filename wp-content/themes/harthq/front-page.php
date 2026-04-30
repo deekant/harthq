@@ -68,6 +68,28 @@ $cta_section_intro            = get_field( 'cta_section_intro' );
 $cta_section_primary_button   = get_field( 'cta_section_primary_button' );
 $cta_section_secondary_button = get_field( 'cta_section_secondary_button' );
 $cta_section_note             = get_field( 'cta_section_note' );
+
+$homepage_menu_logo = get_field( 'homepage_menu_logo', 'option' );
+$homepage_menu_logo = is_string( $homepage_menu_logo ) ? trim( $homepage_menu_logo ) : '';
+if ( $homepage_menu_logo === '' ) {
+	$homepage_menu_logo = 'Hart<em>HQ</em>';
+}
+
+$homepage_menu_logo_allowed = array(
+	'em'   => array(),
+	'span' => array( 'class' => true ),
+);
+
+$homepage_menu_items = get_field( 'homepage_menu_items', 'option' );
+$homepage_menu_items = is_array( $homepage_menu_items ) ? $homepage_menu_items : array();
+
+$homepage_menu_cta = get_field( 'homepage_menu_cta', 'option' );
+$homepage_menu_cta = is_array( $homepage_menu_cta ) ? $homepage_menu_cta : array();
+$nav_cta_label   = (string) ( $homepage_menu_cta['label'] ?? '' );
+$nav_cta_url     = (string) ( $homepage_menu_cta['url'] ?? '' );
+$nav_cta_new_tab = ! empty( $homepage_menu_cta['open_new_tab'] );
+$nav_cta_target  = $nav_cta_new_tab ? ' target="_blank" rel="noopener noreferrer"' : '';
+$nav_cta_href    = ( $nav_cta_label !== '' && $nav_cta_url === '' ) ? '#' : $nav_cta_url;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -94,24 +116,35 @@ $cta_section_note             = get_field( 'cta_section_note' );
   </defs>
 </svg>
 <nav class="nav" id="nav">
-  <a href="#" class="nav-logo">
+  <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="nav-logo">
     <!-- Hart Centre heart mark -->
     <svg class="nav-logo-mark" viewBox="0 0 204 226" style="color:#B8B0E8">
       <use href="#hart-heart"/>
     </svg>
-    <span class="nav-logo-text">Hart<span>HQ</span></span>
+    <span class="nav-logo-text"><?php echo wp_kses( $homepage_menu_logo, $homepage_menu_logo_allowed ); ?></span>
   </a>
 
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#how">How it works</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#heartbeat">HartBeat</a></li>
-    <li><a href="#resources">Resources</a></li>
-    <li class="nav-mobile-cta-item"><a href="#get-started" class="nav-mobile-cta">Get started</a></li>
+    <?php foreach ( $homepage_menu_items as $menu_item ) : ?>
+      <?php
+      $item_label = (string) ( $menu_item['label'] ?? '' );
+      $item_url   = (string) ( $menu_item['url'] ?? '' );
+      if ( $item_label === '' || $item_url === '' ) {
+        continue;
+      }
+      $item_new_tab = ! empty( $menu_item['open_new_tab'] );
+      $item_target  = $item_new_tab ? ' target="_blank" rel="noopener noreferrer"' : '';
+      ?>
+      <li><a href="<?php echo esc_url( $item_url ); ?>"<?php echo $item_target; ?>><?php echo esc_html( $item_label ); ?></a></li>
+    <?php endforeach; ?>
+    <?php if ( $nav_cta_label !== '' ) : ?>
+      <li class="nav-mobile-cta-item"><a href="<?php echo esc_url( $nav_cta_href ); ?>" class="nav-mobile-cta"<?php echo $nav_cta_target; ?>><?php echo esc_html( $nav_cta_label ); ?></a></li>
+    <?php endif; ?>
   </ul>
 
-  <a href="#get-started" class="nav-cta">Get started</a>
+  <?php if ( $nav_cta_label !== '' ) : ?>
+  <a href="<?php echo esc_url( $nav_cta_href ); ?>" class="nav-cta"<?php echo $nav_cta_target; ?>><?php echo esc_html( $nav_cta_label ); ?></a>
+  <?php endif; ?>
 
   <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -434,51 +467,4 @@ $cta_section_note             = get_field( 'cta_section_note' );
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="footer-logo-text">Hart<span>HQ</span></div>
-      <p>Practice growth partners for psychologists and counsellors in private practice. Built by the team behind The Hart Centre.</p>
-    </div>
-
-    <div class="footer-col">
-      <h4>Services</h4>
-      <ul>
-        <li><a href="#services">Individual Support & Administration</a></li>
-        <li><a href="#services">Group Support & Administration</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Tools</h4>
-      <ul>
-        <li><a href="#heartbeat">HartBeat Score</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Company</h4>
-      <ul>
-        <li><a href="<?php echo esc_url( home_url('/about/') ); ?>">About</a></li>
-        <li><a href="https://thehartcentre.com.au" target="_blank">The Hart Centre</a></li>
-        <li><a href="<?php echo esc_url( home_url('/about/#contact') ); ?>">Contact</a></li>
-        <li><a href="<?php echo esc_url( home_url('/privacy-policy/') ); ?>">Privacy Policy</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>© 2026 HartHQ. Part of The Hart Centre group. ABN 46 143 297 509.</p>
-    <div class="footer-bottom-links">
-      <a href="<?php echo esc_url( home_url('/privacy-policy/') ); ?>">Privacy</a>
-      <a href="https://thehartcentre.com.au" target="_blank">thehartcentre.com.au</a>
-    </div>
-  </div>
-</footer>
-
-
-
-<?php wp_footer(); ?>
-</body>
-</html>
+<?php get_footer(); ?>

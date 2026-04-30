@@ -137,6 +137,7 @@ em { font-style: italic; }
 .nav-logo-mark {
   width: 36px;
   height: 36px;
+  flex-shrink: 0;
 }
 
 .nav-logo-text {
@@ -145,9 +146,15 @@ em { font-style: italic; }
   font-weight: 700;
   color: white;
   letter-spacing: -0.3px;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
-.nav-logo-text span { color: var(--purple-light); }
+.nav-logo-text em,
+.nav-logo-text span {
+  color: var(--purple-light);
+  font-style: normal;
+}
 
 .nav-links {
   display: flex;
