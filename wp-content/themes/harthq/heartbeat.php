@@ -2,6 +2,145 @@
 /**
  * Template Name: Heartbeat Page
  */
+
+$page_id = 0;
+if ( is_singular( 'page' ) ) {
+	$page_id = (int) get_queried_object_id();
+	if ( ! $page_id ) {
+		$page_id = (int) get_the_ID();
+	}
+}
+
+$heartbeat_hero_eyebrow  = '';
+$heartbeat_hero_heading  = '';
+$heartbeat_hero_subtext  = '';
+$heartbeat_hero_pills    = array();
+$heartbeat_dimensions    = array();
+$heartbeat_submit_button_label    = '';
+$heartbeat_submit_note            = '';
+$heartbeat_results_hero_tag     = '';
+$heartbeat_results_email_button_label = '';
+$heartbeat_email_modal_title    = '';
+$heartbeat_email_modal_intro    = '';
+$heartbeat_email_modal_field_label = '';
+$heartbeat_email_modal_placeholder = '';
+$heartbeat_email_modal_submit_label = '';
+$heartbeat_email_modal_footer_note = '';
+$heartbeat_dim_bars_title       = '';
+$heartbeat_calc_title           = '';
+$heartbeat_calc_subtitle        = '';
+$heartbeat_calc_label_fee       = '';
+$heartbeat_calc_label_sessions = '';
+$heartbeat_calc_label_admin     = '';
+$heartbeat_calc_label_weeks     = '';
+$heartbeat_calc_notes_hint      = '';
+$heartbeat_calc_result_label_cost = '';
+$heartbeat_calc_result_sub_cost = '';
+$heartbeat_calc_result_label_hours = '';
+$heartbeat_calc_result_sub_hours = '';
+$heartbeat_calc_result_label_net = '';
+$heartbeat_calc_result_sub_net = '';
+$heartbeat_calc_disclaimer     = '';
+$heartbeat_calc_blended_section_title = '';
+$heartbeat_calc_blended_col_now_title = '';
+$heartbeat_calc_blended_col_now_sub = '';
+$heartbeat_calc_blended_col_mid_title = '';
+$heartbeat_calc_blended_col_mid_sub = '';
+$heartbeat_calc_blended_col_best_title = '';
+$heartbeat_calc_blended_col_best_sub = '';
+$heartbeat_calc_week_section_title = '';
+$heartbeat_calc_week_row_sessions = '';
+$heartbeat_calc_week_row_notes = '';
+$heartbeat_calc_week_row_admin = '';
+$heartbeat_calc_week_row_total = '';
+$heartbeat_product_cards = array();
+$heartbeat_results_disclaimer = '';
+$heartbeat_restart_label = '';
+
+if ( function_exists( 'get_field' ) && $page_id ) {
+	$heartbeat_hero_eyebrow  = (string) get_field( 'heartbeat_hero_eyebrow', $page_id );
+	$heartbeat_hero_heading  = (string) get_field( 'heartbeat_hero_heading', $page_id );
+	$heartbeat_hero_subtext  = (string) get_field( 'heartbeat_hero_subtext', $page_id );
+	$pills                   = get_field( 'heartbeat_hero_pills', $page_id );
+	$heartbeat_hero_pills    = is_array( $pills ) ? $pills : array();
+	$dims                    = get_field( 'heartbeat_dimensions', $page_id );
+	$heartbeat_dimensions    = is_array( $dims ) ? $dims : array();
+	$heartbeat_submit_button_label       = (string) get_field( 'heartbeat_submit_button_label', $page_id );
+	$heartbeat_submit_note               = (string) get_field( 'heartbeat_submit_note', $page_id );
+	$heartbeat_results_hero_tag        = (string) get_field( 'heartbeat_results_hero_tag', $page_id );
+	$heartbeat_results_email_button_label = (string) get_field( 'heartbeat_results_email_button_label', $page_id );
+	$heartbeat_email_modal_title         = (string) get_field( 'heartbeat_email_modal_title', $page_id );
+	$heartbeat_email_modal_intro         = (string) get_field( 'heartbeat_email_modal_intro', $page_id );
+	$heartbeat_email_modal_field_label   = (string) get_field( 'heartbeat_email_modal_field_label', $page_id );
+	$heartbeat_email_modal_placeholder   = (string) get_field( 'heartbeat_email_modal_placeholder', $page_id );
+	$heartbeat_email_modal_submit_label  = (string) get_field( 'heartbeat_email_modal_submit_label', $page_id );
+	$heartbeat_email_modal_footer_note   = (string) get_field( 'heartbeat_email_modal_footer_note', $page_id );
+	$heartbeat_dim_bars_title            = (string) get_field( 'heartbeat_dim_bars_title', $page_id );
+	$heartbeat_calc_title                = (string) get_field( 'heartbeat_calc_title', $page_id );
+	$heartbeat_calc_subtitle             = (string) get_field( 'heartbeat_calc_subtitle', $page_id );
+	$heartbeat_calc_label_fee            = (string) get_field( 'heartbeat_calc_label_fee', $page_id );
+	$heartbeat_calc_label_sessions       = (string) get_field( 'heartbeat_calc_label_sessions', $page_id );
+	$heartbeat_calc_label_admin          = (string) get_field( 'heartbeat_calc_label_admin', $page_id );
+	$heartbeat_calc_label_weeks          = (string) get_field( 'heartbeat_calc_label_weeks', $page_id );
+	$heartbeat_calc_notes_hint           = (string) get_field( 'heartbeat_calc_notes_hint', $page_id );
+	$heartbeat_calc_result_label_cost    = (string) get_field( 'heartbeat_calc_result_label_cost', $page_id );
+	$heartbeat_calc_result_sub_cost      = (string) get_field( 'heartbeat_calc_result_sub_cost', $page_id );
+	$heartbeat_calc_result_label_hours   = (string) get_field( 'heartbeat_calc_result_label_hours', $page_id );
+	$heartbeat_calc_result_sub_hours     = (string) get_field( 'heartbeat_calc_result_sub_hours', $page_id );
+	$heartbeat_calc_result_label_net     = (string) get_field( 'heartbeat_calc_result_label_net', $page_id );
+	$heartbeat_calc_result_sub_net       = (string) get_field( 'heartbeat_calc_result_sub_net', $page_id );
+	$heartbeat_calc_disclaimer           = (string) get_field( 'heartbeat_calc_disclaimer', $page_id );
+	$heartbeat_calc_blended_section_title = (string) get_field( 'heartbeat_calc_blended_section_title', $page_id );
+	$heartbeat_calc_blended_col_now_title = (string) get_field( 'heartbeat_calc_blended_col_now_title', $page_id );
+	$heartbeat_calc_blended_col_now_sub  = (string) get_field( 'heartbeat_calc_blended_col_now_sub', $page_id );
+	$heartbeat_calc_blended_col_mid_title = (string) get_field( 'heartbeat_calc_blended_col_mid_title', $page_id );
+	$heartbeat_calc_blended_col_mid_sub  = (string) get_field( 'heartbeat_calc_blended_col_mid_sub', $page_id );
+	$heartbeat_calc_blended_col_best_title = (string) get_field( 'heartbeat_calc_blended_col_best_title', $page_id );
+	$heartbeat_calc_blended_col_best_sub = (string) get_field( 'heartbeat_calc_blended_col_best_sub', $page_id );
+	$heartbeat_calc_week_section_title   = (string) get_field( 'heartbeat_calc_week_section_title', $page_id );
+	$heartbeat_calc_week_row_sessions    = (string) get_field( 'heartbeat_calc_week_row_sessions', $page_id );
+	$heartbeat_calc_week_row_notes       = (string) get_field( 'heartbeat_calc_week_row_notes', $page_id );
+	$heartbeat_calc_week_row_admin       = (string) get_field( 'heartbeat_calc_week_row_admin', $page_id );
+	$heartbeat_calc_week_row_total       = (string) get_field( 'heartbeat_calc_week_row_total', $page_id );
+	$cards                               = get_field( 'heartbeat_product_cards', $page_id );
+	$heartbeat_product_cards             = is_array( $cards ) ? $cards : array();
+	$heartbeat_results_disclaimer        = (string) get_field( 'heartbeat_results_disclaimer', $page_id );
+	$heartbeat_restart_label             = (string) get_field( 'heartbeat_restart_label', $page_id );
+}
+
+$heartbeat_question_count = 0;
+foreach ( $heartbeat_dimensions as $dim_row_count ) {
+	if ( ! is_array( $dim_row_count ) ) {
+		continue;
+	}
+	$qq = $dim_row_count['dimension_questions'] ?? null;
+	if ( ! is_array( $qq ) ) {
+		continue;
+	}
+	foreach ( $qq as $qr ) {
+		if ( ! is_array( $qr ) ) {
+			continue;
+		}
+		$qo = $qr['question_options'] ?? null;
+		if ( ! is_array( $qo ) ) {
+			continue;
+		}
+		$opt_n = 0;
+		foreach ( $qo as $ox ) {
+			if ( is_array( $ox ) ) {
+				++$opt_n;
+			}
+		}
+		if ( $opt_n > 0 ) {
+			++$heartbeat_question_count;
+		}
+	}
+}
+
+$allowed_hero_heading = array(
+	'em' => array(),
+	'br' => array(),
+);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,14 +169,14 @@
 
 <!-- NAV -->
 <nav class="nav">
-  <a href="<?php echo esc_url( home_url('/') ); ?>" class="nav-logo">
+  <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="nav-logo">
     <svg class="nav-logo-mark" viewBox="0 0 204 226" style="color:#B8B0E8">
       <use href="#hart-heart"/>
     </svg>
     <span class="nav-logo-text">Hart<span>HQ</span></span>
   </a>
   <span class="nav-tag">Practice Health Assessment</span>
-  <a href="<?php echo esc_url( home_url('/') ); ?>" class="nav-back">← Back to HartHQ</a>
+  <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="nav-back">← Back to HartHQ</a>
 </nav>
 
 <!-- HERO -->
@@ -45,14 +184,14 @@
   <svg class="hero-watermark" viewBox="0 0 204 226">
     <use href="#hart-heart"/>
   </svg>
-  <div class="hero-eyebrow">HartBeat Score - Free</div>
-  <h1>How healthy is<br><em>your practice?</em></h1>
-  <p class="hero-sub">20 questions across 5 dimensions of practice health. Takes about 4 minutes. No right or wrong answers - just an honest look at where you are.</p>
+  <div class="hero-eyebrow"><?php echo esc_html( $heartbeat_hero_eyebrow ); ?></div>
+  <h1><?php echo wp_kses( $heartbeat_hero_heading, $allowed_hero_heading ); ?></h1>
+  <p class="hero-sub"><?php echo esc_html( $heartbeat_hero_subtext ); ?></p>
   <div class="hero-pills">
-    <div class="hero-pill"><div class="pill-dot"></div>5 dimensions</div>
-    <div class="hero-pill"><div class="pill-dot"></div>20 questions</div>
-    <div class="hero-pill"><div class="pill-dot"></div>Score out of 100</div>
-    <div class="hero-pill"><div class="pill-dot"></div>~4 minutes</div>
+    <?php foreach ( $heartbeat_hero_pills as $pill_row ) : ?>
+      <?php $pl = is_array( $pill_row ) ? (string) ( $pill_row['pill_label'] ?? '' ) : ''; ?>
+    <div class="hero-pill"><div class="pill-dot"></div><?php echo esc_html( $pl ); ?></div>
+    <?php endforeach; ?>
   </div>
 </div>
 
@@ -60,7 +199,7 @@
 <div class="progress-bar">
   <div class="progress-label">
     <span class="pl-text">Your progress</span>
-    <span class="pl-count" id="progress-count">0 of 20 answered</span>
+    <span class="pl-count" id="progress-count">0 of <?php echo (int) $heartbeat_question_count; ?> answered</span>
   </div>
   <div class="progress-track">
     <div class="progress-fill" id="progress-fill"></div>
@@ -70,338 +209,114 @@
 <!-- MAIN -->
 <div class="main" id="main-content">
 
-  <!-- ── DIMENSION 1: CAPACITY ── -->
-  <div class="dimension d1" id="dim-1">
+  <?php
+	$dim_i = 0;
+	foreach ( $heartbeat_dimensions as $dim_row ) :
+		if ( ! is_array( $dim_row ) ) {
+			continue;
+		}
+		++$dim_i;
+		$dim_class = 'd' . $dim_i;
+		$dim_tag   = (string) ( $dim_row['dimension_tag'] ?? '' );
+		$dim_title = (string) ( $dim_row['dimension_title'] ?? '' );
+		$dim_desc  = (string) ( $dim_row['dimension_description'] ?? '' );
+		$questions = $dim_row['dimension_questions'] ?? null;
+		$questions = is_array( $questions ) ? $questions : array();
+		$dim_question_count = 0;
+		$dim_max_score        = 0;
+		foreach ( $questions as $q_row_count ) {
+			if ( ! is_array( $q_row_count ) ) {
+				continue;
+			}
+			$opts_for_max = $q_row_count['question_options'] ?? null;
+			$opts_for_max = is_array( $opts_for_max ) ? $opts_for_max : array();
+			$n_opts       = 0;
+			foreach ( $opts_for_max as $opt_m ) {
+				if ( is_array( $opt_m ) ) {
+					++$n_opts;
+				}
+			}
+			if ( $n_opts < 1 ) {
+				continue;
+			}
+			++$dim_question_count;
+			$dim_max_score += $n_opts;
+		}
+		?>
+  <div class="dimension <?php echo esc_attr( $dim_class ); ?>" id="dim-<?php echo (int) $dim_i; ?>">
     <div class="dim-header">
-      <div class="dim-number">01</div>
+      <div class="dim-number"><?php echo esc_html( str_pad( (string) $dim_i, 2, '0', STR_PAD_LEFT ) ); ?></div>
       <div class="dim-info">
-        <div class="dim-tag">Dimension 1</div>
-        <div class="dim-title">Capacity Utilisation</div>
-        <div class="dim-desc">Are you working at a volume that's sustainable - and are the sessions you schedule actually happening?</div>
+        <?php if ( '' !== $dim_tag ) : ?>
+        <div class="dim-tag"><?php echo esc_html( $dim_tag ); ?></div>
+        <?php endif; ?>
+        <div class="dim-title"><?php echo esc_html( $dim_title ); ?></div>
+        <div class="dim-desc"><?php echo esc_html( $dim_desc ); ?></div>
       </div>
-      <div class="dim-score-badge" id="badge-1">
-        <div class="dsb-val" id="score-d1">-</div>
-        <div class="dsb-max">/20</div>
+      <div class="dim-score-badge" id="badge-<?php echo (int) $dim_i; ?>">
+        <div class="dsb-val" id="score-d<?php echo (int) $dim_i; ?>">-</div>
+        <div class="dsb-max">/<?php echo (int) $dim_max_score; ?></div>
       </div>
     </div>
     <div class="questions">
-
-      <div class="question" data-dim="1" data-q="1">
-        <div class="q-text">What percentage of your scheduled sessions are actually delivered? (accounting for no-shows and same-day cancellations)</div>
+		<?php
+		$q_i = 0;
+		foreach ( $questions as $q_row ) :
+			if ( ! is_array( $q_row ) ) {
+				continue;
+			}
+			$q_text  = (string) ( $q_row['question_text'] ?? '' );
+			$options = $q_row['question_options'] ?? null;
+			$options = is_array( $options ) ? $options : array();
+			$q_max_score = 0;
+			foreach ( $options as $opt_row_cnt ) {
+				if ( is_array( $opt_row_cnt ) ) {
+					++$q_max_score;
+				}
+			}
+			if ( $q_max_score < 1 ) {
+				continue;
+			}
+			++$q_i;
+			?>
+      <div class="question" data-dim="<?php echo (int) $dim_i; ?>" data-q="<?php echo (int) $q_i; ?>" data-max-score="<?php echo (int) $q_max_score; ?>">
+        <div class="q-text"><?php echo esc_html( $q_text ); ?></div>
         <div class="options">
-          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>Under 70% - I lose a lot of sessions<div class="opt-score">1/5</div></button>
-          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>70–79% - fairly common gaps<div class="opt-score">2/5</div></button>
-          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>80–84% - occasional gaps<div class="opt-score">3/5</div></button>
-          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>85–92% - mostly solid<div class="opt-score">4/5</div></button>
-          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>93%+ - very few missed sessions<div class="opt-score">5/5</div></button>
+			<?php
+			$opt_score = 0;
+			foreach ( $options as $opt_row ) :
+				if ( ! is_array( $opt_row ) ) {
+					continue;
+				}
+				++$opt_score;
+				$opt_label = (string) ( $opt_row['option_label'] ?? '' );
+				?>
+          <button class="opt" data-score="<?php echo (int) $opt_score; ?>" onclick="selectOpt(this)"><div class="opt-dot"></div><?php echo esc_html( $opt_label ); ?><div class="opt-score"><?php echo (int) $opt_score; ?>/<?php echo (int) $q_max_score; ?></div></button>
+			<?php endforeach; ?>
         </div>
       </div>
-
-      <div class="question" data-dim="1" data-q="2">
-        <div class="q-text">How many client sessions do you typically see in a week?</div>
-        <div class="options">
-          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>Fewer than 10 - well below capacity<div class="opt-score">1/5</div></button>
-          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>10–14 - building but not full<div class="opt-score">2/5</div></button>
-          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>15–18 - comfortably occupied<div class="opt-score">3/5</div></button>
-          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>19–22 - near capacity<div class="opt-score">4/5</div></button>
-          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>23+ - full, sometimes overcommitted<div class="opt-score">5/5</div></button>
-        </div>
-      </div>
-
-      <div class="question" data-dim="1" data-q="3">
-        <div class="q-text">When a client cancels, how quickly can you typically fill that slot?</div>
-        <div class="options">
-          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>Rarely - gaps stay empty<div class="opt-score">1/5</div></button>
-          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>Sometimes - depends on the week<div class="opt-score">2/5</div></button>
-          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>Often - I have a short list to call<div class="opt-score">3/5</div></button>
-          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Usually - I have a waitlist<div class="opt-score">4/5</div></button>
-          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Always - waitlist means gaps never stay empty<div class="opt-score">5/5</div></button>
-        </div>
-      </div>
-
-      <div class="question" data-dim="1" data-q="4">
-        <div class="q-text">Do you have a written cancellation policy that you enforce consistently?</div>
-        <div class="options">
-          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>No policy - I handle it case by case<div class="opt-score">1/5</div></button>
-          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>I have a policy but rarely enforce it<div class="opt-score">2/5</div></button>
-          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>I have a policy but make frequent exceptions<div class="opt-score">3/5</div></button>
-          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>I have a policy and apply it most of the time<div class="opt-score">4/5</div></button>
-          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Clear policy, consistently applied - clients know upfront<div class="opt-score">5/5</div></button>
-        </div>
-      </div>
-
+		<?php endforeach; ?>
     </div>
   </div>
-
-  <!-- ── DIMENSION 2: CLINICAL CONTINUITY ── -->
-  <div class="dimension d2" id="dim-2">
-    <div class="dim-header">
-      <div class="dim-number">02</div>
-      <div class="dim-info">
-        <div class="dim-tag">Dimension 2</div>
-        <div class="dim-title">Clinical Continuity</div>
-        <div class="dim-desc">Are clients completing therapy - or dropping out before they get the outcomes they came for?</div>
-      </div>
-      <div class="dim-score-badge" id="badge-2">
-        <div class="dsb-val" id="score-d2">-</div>
-        <div class="dsb-max">/20</div>
-      </div>
-    </div>
-    <div class="questions">
-
-      <div class="question" data-dim="2" data-q="1">
-        <div class="q-text">On average, how many sessions does a typical client have with you before ending treatment?</div>
-        <div class="options">
-          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>1–3 sessions - most don't come back<div class="opt-score">1/5</div></button>
-          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>4–5 sessions - short courses<div class="opt-score">2/5</div></button>
-          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>6–8 sessions - reasonable completion<div class="opt-score">3/5</div></button>
-          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>9–12 sessions - good depth of work<div class="opt-score">4/5</div></button>
-          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>13+ sessions - clients complete full course of therapy<div class="opt-score">5/5</div></button>
-        </div>
-      </div>
-
-      <div class="question" data-dim="2" data-q="2">
-        <div class="q-text">How do most clients rebook their next appointment?</div>
-        <div class="options">
-          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>They contact us when they feel ready<div class="opt-score">1/5</div></button>
-          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>We send a reminder but many don't respond<div class="opt-score">2/5</div></button>
-          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>I suggest rebooking in session but don't always follow up<div class="opt-score">3/5</div></button>
-          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Most clients rebook before leaving or get an automated prompt<div class="opt-score">4/5</div></button>
-          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>We have a systematic rebooking process - most are booked before leaving<div class="opt-score">5/5</div></button>
-        </div>
-      </div>
-
-      <div class="question" data-dim="2" data-q="3">
-        <div class="q-text">How often do clients drop out of therapy without a planned ending?</div>
-        <div class="options">
-          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>Very often - it's the norm<div class="opt-score">1/5</div></button>
-          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>Often - maybe half don't have a formal ending<div class="opt-score">2/5</div></button>
-          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>Sometimes - maybe a third drop out unplanned<div class="opt-score">3/5</div></button>
-          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Occasionally - most clients have planned endings<div class="opt-score">4/5</div></button>
-          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Rarely - therapy endings are collaborative and planned<div class="opt-score">5/5</div></button>
-        </div>
-      </div>
-
-      <div class="question" data-dim="2" data-q="4">
-        <div class="q-text">Do you have a consistent process for following up clients who miss an appointment or go quiet?</div>
-        <div class="options">
-          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>No - if they don't rebook, we wait<div class="opt-score">1/5</div></button>
-          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>Sometimes - depends on the client<div class="opt-score">2/5</div></button>
-          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>We send a message but don't always follow through<div class="opt-score">3/5</div></button>
-          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Yes - we follow up within 48 hours<div class="opt-score">4/5</div></button>
-          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Yes - we have a clear protocol and it works well<div class="opt-score">5/5</div></button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ── DIMENSION 3: REVENUE INTEGRITY ── -->
-  <div class="dimension d3" id="dim-3">
-    <div class="dim-header">
-      <div class="dim-number">03</div>
-      <div class="dim-info">
-        <div class="dim-tag">Dimension 3</div>
-        <div class="dim-title">Revenue Integrity</div>
-        <div class="dim-desc">Are you being appropriately compensated for your expertise - and is your fee structure working for you?</div>
-      </div>
-      <div class="dim-score-badge" id="badge-3">
-        <div class="dsb-val" id="score-d3">-</div>
-        <div class="dsb-max">/20</div>
-      </div>
-    </div>
-    <div class="questions">
-
-      <div class="question" data-dim="3" data-q="1">
-        <div class="q-text">When did you last review and adjust your session fee?</div>
-        <div class="options">
-          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>More than 3 years ago - or never<div class="opt-score">1/5</div></button>
-          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>2–3 years ago<div class="opt-score">2/5</div></button>
-          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>1–2 years ago<div class="opt-score">3/5</div></button>
-          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Within the last 12 months<div class="opt-score">4/5</div></button>
-          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Within the last 6 months - I review it regularly<div class="opt-score">5/5</div></button>
-        </div>
-      </div>
-
-      <div class="question" data-dim="3" data-q="2">
-        <div class="q-text">How does your fee compare to other practitioners in your area with similar experience?</div>
-        <div class="options">
-          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>I genuinely don't know<div class="opt-score">1/5</div></button>
-          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>Probably below average - I've kept fees low<div class="opt-score">2/5</div></button>
-          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>Around average for my area<div class="opt-score">3/5</div></button>
-          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Slightly above average - I've positioned deliberately<div class="opt-score">4/5</div></button>
-          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Above average - my niche and experience justify a premium<div class="opt-score">5/5</div></button>
-        </div>
-      </div>
-
-      <div class="question" data-dim="3" data-q="3">
-        <div class="q-text">What proportion of your clients pay your full private fee (vs. reduced gap fee via Medicare or concession)?</div>
-        <div class="options">
-          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>Under 20% - almost all are Medicare or concession<div class="opt-score">1/5</div></button>
-          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>20–40% full fee<div class="opt-score">2/5</div></button>
-          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>40–60% full fee<div class="opt-score">3/5</div></button>
-          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>60–80% full fee<div class="opt-score">4/5</div></button>
-          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Over 80% - mostly private, minimal Medicare dependency<div class="opt-score">5/5</div></button>
-        </div>
-      </div>
-
-      <div class="question" data-dim="3" data-q="4">
-        <div class="q-text">Do you accept clients through EAP panels, BetterHelp, or similar platforms that set the fee for you?</div>
-        <div class="options">
-          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>Yes - a significant portion of my caseload is platform-referred<div class="opt-score">1/5</div></button>
-          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>Yes - some EAP or platform clients<div class="opt-score">2/5</div></button>
-          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>A small number - I'm selective about panels<div class="opt-score">3/5</div></button>
-          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Very few - I've moved away from platform dependency<div class="opt-score">4/5</div></button>
-          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>No - I set my own fees across my entire caseload<div class="opt-score">5/5</div></button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ── DIMENSION 4: ADMINISTRATIVE LOAD ── -->
-  <div class="dimension d4" id="dim-4">
-    <div class="dim-header">
-      <div class="dim-number">04</div>
-      <div class="dim-info">
-        <div class="dim-tag">Dimension 4</div>
-        <div class="dim-title">Administrative Load</div>
-        <div class="dim-desc">How much of your working week is spent on tasks that don't require your clinical expertise?</div>
-      </div>
-      <div class="dim-score-badge" id="badge-4">
-        <div class="dsb-val" id="score-d4">-</div>
-        <div class="dsb-max">/20</div>
-      </div>
-    </div>
-    <div class="questions">
-
-      <div class="question" data-dim="4" data-q="1">
-        <div class="q-text">How many hours per week do you personally spend on practice administration? (scheduling, invoicing, client communications, reports, insurance)</div>
-        <div class="options">
-          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>More than 12 hours<div class="opt-score">1/5</div></button>
-          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>9–12 hours<div class="opt-score">2/5</div></button>
-          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>6–8 hours<div class="opt-score">3/5</div></button>
-          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>3–5 hours<div class="opt-score">4/5</div></button>
-          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Under 3 hours - I have good systems or support<div class="opt-score">5/5</div></button>
-        </div>
-      </div>
-
-      <div class="question" data-dim="4" data-q="2">
-        <div class="q-text">When a new client enquires, how quickly are they typically responded to?</div>
-        <div class="options">
-          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>Often more than 48 hours - I miss some enquiries<div class="opt-score">1/5</div></button>
-          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>Usually within 24–48 hours<div class="opt-score">2/5</div></button>
-          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>Within same business day<div class="opt-score">3/5</div></button>
-          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Within a few hours<div class="opt-score">4/5</div></button>
-          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Within the hour - I have a system for this<div class="opt-score">5/5</div></button>
-        </div>
-      </div>
-
-      <div class="question" data-dim="4" data-q="3">
-        <div class="q-text">How automated is your client intake, reminders, and invoicing?</div>
-        <div class="options">
-          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>Almost nothing is automated - I do it manually<div class="opt-score">1/5</div></button>
-          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>Some automation - reminders only<div class="opt-score">2/5</div></button>
-          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>Moderate - reminders and invoicing, intake still manual<div class="opt-score">3/5</div></button>
-          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Mostly automated - I check and adjust but rarely input<div class="opt-score">4/5</div></button>
-          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Fully systemised - intake, reminders, invoicing run without me<div class="opt-score">5/5</div></button>
-        </div>
-      </div>
-
-      <div class="question" data-dim="4" data-q="4">
-        <div class="q-text">Do you review your practice's financial health (revenue trends, no-show rate, avg client value) on a regular basis?</div>
-        <div class="options">
-          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>Never - I don't really look at the numbers<div class="opt-score">1/5</div></button>
-          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>Once a year, around tax time<div class="opt-score">2/5</div></button>
-          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>Quarterly - I check in a few times a year<div class="opt-score">3/5</div></button>
-          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Monthly - I have a rough sense of how the practice is tracking<div class="opt-score">4/5</div></button>
-          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Monthly with a structured report - I know my key numbers<div class="opt-score">5/5</div></button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ── DIMENSION 5: PRACTICE RESILIENCE ── -->
-  <div class="dimension d5" id="dim-5">
-    <div class="dim-header">
-      <div class="dim-number">05</div>
-      <div class="dim-info">
-        <div class="dim-tag">Dimension 5</div>
-        <div class="dim-title">Practice Resilience</div>
-        <div class="dim-desc">How vulnerable is your practice to disruption - and how would it hold up if life got complicated?</div>
-      </div>
-      <div class="dim-score-badge" id="badge-5">
-        <div class="dsb-val" id="score-d5">-</div>
-        <div class="dsb-max">/20</div>
-      </div>
-    </div>
-    <div class="questions">
-
-      <div class="question" data-dim="5" data-q="1">
-        <div class="q-text">How consistently does new client work arrive without you actively chasing it?</div>
-        <div class="options">
-          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>Rarely - I'm always actively hunting for new clients<div class="opt-score">1/5</div></button>
-          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>Inconsistently - good months and dry months<div class="opt-score">2/5</div></button>
-          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>Fairly regularly - I have some reliable sources<div class="opt-score">3/5</div></button>
-          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Consistently - referrals come in without much effort<div class="opt-score">4/5</div></button>
-          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Always - I have a waitlist and turn away work<div class="opt-score">5/5</div></button>
-        </div>
-      </div>
-
-      <div class="question" data-dim="5" data-q="2">
-        <div class="q-text">How would your weekly income be affected if your 3 longest-attending clients all ended therapy at the same time?</div>
-        <div class="options">
-          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>It would be a major blow - they make up most of my income<div class="opt-score">1/5</div></button>
-          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>Significant impact - it would take months to recover<div class="opt-score">2/5</div></button>
-          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>Noticeable but manageable - I have enough other clients<div class="opt-score">3/5</div></button>
-          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Modest impact - I have a good spread at different stages<div class="opt-score">4/5</div></button>
-          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Minimal - my caseload is well distributed across many clients<div class="opt-score">5/5</div></button>
-        </div>
-      </div>
-
-      <div class="question" data-dim="5" data-q="3">
-        <div class="q-text">How quickly can a new client get an appointment with you?</div>
-        <div class="options">
-          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>Same week - I have availability most weeks<div class="opt-score">1/5</div></button>
-          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>About 1 week wait<div class="opt-score">2/5</div></button>
-          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>About 2 weeks wait<div class="opt-score">3/5</div></button>
-          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>3-4 weeks wait<div class="opt-score">4/5</div></button>
-          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>5+ weeks - I have an active waitlist<div class="opt-score">5/5</div></button>
-        </div>
-      </div>
-
-      <div class="question" data-dim="5" data-q="4">
-        <div class="q-text">If you needed to take 4 weeks off unexpectedly, how would your practice hold up?</div>
-        <div class="options">
-          <button class="opt" data-score="1" onclick="selectOpt(this)"><div class="opt-dot"></div>It would collapse - everything depends on me being present<div class="opt-score">1/5</div></button>
-          <button class="opt" data-score="2" onclick="selectOpt(this)"><div class="opt-dot"></div>Very difficult - I'd lose clients and income significantly<div class="opt-score">2/5</div></button>
-          <button class="opt" data-score="3" onclick="selectOpt(this)"><div class="opt-dot"></div>Manageable but painful - some systems exist<div class="opt-score">3/5</div></button>
-          <button class="opt" data-score="4" onclick="selectOpt(this)"><div class="opt-dot"></div>Mostly fine - admin could be covered, clients would hold<div class="opt-score">4/5</div></button>
-          <button class="opt" data-score="5" onclick="selectOpt(this)"><div class="opt-dot"></div>Well covered - I have documented processes and client communication plans<div class="opt-score">5/5</div></button>
-        </div>
-      </div>
-
-    </div>
-  </div>
+	<?php endforeach; ?>
 
   <!-- SUBMIT -->
   <div class="submit-wrap" id="submit-wrap">
-    <button class="submit-btn" id="submit-btn" onclick="showResults()">Calculate my HartBeat Score →</button>
-    <div class="submit-note">Your responses are not stored or shared.</div>
+    <button class="submit-btn" id="submit-btn" onclick="showResults()"><?php echo esc_html( $heartbeat_submit_button_label ); ?></button>
+    <div class="submit-note"><?php echo esc_html( $heartbeat_submit_note ); ?></div>
   </div>
 
   <!-- ── RESULTS ── -->
   <div id="results">
 
     <div class="results-hero">
-      <div class="rh-tag">Your HartBeat Score</div>
+      <div class="rh-tag"><?php echo esc_html( $heartbeat_results_hero_tag ); ?></div>
       <div class="score-display" id="final-score">-</div>
       <div class="score-band" id="score-band">-</div>
       <div class="score-desc" id="score-desc">-</div>
       <div style="margin-top:20px;">
-        <button onclick="showEmailModal()" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--ff-body);font-size:14px;font-weight:600;padding:11px 22px;border-radius:100px;border:1.5px solid var(--purple-light);background:transparent;color:var(--purple);cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='var(--purple-pale)'" onmouseout="this.style.background='transparent'">
-          ✉ Email my results to myself
+        <button type="button" onclick="showEmailModal()" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--ff-body);font-size:14px;font-weight:600;padding:11px 22px;border-radius:100px;border:1.5px solid var(--purple-light);background:transparent;color:var(--purple);cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='var(--purple-pale)'" onmouseout="this.style.background='transparent'">
+          <?php echo esc_html( $heartbeat_results_email_button_label ); ?>
         </button>
       </div>
     </div>
@@ -409,13 +324,13 @@
     <!-- EMAIL MODAL -->
     <div id="email-modal" style="display:none;position:fixed;inset:0;background:rgba(15,26,62,0.6);z-index:500;align-items:center;justify-content:center;">
       <div style="background:white;border-radius:20px;padding:40px;max-width:440px;width:90%;position:relative;">
-        <button onclick="hideEmailModal()" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-muted);">×</button>
-        <h3 style="font-family:var(--ff-head);font-size:24px;font-weight:400;color:var(--navy);margin-bottom:8px;">Email my results</h3>
-        <p style="font-size:14px;color:var(--text-muted);margin-bottom:24px;line-height:1.6;">Enter your email and we'll open a pre-filled message with your full HartBeat results. Hit send from your email client to get a copy.</p>
-        <label style="font-size:12px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--text-muted);font-family:var(--ff-body);">Your email address</label>
-        <input type="email" id="email-input" placeholder="you@yourpractice.com.au" style="width:100%;margin-top:8px;margin-bottom:20px;padding:12px 16px;border:1.5px solid var(--light-grey);border-radius:10px;font-family:var(--ff-body);font-size:15px;outline:none;" onfocus="this.style.borderColor='var(--purple)'" onblur="this.style.borderColor='var(--light-grey)'">
-        <button onclick="sendResultsEmail()" style="width:100%;padding:14px;background:var(--purple);color:white;border:none;border-radius:100px;font-family:var(--ff-body);font-size:15px;font-weight:600;cursor:pointer;">Open in my email app →</button>
-        <p style="font-size:11px;color:var(--text-muted);margin-top:12px;text-align:center;">A copy will also go to the HartHQ team so we can follow up.</p>
+        <button type="button" onclick="hideEmailModal()" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-muted);">×</button>
+        <h3 style="font-family:var(--ff-head);font-size:24px;font-weight:400;color:var(--navy);margin-bottom:8px;"><?php echo esc_html( $heartbeat_email_modal_title ); ?></h3>
+        <p style="font-size:14px;color:var(--text-muted);margin-bottom:24px;line-height:1.6;"><?php echo esc_html( $heartbeat_email_modal_intro ); ?></p>
+        <label style="font-size:12px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--text-muted);font-family:var(--ff-body);"><?php echo esc_html( $heartbeat_email_modal_field_label ); ?></label>
+        <input type="email" id="email-input" placeholder="<?php echo esc_attr( $heartbeat_email_modal_placeholder ); ?>" style="width:100%;margin-top:8px;margin-bottom:20px;padding:12px 16px;border:1.5px solid var(--light-grey);border-radius:10px;font-family:var(--ff-body);font-size:15px;outline:none;" onfocus="this.style.borderColor='var(--purple)'" onblur="this.style.borderColor='var(--light-grey)'">
+        <button type="button" onclick="sendResultsEmail()" style="width:100%;padding:14px;background:var(--purple);color:white;border:none;border-radius:100px;font-family:var(--ff-body);font-size:15px;font-weight:600;cursor:pointer;"><?php echo esc_html( $heartbeat_email_modal_submit_label ); ?></button>
+        <p style="font-size:11px;color:var(--text-muted);margin-top:12px;text-align:center;"><?php echo esc_html( $heartbeat_email_modal_footer_note ); ?></p>
       </div>
     </div>
 
@@ -424,52 +339,27 @@
 
     <!-- DIM BARS -->
     <div class="dim-bars">
-      <div class="db-title">Score by dimension</div>
+      <div class="db-title"><?php echo esc_html( $heartbeat_dim_bars_title ); ?></div>
 
+		<?php
+		$bar_i = 0;
+		foreach ( $heartbeat_dimensions as $dim_row_bar ) :
+			if ( ! is_array( $dim_row_bar ) ) {
+				continue;
+			}
+			++$bar_i;
+			$bar_label = (string) ( $dim_row_bar['dimension_title'] ?? '' );
+			$dvar      = 'var(--d' . $bar_i . ')';
+			?>
       <div class="dim-bar-row">
         <div class="dbr-header">
-          <span class="dbr-label">Capacity Utilisation</span>
-          <span class="dbr-score" style="color:var(--d1);" id="bar-score-1">0/20</span>
+          <span class="dbr-label"><?php echo esc_html( $bar_label ); ?></span>
+          <span class="dbr-score" style="color:<?php echo esc_attr( $dvar ); ?>;" id="bar-score-<?php echo (int) $bar_i; ?>">0/20</span>
         </div>
-        <div class="dbr-track"><div class="dbr-fill" id="bar-fill-1" style="background:var(--d1);"></div></div>
-        <div class="dbr-insight" id="bar-insight-1"></div>
+        <div class="dbr-track"><div class="dbr-fill" id="bar-fill-<?php echo (int) $bar_i; ?>" style="background:<?php echo esc_attr( $dvar ); ?>;"></div></div>
+        <div class="dbr-insight" id="bar-insight-<?php echo (int) $bar_i; ?>"></div>
       </div>
-
-      <div class="dim-bar-row">
-        <div class="dbr-header">
-          <span class="dbr-label">Clinical Continuity</span>
-          <span class="dbr-score" style="color:var(--d2);" id="bar-score-2">0/20</span>
-        </div>
-        <div class="dbr-track"><div class="dbr-fill" id="bar-fill-2" style="background:var(--d2);"></div></div>
-        <div class="dbr-insight" id="bar-insight-2"></div>
-      </div>
-
-      <div class="dim-bar-row">
-        <div class="dbr-header">
-          <span class="dbr-label">Revenue Integrity</span>
-          <span class="dbr-score" style="color:var(--d3);" id="bar-score-3">0/20</span>
-        </div>
-        <div class="dbr-track"><div class="dbr-fill" id="bar-fill-3" style="background:var(--d3);"></div></div>
-        <div class="dbr-insight" id="bar-insight-3"></div>
-      </div>
-
-      <div class="dim-bar-row">
-        <div class="dbr-header">
-          <span class="dbr-label">Administrative Load</span>
-          <span class="dbr-score" style="color:var(--d4);" id="bar-score-4">0/20</span>
-        </div>
-        <div class="dbr-track"><div class="dbr-fill" id="bar-fill-4" style="background:var(--d4);"></div></div>
-        <div class="dbr-insight" id="bar-insight-4"></div>
-      </div>
-
-      <div class="dim-bar-row">
-        <div class="dbr-header">
-          <span class="dbr-label">Practice Resilience</span>
-          <span class="dbr-score" style="color:var(--d5);" id="bar-score-5">0/20</span>
-        </div>
-        <div class="dbr-track"><div class="dbr-fill" id="bar-fill-5" style="background:var(--d5);"></div></div>
-        <div class="dbr-insight" id="bar-insight-5"></div>
-      </div>
+		<?php endforeach; ?>
 
     </div>
 
@@ -481,34 +371,34 @@
 
     <!-- MINI CALCULATOR -->
     <div class="mini-calc">
-      <div class="mini-calc-title">What is your admin actually costing you?</div>
-      <div class="mini-calc-sub">Enter your numbers to see the revenue impact of getting your admin time back.</div>
+      <div class="mini-calc-title"><?php echo esc_html( $heartbeat_calc_title ); ?></div>
+      <div class="mini-calc-sub"><?php echo esc_html( $heartbeat_calc_subtitle ); ?></div>
 
       <div class="calc-inputs">
         <div>
-          <div class="calc-input-label">Your session fee</div>
+          <div class="calc-input-label"><?php echo esc_html( $heartbeat_calc_label_fee ); ?></div>
           <div class="calc-input-wrap">
             <span class="calc-input-symbol">$</span>
             <input type="number" id="calc-fee" value="200" min="80" max="500" step="10" oninput="updateMiniCalc()">
           </div>
         </div>
         <div>
-          <div class="calc-input-label">Sessions / week</div>
+          <div class="calc-input-label"><?php echo esc_html( $heartbeat_calc_label_sessions ); ?></div>
           <div class="calc-input-wrap">
             <input type="number" id="calc-sessions" value="20" min="1" max="40" step="1" oninput="updateMiniCalc()">
             <span class="calc-input-symbol" style="font-size:11px;white-space:nowrap">ses</span>
           </div>
-          <div id="notes-hint" style="font-size:10px;color:var(--text-muted);margin-top:4px;font-style:italic;">+ 10 hrs notes + prep est.</div>
+          <div id="notes-hint" style="font-size:10px;color:var(--text-muted);margin-top:4px;font-style:italic;"><?php echo esc_html( $heartbeat_calc_notes_hint ); ?></div>
         </div>
         <div>
-          <div class="calc-input-label">Admin hrs / week</div>
+          <div class="calc-input-label"><?php echo esc_html( $heartbeat_calc_label_admin ); ?></div>
           <div class="calc-input-wrap">
             <input type="number" id="calc-admin" value="8" min="3" max="20" step="1" oninput="updateMiniCalc()">
             <span class="calc-input-symbol" style="font-size:11px;white-space:nowrap">hrs</span>
           </div>
         </div>
         <div>
-          <div class="calc-input-label">Working weeks / yr</div>
+          <div class="calc-input-label"><?php echo esc_html( $heartbeat_calc_label_weeks ); ?></div>
           <div class="calc-input-wrap">
             <input type="number" id="calc-weeks" value="46" min="36" max="50" step="1" oninput="updateMiniCalc()">
             <span class="calc-input-symbol" style="font-size:11px;white-space:nowrap">wks</span>
@@ -518,91 +408,92 @@
 
       <div class="calc-results">
         <div class="calc-result-box crb-red">
-          <div class="crb-label">Your admin costs you</div>
+          <div class="crb-label"><?php echo esc_html( $heartbeat_calc_result_label_cost ); ?></div>
           <div class="crb-val" id="mc-cost">$0</div>
-          <div class="crb-sub">per year at your rate</div>
+          <div class="crb-sub"><?php echo esc_html( $heartbeat_calc_result_sub_cost ); ?></div>
         </div>
         <div class="calc-result-box crb-purple">
-          <div class="crb-label">Hours returned / week</div>
+          <div class="crb-label"><?php echo esc_html( $heartbeat_calc_result_label_hours ); ?></div>
           <div class="crb-val" id="mc-hours">0 hrs</div>
-          <div class="crb-sub">admin drops to ~2 hrs</div>
+          <div class="crb-sub"><?php echo esc_html( $heartbeat_calc_result_sub_hours ); ?></div>
         </div>
         <div class="calc-result-box crb-teal">
-          <div class="crb-label">Net gain if hours filled</div>
+          <div class="crb-label"><?php echo esc_html( $heartbeat_calc_result_label_net ); ?></div>
           <div class="crb-val" id="mc-gain">$0</div>
-          <div class="crb-sub" id="mc-gain-sub">after HartHQ from $250/wk</div>
+          <div class="crb-sub" id="mc-gain-sub"><?php echo esc_html( $heartbeat_calc_result_sub_net ); ?></div>
         </div>
       </div>
 
-      <div class="calc-note">Assumes HartHQ reduces your admin to ~2 hrs/week. 75% of saved hours realistically become sessions. Net gain shown after estimated HartHQ Individual Support & Administration cost from $250/wk. Estimates only - run your own numbers with your accountant.</div>
+      <div class="calc-note"><?php echo esc_html( $heartbeat_calc_disclaimer ); ?></div>
 
       <!-- BLENDED RATE ROW -->
       <div style="margin-top:20px; padding-top:18px; border-top:1px solid var(--light-grey);">
-        <div style="font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-muted);font-family:var(--ff-body);margin-bottom:10px;">Your blended hourly rate</div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-muted);font-family:var(--ff-body);margin-bottom:10px;"><?php echo esc_html( $heartbeat_calc_blended_section_title ); ?></div>
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
           <div style="background:var(--off-white);border:1px solid var(--light-grey);border-radius:10px;padding:14px;text-align:center;">
-            <div style="font-size:9px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--text-muted);font-family:var(--ff-body);margin-bottom:6px;line-height:1.3;">Your rate now</div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--text-muted);font-family:var(--ff-body);margin-bottom:6px;line-height:1.3;"><?php echo esc_html( $heartbeat_calc_blended_col_now_title ); ?></div>
             <div style="font-family:var(--ff-head);font-size:22px;font-weight:600;color:var(--dark);line-height:1;" id="mc-blended-now">-</div>
-            <div style="font-size:9px;color:var(--text-muted);margin-top:4px;font-family:var(--ff-body);">per hour actually worked</div>
+            <div style="font-size:9px;color:var(--text-muted);margin-top:4px;font-family:var(--ff-body);"><?php echo esc_html( $heartbeat_calc_blended_col_now_sub ); ?></div>
           </div>
           <div style="background:var(--purple-pale);border:1px solid var(--purple-light);border-radius:10px;padding:14px;text-align:center;">
-            <div style="font-size:9px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--purple);font-family:var(--ff-body);margin-bottom:6px;line-height:1.3;">Admin off your plate</div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--purple);font-family:var(--ff-body);margin-bottom:6px;line-height:1.3;"><?php echo esc_html( $heartbeat_calc_blended_col_mid_title ); ?></div>
             <div style="font-family:var(--ff-head);font-size:22px;font-weight:600;color:var(--purple);line-height:1;" id="mc-blended-mid">-</div>
-            <div style="font-size:9px;color:var(--purple);margin-top:4px;font-family:var(--ff-body);opacity:0.8;">same revenue, fewer hours</div>
+            <div style="font-size:9px;color:var(--purple);margin-top:4px;font-family:var(--ff-body);opacity:0.8;"><?php echo esc_html( $heartbeat_calc_blended_col_mid_sub ); ?></div>
           </div>
           <div style="background:var(--teal-pale);border:1px solid var(--teal-light);border-radius:10px;padding:14px;text-align:center;">
-            <div style="font-size:9px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--teal);font-family:var(--ff-body);margin-bottom:6px;line-height:1.3;">Admin off + hours filled</div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--teal);font-family:var(--ff-body);margin-bottom:6px;line-height:1.3;"><?php echo esc_html( $heartbeat_calc_blended_col_best_title ); ?></div>
             <div style="font-family:var(--ff-head);font-size:22px;font-weight:600;color:var(--teal);line-height:1;" id="mc-blended-best">-</div>
-            <div style="font-size:9px;color:var(--teal);margin-top:4px;font-family:var(--ff-body);opacity:0.8;">more revenue, fewer hours</div>
+            <div style="font-size:9px;color:var(--teal);margin-top:4px;font-family:var(--ff-body);opacity:0.8;"><?php echo esc_html( $heartbeat_calc_blended_col_best_sub ); ?></div>
           </div>
         </div>
       </div>
 
       <!-- WEEK BREAKDOWN TABLE -->
       <div style="margin-top:16px;background:var(--off-white);border:1px solid var(--light-grey);border-radius:10px;padding:14px 16px;">
-        <div style="font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-muted);font-family:var(--ff-body);margin-bottom:10px;">Your working week, broken down</div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-muted);font-family:var(--ff-body);margin-bottom:10px;"><?php echo esc_html( $heartbeat_calc_week_section_title ); ?></div>
         <div style="display:flex;justify-content:space-between;font-size:12px;font-family:var(--ff-body);padding:5px 0;border-bottom:1px solid var(--light-grey);color:var(--text-muted);">
-          <span>Client sessions</span><span id="wb-sessions">-</span>
+          <span><?php echo esc_html( $heartbeat_calc_week_row_sessions ); ?></span><span id="wb-sessions">-</span>
         </div>
         <div style="display:flex;justify-content:space-between;font-size:12px;font-family:var(--ff-body);padding:5px 0;border-bottom:1px solid var(--light-grey);color:var(--text-muted);">
-          <span>Notes + Prep (est. 30 min each)</span><span id="wb-notes">-</span>
+          <span><?php echo esc_html( $heartbeat_calc_week_row_notes ); ?></span><span id="wb-notes">-</span>
         </div>
         <div style="display:flex;justify-content:space-between;font-size:12px;font-family:var(--ff-body);padding:5px 0;border-bottom:1px solid var(--light-grey);color:var(--text-muted);">
-          <span>Admin</span><span id="wb-admin" style="color:#e05555;">-</span>
+          <span><?php echo esc_html( $heartbeat_calc_week_row_admin ); ?></span><span id="wb-admin" style="color:#e05555;">-</span>
         </div>
         <div style="display:flex;justify-content:space-between;font-size:12px;font-family:var(--ff-body);padding:6px 0 0;font-weight:600;color:var(--text);">
-          <span>Total hours worked</span><span id="wb-total">-</span>
+          <span><?php echo esc_html( $heartbeat_calc_week_row_total ); ?></span><span id="wb-total">-</span>
         </div>
       </div>
     </div>
 
     <!-- PRODUCT CTA CARDS -->
     <div class="product-ctas">
-      <a href="#concierge" class="product-cta-card">
-        <div class="pcc-tag" style="color:var(--purple);">Full admin support</div>
-        <div class="pcc-title">Individual Support & Administration</div>
-        <div class="pcc-price">From $250<span style="font-size:14px;color:var(--text-muted);font-family:var(--ff-body);font-weight:400;">/week</span></div>
-        <div class="pcc-desc">Our HartHQ admin team handles your calls, calendar and invoicing. Practitioners typically recover 6+ hours per week.</div>
-        <div class="pcc-link" style="color:var(--purple);">Enquire about Concierge <span>→</span></div>
+		<?php
+		$card_n = 0;
+		foreach ( $heartbeat_product_cards as $card ) :
+			if ( ! is_array( $card ) ) {
+				continue;
+			}
+			++$card_n;
+			$accent = ( 0 === $card_n % 2 ) ? 'pcc-accent-teal' : 'pcc-accent-purple';
+			$href   = harthq_heartbeat_esc_link_href( (string) ( $card['card_link_url'] ?? '' ) );
+			?>
+      <a href="<?php echo $href; ?>" class="product-cta-card <?php echo esc_attr( $accent ); ?>">
+        <div class="pcc-tag"><?php echo esc_html( (string) ( $card['card_tag'] ?? '' ) ); ?></div>
+        <div class="pcc-title"><?php echo esc_html( (string) ( $card['card_title'] ?? '' ) ); ?></div>
+        <div class="pcc-price"><?php echo esc_html( (string) ( $card['card_price_line'] ?? '' ) ); ?></div>
+        <div class="pcc-desc"><?php echo esc_html( (string) ( $card['card_description'] ?? '' ) ); ?></div>
+        <div class="pcc-link"><?php echo esc_html( (string) ( $card['card_link_label'] ?? '' ) ); ?></div>
       </a>
-      <a href="#concierge" class="product-cta-card">
-        <div class="pcc-tag" style="color:var(--teal);">For group practices</div>
-        <div class="pcc-title">Group Support & Administration</div>
-        <div class="pcc-price">From $350<span style="font-size:14px;color:var(--text-muted);font-family:var(--ff-body);font-weight:400;">/week</span></div>
-        <div class="pcc-desc">Everything in Individual, scaled for a group practice. Coordinate across multiple clinicians with one dedicated support team.</div>
-        <div class="pcc-link" style="color:var(--teal);">Enquire about Group <span>→</span></div>
-      </a>
+		<?php endforeach; ?>
     </div>
 
-    <div class="disclaimer">HartBeat Score is a self-reported practice health indicator. It is not a clinical or financial assessment and results should not be used as the basis for significant business decisions without independent advice. Scores reflect your responses at the time of completion and will change as your practice evolves.</div>
+    <div class="disclaimer"><?php echo esc_html( $heartbeat_results_disclaimer ); ?></div>
 
-    <button class="restart-btn" onclick="restartAssessment()">↩ Start over</button>
+    <button type="button" class="restart-btn" onclick="restartAssessment()"><?php echo esc_html( $heartbeat_restart_label ); ?></button>
 
   </div><!-- /results -->
 
 </div><!-- /main -->
 
-
-<?php wp_footer(); ?>
-</body>
-</html>
+<?php get_footer(); ?>

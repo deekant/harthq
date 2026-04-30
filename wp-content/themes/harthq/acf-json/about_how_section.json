@@ -1,0 +1,138 @@
+{
+    "key": "group_harthq_about_how_section",
+    "title": "About — How we work",
+    "fields": [
+        {
+            "key": "field_harthq_about_how_tag",
+            "label": "Tag",
+            "name": "about_how_tag",
+            "type": "text",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "How we work",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_harthq_about_how_heading",
+            "label": "Heading",
+            "name": "about_how_heading",
+            "type": "textarea",
+            "instructions": "Use <em><\/em> and line breaks.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "Simple. Practical. <em>No lock-in.<\/em>",
+            "maxlength": "",
+            "rows": 2,
+            "new_lines": "br",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_harthq_about_how_intro",
+            "label": "Intro",
+            "name": "about_how_intro",
+            "type": "textarea",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "We don't believe in complicated onboarding or 12-month commitments. You start where it makes sense for your practice right now.",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_harthq_about_how_steps",
+            "label": "Steps",
+            "name": "about_how_steps",
+            "type": "repeater",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_harthq_about_how_step_title",
+            "button_label": "Add step",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_harthq_about_how_step_number",
+                    "label": "Step number",
+                    "name": "step_number",
+                    "type": "text",
+                    "instructions": "e.g. 01, 02",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "", "class": "", "id": "" },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_harthq_about_how_steps"
+                },
+                {
+                    "key": "field_harthq_about_how_step_title",
+                    "label": "Title",
+                    "name": "title",
+                    "type": "text",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "", "class": "", "id": "" },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_harthq_about_how_steps"
+                },
+                {
+                    "key": "field_harthq_about_how_step_text",
+                    "label": "Text",
+                    "name": "text",
+                    "type": "textarea",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "", "class": "", "id": "" },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 4,
+                    "new_lines": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_harthq_about_how_steps"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "about.php"
+            }
+        ]
+    ],
+    "menu_order": 24,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "About page how we work section.",
+    "show_in_rest": 0,
+    "modified": 1777700500
+}

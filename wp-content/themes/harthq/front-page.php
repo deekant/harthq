@@ -49,6 +49,7 @@ $heartbeat_section_tag     = get_field( 'heartbeat_section_tag' );
 $heartbeat_section_heading = get_field( 'heartbeat_section_heading' );
 $heartbeat_section_intro   = get_field( 'heartbeat_section_intro' );
 $heartbeat_dimensions      = get_field( 'heartbeat_dimensions' );
+$heartbeat_dimensions      = is_array( $heartbeat_dimensions ) ? $heartbeat_dimensions : array();
 $heartbeat_cta             = get_field( 'heartbeat_cta' );
 $heartbeat_visual          = get_field( 'heartbeat_visual' );
 
@@ -343,11 +344,11 @@ $nav_cta_href    = ( $nav_cta_label !== '' && $nav_cta_url === '' ) ? '#' : $nav
       <div class="hb-dimensions">
         <?php foreach ( $heartbeat_dimensions as $heartbeat_dimension ) : ?>
           <div class="hb-dim">
-            <div class="hb-dim-label"><?php echo esc_html( $heartbeat_dimension['label'] ); ?></div>
+            <div class="hb-dim-label"><?php echo esc_html( $heartbeat_dimension['label'] ?? '' ); ?></div>
             <div class="hb-dim-bar-wrap">
-              <div class="hb-dim-bar" style="width:<?php echo esc_attr( $heartbeat_dimension['bar_width_percent'] ); ?>%;background:<?php echo esc_attr( $heartbeat_dimension['bar_background'] ); ?>"></div>
+              <div class="hb-dim-bar" style="width:<?php echo esc_attr( $heartbeat_dimension['bar_width_percent'] ?? '' ); ?>%;background:<?php echo esc_attr( $heartbeat_dimension['bar_background'] ?? '' ); ?>"></div>
             </div>
-            <div class="hb-dim-score" style="<?php echo '' !== trim( (string) $heartbeat_dimension['score_color'] ) ? 'color:' . esc_attr( $heartbeat_dimension['score_color'] ) : ''; ?>"><?php echo esc_html( $heartbeat_dimension['score'] ); ?></div>
+            <div class="hb-dim-score" style="<?php echo '' !== trim( (string) ( $heartbeat_dimension['score_color'] ?? '' ) ) ? 'color:' . esc_attr( $heartbeat_dimension['score_color'] ) : ''; ?>"><?php echo esc_html( $heartbeat_dimension['score'] ?? '' ); ?></div>
           </div>
         <?php endforeach; ?>
       </div>

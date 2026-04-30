@@ -1,0 +1,170 @@
+{
+    "key": "group_harthq_about_final_cta_section",
+    "title": "About — Final CTA",
+    "fields": [
+        {
+            "key": "field_harthq_about_final_cta_tag",
+            "label": "Tag",
+            "name": "about_final_cta_tag",
+            "type": "text",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "Get started",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_harthq_about_final_cta_heading",
+            "label": "Heading",
+            "name": "about_final_cta_heading",
+            "type": "textarea",
+            "instructions": "Line breaks allowed.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "See what your practice\nscore looks like",
+            "maxlength": "",
+            "rows": 2,
+            "new_lines": "br",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_harthq_about_final_cta_text",
+            "label": "Body text",
+            "name": "about_final_cta_text",
+            "type": "textarea",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "The HartBeat quiz is free, takes 5 minutes, and gives you a clear picture of where time and money are being lost.",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_harthq_about_final_cta_primary_button",
+            "label": "Primary button",
+            "name": "about_final_cta_primary_button",
+            "type": "group",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "layout": "table",
+            "sub_fields": [
+                {
+                    "key": "field_harthq_about_final_primary_label",
+                    "label": "Label",
+                    "name": "label",
+                    "type": "text",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "50", "class": "", "id": "" },
+                    "default_value": "Take the HartBeat quiz - free",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_harthq_about_final_primary_url",
+                    "label": "URL",
+                    "name": "url",
+                    "type": "text",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "50", "class": "", "id": "" },
+                    "default_value": "\/heartbeat\/",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        },
+        {
+            "key": "field_harthq_about_final_cta_secondary_button",
+            "label": "Secondary button",
+            "name": "about_final_cta_secondary_button",
+            "type": "group",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "layout": "table",
+            "sub_fields": [
+                {
+                    "key": "field_harthq_about_final_secondary_label",
+                    "label": "Label",
+                    "name": "label",
+                    "type": "text",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "50", "class": "", "id": "" },
+                    "default_value": "Get in touch",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_harthq_about_final_secondary_url",
+                    "label": "URL",
+                    "name": "url",
+                    "type": "text",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "50", "class": "", "id": "" },
+                    "default_value": "\/about\/#contact",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        },
+        {
+            "key": "field_harthq_about_final_cta_note",
+            "label": "Note",
+            "name": "about_final_cta_note",
+            "type": "textarea",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "No lock-in. Cancel anytime. Built by the team behind The Hart Centre.",
+            "maxlength": "",
+            "rows": 2,
+            "new_lines": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "about.php"
+            }
+        ]
+    ],
+    "menu_order": 26,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "About page closing CTA band.",
+    "show_in_rest": 0,
+    "modified": 1777700700
+}

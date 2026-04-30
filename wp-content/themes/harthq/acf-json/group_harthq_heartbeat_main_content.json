@@ -1,0 +1,212 @@
+{
+    "key": "group_harthq_heartbeat_main_content",
+    "title": "HartBeat — Main content",
+    "fields": [
+        {
+            "key": "field_harthq_heartbeat_quiz_dimensions",
+            "label": "Dimensions & questions",
+            "name": "heartbeat_dimensions",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "5 rows = dimensions 1–5 in order (for results logic). Add any number of questions per dimension. Each question: add as many answer options as you need; first option scores 1, last scores N (N = number of options). Dimension and overall scores use the sum of those maximums.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 5,
+            "max": 5,
+            "collapsed": "field_harthq_heartbeat_dim_title",
+            "button_label": "Add dimension",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_harthq_heartbeat_dim_tag",
+                    "label": "Dimension tag",
+                    "name": "dimension_tag",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_harthq_heartbeat_quiz_dimensions"
+                },
+                {
+                    "key": "field_harthq_heartbeat_dim_title",
+                    "label": "Dimension title",
+                    "name": "dimension_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_harthq_heartbeat_quiz_dimensions"
+                },
+                {
+                    "key": "field_harthq_heartbeat_dim_description",
+                    "label": "Dimension description",
+                    "name": "dimension_description",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_harthq_heartbeat_quiz_dimensions"
+                },
+                {
+                    "key": "field_harthq_heartbeat_dim_questions",
+                    "label": "Questions",
+                    "name": "dimension_questions",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "Add or remove questions as needed. Each question’s score cap equals its number of answer options.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "pagination": 0,
+                    "min": 1,
+                    "max": 0,
+                    "collapsed": "field_harthq_heartbeat_question_text",
+                    "button_label": "Add question",
+                    "rows_per_page": 20,
+                    "parent_repeater": "field_harthq_heartbeat_quiz_dimensions",
+                    "sub_fields": [
+                        {
+                            "key": "field_harthq_heartbeat_question_text",
+                            "label": "Question text",
+                            "name": "question_text",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "rows": 3,
+                            "new_lines": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "parent_repeater": "field_harthq_heartbeat_dim_questions"
+                        },
+                        {
+                            "key": "field_harthq_heartbeat_question_options",
+                            "label": "Answer options",
+                            "name": "question_options",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "Add or remove options. Top to bottom = scores 1 through N (N = option count).",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "table",
+                            "pagination": 0,
+                            "min": 1,
+                            "max": 0,
+                            "collapsed": "field_harthq_heartbeat_option_label",
+                            "button_label": "Add option",
+                            "rows_per_page": 20,
+                            "parent_repeater": "field_harthq_heartbeat_dim_questions",
+                            "sub_fields": [
+                                {
+                                    "key": "field_harthq_heartbeat_option_label",
+                                    "label": "Option label",
+                                    "name": "option_label",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "allow_in_bindings": 0,
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_harthq_heartbeat_question_options"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "heartbeat.php"
+            }
+        ]
+    ],
+    "menu_order": 31,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "HartBeat quiz dimensions and questions. Submit, results, calculator, product cards, and related strings will move to a separate field group.",
+    "show_in_rest": 1,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1777610400
+}

@@ -95,10 +95,53 @@
 
   if (isHeartbeat) {
     try {
-      const scores = { 1: {}, 2: {}, 3: {}, 4: {}, 5: {} };
-        const totalQuestions = 20;
+        /**
+         * Per-dimension maximum points = sum of each question’s option count (data-max-score).
+         */
+        function getDimScoreCaps() {
+          const caps = {};
+          document.querySelectorAll('#main-content .question').forEach((q) => {
+            const dim = parseInt(q.dataset.dim, 10);
+            const cap = parseInt(q.dataset.maxScore, 10);
+            if (!Number.isFinite(dim) || !Number.isFinite(cap) || cap < 1) {
+              return;
+            }
+            caps[dim] = (caps[dim] || 0) + cap;
+          });
+          return caps;
+        }
+
+        function getDimsInOrder() {
+          return Array.from(document.querySelectorAll('#main-content .dimension'))
+            .map((el) => parseInt(el.id.replace(/^dim-/, ''), 10))
+            .filter((n) => Number.isFinite(n))
+            .sort((a, b) => a - b);
+        }
+
+        function initScoresFromDom() {
+          const next = {};
+          getDimsInOrder().forEach((d) => {
+            next[d] = {};
+          });
+          document.querySelectorAll('#main-content .question').forEach((q) => {
+            const dim = parseInt(q.dataset.dim, 10);
+            if (!Number.isFinite(dim)) {
+              return;
+            }
+            if (!next[dim]) {
+              next[dim] = {};
+            }
+          });
+          return next;
+        }
+
+        function getTotalQuestions() {
+          return document.querySelectorAll('#main-content .question').length;
+        }
+
+        let scores = initScoresFromDom();
         let answeredCount = 0;
-      
+
         function selectOpt(btn) {
           const question = btn.closest('.question');
           const dim = parseInt(question.dataset.dim);
@@ -118,56 +161,80 @@
         }
       
         function updateDimScore(dim) {
-          const vals = Object.values(scores[dim]);
+          const vals = Object.values(scores[dim] || {});
           const total = vals.reduce((a, b) => a + b, 0);
           const dimEl = document.getElementById(`dim-${dim}`);
-          document.getElementById(`score-d${dim}`).textContent = total;
-          dimEl.classList.add('scoring');
+          const scoreEl = document.getElementById(`score-d${dim}`);
+          if (scoreEl) {
+            scoreEl.textContent = String(total);
+          }
+          if (dimEl) {
+            dimEl.classList.add('scoring');
+          }
         }
       
         function updateProgress() {
-          const pct = (answeredCount / totalQuestions) * 100;
+          const totalQuestions = getTotalQuestions();
+          const pct = totalQuestions > 0 ? (answeredCount / totalQuestions) * 100 : 0;
           document.getElementById('progress-fill').style.width = pct + '%';
           document.getElementById('progress-count').textContent = `${answeredCount} of ${totalQuestions} answered`;
           const submitWrap = document.getElementById('submit-wrap');
-          if (answeredCount === totalQuestions) {
+          if (totalQuestions > 0 && answeredCount === totalQuestions) {
             submitWrap.classList.add('visible');
             submitWrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
           }
         }
       
         function showResults() {
+          const dimCaps = getDimScoreCaps();
+          const dims = getDimsInOrder();
           const dimScores = {};
           let total = 0;
-          for (let d = 1; d <= 5; d++) {
-            const s = Object.values(scores[d]).reduce((a, b) => a + b, 0);
+          dims.forEach((d) => {
+            const s = Object.values(scores[d] || {}).reduce((a, b) => a + b, 0);
             dimScores[d] = s;
             total += s;
-          }
-      
+          });
+
+          let maxTotal = 0;
+          dims.forEach((d) => {
+            maxTotal += dimCaps[d] || 0;
+          });
+          const score100 = maxTotal > 0 ? Math.round((total / maxTotal) * 100) : 0;
+
           document.getElementById('submit-wrap').style.display = 'none';
-      
-          const band = getBand(total);
+
+          const band = getBand(score100);
           const finalScoreEl = document.getElementById('final-score');
-          finalScoreEl.innerHTML = `${total}<span class="score-max">/100</span>`;
+          finalScoreEl.innerHTML = `${score100}<span class="score-max">/100</span>`;
           finalScoreEl.style.color = band.color;
           document.getElementById('score-band').textContent = band.band;
           document.getElementById('score-band').style.color = band.color;
           document.getElementById('score-desc').textContent = band.desc;
-      
+
           // Animate bars
           setTimeout(() => {
-            for (let d = 1; d <= 5; d++) {
+            dims.forEach((d) => {
               const s = dimScores[d];
-              document.getElementById(`bar-score-${d}`).textContent = `${s}/20`;
-              document.getElementById(`bar-fill-${d}`).style.width = `${(s / 20) * 100}%`;
-              document.getElementById(`bar-insight-${d}`).textContent = getDimInsight(d, s);
-            }
+              const maxD = dimCaps[d] || 0;
+              const scoreEl = document.getElementById(`bar-score-${d}`);
+              const fillEl = document.getElementById(`bar-fill-${d}`);
+              const insightEl = document.getElementById(`bar-insight-${d}`);
+              if (scoreEl) {
+                scoreEl.textContent = `${s}/${maxD}`;
+              }
+              if (fillEl) {
+                fillEl.style.width = maxD > 0 ? `${(s / maxD) * 100}%` : '0%';
+              }
+              if (insightEl) {
+                insightEl.textContent = getDimInsight(d, s, maxD);
+              }
+            });
           }, 300);
-      
+
           buildPriorities(dimScores);
-          buildCTA(dimScores[4], total);
-          buildBurnoutIndicator(dimScores, total);
+          buildCTA(dimScores[4] || 0, score100, dimCaps);
+          buildBurnoutIndicator(dimScores, score100, dimCaps);
       
           const results = document.getElementById('results');
           results.style.display = 'block';
@@ -199,7 +266,7 @@
           };
         }
       
-        function getDimInsight(dim, score) {
+        function getDimInsight(dim, score, maxForDim) {
           const insights = {
             1: [
               'Significant capacity loss - no-shows and gaps are materially affecting revenue.',
@@ -237,8 +304,12 @@
               'Resilient practice - well-supplied with work, good forward visibility, and systems to handle disruption.'
             ]
           };
-          const idx = Math.min(Math.floor((score - 1) / 4), 4);
-          return insights[dim][Math.max(0, idx)];
+          const list = insights[dim];
+          if (!list) {
+            return '';
+          }
+          const idx = maxForDim > 0 ? Math.min(4, Math.floor((score / maxForDim) * 5)) : 0;
+          return list[Math.max(0, idx)];
         }
       
         function buildPriorities(dimScores) {
@@ -315,12 +386,14 @@
           });
         }
       
-        function buildCTA(adminScore, total) {
+        function buildCTA(adminScore, total, dimCaps) {
           const container = document.getElementById('hardhq-cta');
-      
+          const maxAdmin = (dimCaps && dimCaps[4]) || 0;
+          const adminStress = maxAdmin > 0 && adminScore <= maxAdmin * 0.4;
+
           let tag, title, desc, btnText, btnHref;
-      
-          if (adminScore <= 8) {
+
+          if (adminStress) {
             tag = 'Your biggest lever - Administrative Load';
             title = 'Your admin load is costing you more than you think.';
             desc = 'Your score suggests you\'re spending significant time on work that doesn\'t need your clinical skills. HartHQ Concierge takes your calls, calendar and invoicing off your plate - practitioners typically recover 6+ hours per week.';
@@ -356,16 +429,20 @@
         }
       
         function restartAssessment() {
-          for (let d = 1; d <= 5; d++) scores[d] = {};
+          scores = initScoresFromDom();
           answeredCount = 0;
           document.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
           document.querySelectorAll('.question').forEach(q => q.classList.remove('answered'));
           document.querySelectorAll('.dimension').forEach(d => d.classList.remove('scoring'));
-          for (let d = 1; d <= 5; d++) {
-            document.getElementById(`score-d${d}`).textContent = '-';
-          }
+          getDimsInOrder().forEach((d) => {
+            const el = document.getElementById(`score-d${d}`);
+            if (el) {
+              el.textContent = '-';
+            }
+          });
           document.getElementById('progress-fill').style.width = '0%';
-          document.getElementById('progress-count').textContent = '0 of 20 answered';
+          const tq = getTotalQuestions();
+          document.getElementById('progress-count').textContent = `0 of ${tq} answered`;
           const sw = document.getElementById('submit-wrap');
           sw.classList.remove('visible');
           sw.style.display = '';
@@ -453,25 +530,22 @@
             document.getElementById('email-input').style.borderColor = '#e05555';
             return;
           }
-      
-          // Build score summary
+
+          // Build score summary (labels from rendered dimension titles)
           const score = document.getElementById('final-score').textContent;
           const band  = document.getElementById('score-band').textContent;
-          const dimLabels = {1:'Capacity Utilisation',2:'Clinical Continuity',3:'Revenue Integrity',4:'Administrative Load',5:'Practice Resilience'};
-          let dimLines = '';
-          for (let d = 1; d <= 5; d++) {
-            const s = document.getElementById('bar-score-' + d);
-            if (s) dimLines += dimLabels[d] + ': ' + s.textContent + '%0A';
-          }
-      
+          const dimBodyLines = getDimsInOrder().map((d) => {
+            const title = document.querySelector(`#dim-${d} .dim-title`);
+            const label = title && title.textContent ? title.textContent.trim() : ('Dimension ' + d);
+            const el = document.getElementById('bar-score-' + d);
+            return label + ': ' + (el ? el.textContent : '-');
+          }).join('\n');
+
           const subject = encodeURIComponent('My HartBeat Score - ' + score + '/100');
           const body = encodeURIComponent(
             'HartBeat Score: ' + score + '/100 (' + band + ')' +
             '\n\nScore by dimension:\n' +
-            Object.entries(dimLabels).map(([d, label]) => {
-              const el = document.getElementById('bar-score-' + d);
-              return label + ': ' + (el ? el.textContent : '-');
-            }).join('\n') +
+            dimBodyLines +
             '\n\n---\nGenerated by HartBeat at harthq.com.au' +
             '\nBook a free call: https://hart-hq.zohobookings.com/#/intro'
           );
@@ -490,23 +564,23 @@
           if (e.target === this) hideEmailModal();
         });
       
-        function buildBurnoutIndicator(dimScores, total) {
+        function buildBurnoutIndicator(dimScores, score100, dimCaps) {
           let risk = 0;
-      
-          // Admin load - strongest signal (dim 4, lower = worse)
-          const admin = dimScores[4];
-          if (admin <= 8)       risk += 3;
-          else if (admin <= 12) risk += 2;
-          else if (admin <= 16) risk += 1;
-      
-          // Clinical continuity - reactive practice = stress (dim 2)
-          const continuity = dimScores[2];
-          if (continuity <= 8)       risk += 2;
-          else if (continuity <= 12) risk += 1;
-      
-          // Overall score - struggling across the board
-          if (total <= 40)      risk += 2;
-          else if (total <= 55) risk += 1;
+          const maxAdmin = (dimCaps && dimCaps[4]) || 0;
+          const admin = dimScores[4] || 0;
+          const adminPct = maxAdmin > 0 ? admin / maxAdmin : 0;
+          if (adminPct <= 0.4)      risk += 3;
+          else if (adminPct <= 0.6) risk += 2;
+          else if (adminPct <= 0.8) risk += 1;
+
+          const maxCont = (dimCaps && dimCaps[2]) || 0;
+          const continuity = dimScores[2] || 0;
+          const contPct = maxCont > 0 ? continuity / maxCont : 0;
+          if (contPct <= 0.4)      risk += 2;
+          else if (contPct <= 0.6) risk += 1;
+
+          if (score100 <= 40)      risk += 2;
+          else if (score100 <= 55) risk += 1;
       
           // Also check calculator if filled in
           const sessionsEl = document.getElementById('calc-sessions');
@@ -555,6 +629,12 @@
 
   if (isPrivacy) {
     try {
+      const nav = document.getElementById('nav');
+      if (nav) {
+        window.addEventListener('scroll', () => {
+          nav.classList.toggle('scrolled', window.scrollY > 40);
+        });
+      }
     } catch (err) {
       console.error('Script error on privacy page:', err);
     }

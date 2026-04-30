@@ -398,7 +398,7 @@
             "name": "homepage_menu_logo",
             "aria-label": "",
             "type": "text",
-            "instructions": "Use <em></em> for the accent part (e.g. Hart<em>HQ</em>). Shown next to the heart mark in the header.",
+            "instructions": "Use <em><\/em> for the accent part (e.g. Hart<em>HQ<\/em>). Shown next to the heart mark on the <strong>homepage<\/strong> header only.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -406,7 +406,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Hart<em>HQ</em>",
+            "default_value": "Hart<em>HQ<\/em>",
             "maxlength": "",
             "allow_in_bindings": 0,
             "placeholder": "",
@@ -419,7 +419,7 @@
             "name": "homepage_menu_items",
             "aria-label": "",
             "type": "repeater",
-            "instructions": "Primary links in homepage header navigation.",
+            "instructions": "Primary links in the <strong>homepage<\/strong> header (e.g. in-page #anchors).",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -536,7 +536,7 @@
             "name": "homepage_menu_cta",
             "aria-label": "",
             "type": "group",
-            "instructions": "Right-side CTA button in homepage nav.",
+            "instructions": "Right-side CTA on the <strong>homepage<\/strong> header only.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -610,6 +610,228 @@
                     "ui_off_text": ""
                 }
             ]
+        },
+        {
+            "key": "field_harthq_site_menu_tab",
+            "label": "Menu",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_harthq_site_logo_text",
+            "label": "Logo text",
+            "name": "logo_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Use <em><\/em> for the accent part (e.g. Hart<em>HQ<\/em>). Shown next to the heart mark on <strong>non-homepage<\/strong> templates (About, Privacy, etc.).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Hart<em>HQ<\/em>",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_harthq_site_nav_links",
+            "label": "Nav links",
+            "name": "nav_links",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Primary links for the <strong>non-homepage<\/strong> header (paths or full URLs).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add link",
+            "rows_per_page": 20,
+            "default_value": [
+                {
+                    "label": "HartBeat Score",
+                    "url": "\/heartbeat\/",
+                    "open_new_tab": 0
+                },
+                {
+                    "label": "About",
+                    "url": "\/about\/",
+                    "open_new_tab": 0
+                }
+            ],
+            "sub_fields": [
+                {
+                    "key": "field_harthq_site_nav_link_label",
+                    "label": "Label",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "35",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_harthq_site_nav_links"
+                },
+                {
+                    "key": "field_harthq_site_nav_link_url",
+                    "label": "URL",
+                    "name": "url",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Use a full URL or a relative path like \/about\/. You can also use anchors if needed.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "45",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_harthq_site_nav_links"
+                },
+                {
+                    "key": "field_harthq_site_nav_link_new_tab",
+                    "label": "New tab",
+                    "name": "open_new_tab",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "20",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "allow_in_bindings": 0,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "parent_repeater": "field_harthq_site_nav_links"
+                }
+            ]
+        },
+        {
+            "key": "field_harthq_site_nav_cta",
+            "label": "Nav CTA",
+            "name": "nav_cta",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Right-side CTA on <strong>non-homepage<\/strong> headers.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "sub_fields": [
+                {
+                    "key": "field_harthq_site_nav_cta_label",
+                    "label": "Label",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "40",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Get your HartBeat score",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_harthq_site_nav_cta_url",
+                    "label": "URL",
+                    "name": "url",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Use a full URL or a relative path like \/heartbeat\/.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "40",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "\/heartbeat\/",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_harthq_site_nav_cta_new_tab",
+                    "label": "New tab",
+                    "name": "open_new_tab",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "20",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "allow_in_bindings": 0,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                }
+            ]
         }
     ],
     "location": [
@@ -628,10 +850,10 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "Footer and homepage menu (single options screen with tabs).",
+    "description": "Footer, homepage menu (front page), and site menu (inner pages).",
     "show_in_rest": 0,
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1777600003
+    "modified": 1777701200
 }

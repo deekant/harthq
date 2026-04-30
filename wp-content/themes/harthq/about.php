@@ -2,6 +2,155 @@
 /**
  * Template Name: About Page
  */
+
+$allowed_inline = array(
+	'em' => array(),
+	'br' => array(),
+);
+$allowed_contact_note = array(
+	'a'      => array(
+		'href'   => true,
+		'target' => true,
+		'rel'    => true,
+	),
+	'strong' => array(),
+	'em'     => array(),
+	'br'     => array(),
+);
+$allowed_svg = array(
+	'svg'    => array(
+		'width'   => true,
+		'height'  => true,
+		'viewbox' => true,
+		'fill'    => true,
+		'xmlns'   => true,
+	),
+	'path'   => array(
+		'd'                => true,
+		'fill'             => true,
+		'stroke'           => true,
+		'stroke-width'     => true,
+		'stroke-linecap'   => true,
+		'stroke-linejoin'  => true,
+		'stroke-miterlimit'=> true,
+	),
+	'circle' => array(
+		'cx'   => true,
+		'cy'   => true,
+		'r'    => true,
+		'fill' => true,
+	),
+);
+
+$about_hero_eyebrow       = '';
+$about_hero_heading       = '';
+$about_hero_subtext       = '';
+$about_hero_primary_cta   = array();
+$about_hero_secondary_cta = array();
+
+$about_origin_tag        = '';
+$about_origin_heading    = '';
+$about_origin_stats      = array();
+$about_origin_paragraphs = array();
+
+$about_beliefs_tag    = '';
+$about_beliefs_heading= '';
+$about_beliefs_intro  = '';
+$about_belief_cards   = array();
+
+$about_connection_tag        = '';
+$about_connection_heading    = '';
+$about_connection_paragraphs = array();
+$about_connection_button     = array();
+$about_connection_card_label = '';
+$about_connection_points     = array();
+
+$about_how_tag    = '';
+$about_how_heading= '';
+$about_how_intro  = '';
+$about_how_steps  = array();
+
+$about_contact_tag     = '';
+$about_contact_heading = '';
+$about_contact_intro   = '';
+$about_contact_options = array();
+$about_contact_note    = '';
+
+$about_final_cta_tag              = '';
+$about_final_cta_heading          = '';
+$about_final_cta_text             = '';
+$about_final_cta_primary_button   = array();
+$about_final_cta_secondary_button = array();
+$about_final_cta_note             = '';
+
+if ( function_exists( 'get_field' ) ) {
+	$about_hero_eyebrow       = (string) get_field( 'about_hero_eyebrow' );
+	$about_hero_heading       = (string) get_field( 'about_hero_heading' );
+	$about_hero_subtext       = (string) get_field( 'about_hero_subtext' );
+	$about_hero_primary_cta   = get_field( 'about_hero_primary_cta' );
+	$about_hero_secondary_cta = get_field( 'about_hero_secondary_cta' );
+
+	$about_origin_tag        = (string) get_field( 'about_origin_tag' );
+	$about_origin_heading    = (string) get_field( 'about_origin_heading' );
+	$about_origin_stats      = get_field( 'about_origin_stats' );
+	$about_origin_paragraphs = get_field( 'about_origin_paragraphs' );
+
+	$about_beliefs_tag     = (string) get_field( 'about_beliefs_tag' );
+	$about_beliefs_heading = (string) get_field( 'about_beliefs_heading' );
+	$about_beliefs_intro   = (string) get_field( 'about_beliefs_intro' );
+	$about_belief_cards    = get_field( 'about_belief_cards' );
+
+	$about_connection_tag        = (string) get_field( 'about_connection_tag' );
+	$about_connection_heading    = (string) get_field( 'about_connection_heading' );
+	$about_connection_paragraphs = get_field( 'about_connection_paragraphs' );
+	$about_connection_button     = get_field( 'about_connection_button' );
+	$about_connection_card_label = (string) get_field( 'about_connection_card_label' );
+	$about_connection_points     = get_field( 'about_connection_points' );
+
+	$about_how_tag     = (string) get_field( 'about_how_tag' );
+	$about_how_heading = (string) get_field( 'about_how_heading' );
+	$about_how_intro   = (string) get_field( 'about_how_intro' );
+	$about_how_steps   = get_field( 'about_how_steps' );
+
+	$about_contact_tag     = (string) get_field( 'about_contact_tag' );
+	$about_contact_heading = (string) get_field( 'about_contact_heading' );
+	$about_contact_intro   = (string) get_field( 'about_contact_intro' );
+	$about_contact_options = get_field( 'about_contact_options' );
+	$about_contact_note    = (string) get_field( 'about_contact_note' );
+
+	$about_final_cta_tag              = (string) get_field( 'about_final_cta_tag' );
+	$about_final_cta_heading          = (string) get_field( 'about_final_cta_heading' );
+	$about_final_cta_text             = (string) get_field( 'about_final_cta_text' );
+	$about_final_cta_primary_button   = get_field( 'about_final_cta_primary_button' );
+	$about_final_cta_secondary_button = get_field( 'about_final_cta_secondary_button' );
+	$about_final_cta_note             = (string) get_field( 'about_final_cta_note' );
+}
+
+$about_hero_primary_cta = is_array( $about_hero_primary_cta ) ? $about_hero_primary_cta : array();
+$about_hero_secondary_cta = is_array( $about_hero_secondary_cta ) ? $about_hero_secondary_cta : array();
+$hero_primary_label = (string) ( $about_hero_primary_cta['label'] ?? '' );
+$hero_primary_url   = (string) ( $about_hero_primary_cta['url'] ?? '' );
+$hero_secondary_label = (string) ( $about_hero_secondary_cta['label'] ?? '' );
+$hero_secondary_url   = (string) ( $about_hero_secondary_cta['url'] ?? '' );
+
+$about_origin_stats = is_array( $about_origin_stats ) ? $about_origin_stats : array();
+$about_origin_paragraphs = is_array( $about_origin_paragraphs ) ? $about_origin_paragraphs : array();
+$about_belief_cards = is_array( $about_belief_cards ) ? $about_belief_cards : array();
+$about_connection_paragraphs = is_array( $about_connection_paragraphs ) ? $about_connection_paragraphs : array();
+$about_connection_button = is_array( $about_connection_button ) ? $about_connection_button : array();
+$connection_btn_label = (string) ( $about_connection_button['label'] ?? '' );
+$connection_btn_url   = (string) ( $about_connection_button['url'] ?? '' );
+$connection_btn_new_tab = ! empty( $about_connection_button['open_new_tab'] );
+$connection_btn_target = $connection_btn_new_tab ? ' target="_blank" rel="noopener noreferrer"' : '';
+$about_connection_points = is_array( $about_connection_points ) ? $about_connection_points : array();
+$about_how_steps = is_array( $about_how_steps ) ? $about_how_steps : array();
+$about_contact_options = is_array( $about_contact_options ) ? $about_contact_options : array();
+$about_final_cta_primary_button = is_array( $about_final_cta_primary_button ) ? $about_final_cta_primary_button : array();
+$about_final_cta_secondary_button = is_array( $about_final_cta_secondary_button ) ? $about_final_cta_secondary_button : array();
+$final_primary_label = (string) ( $about_final_cta_primary_button['label'] ?? '' );
+$final_primary_url   = (string) ( $about_final_cta_primary_button['url'] ?? '' );
+$final_secondary_label = (string) ( $about_final_cta_secondary_button['label'] ?? '' );
+$final_secondary_url   = (string) ( $about_final_cta_secondary_button['url'] ?? '' );
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,216 +161,149 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-
 <?php wp_head(); ?>
 </head>
 <body>
 <?php wp_body_open(); ?>
+<?php get_template_part( 'template-parts/site', 'navigation' ); ?>
 
-<!-- Shared Hart Centre heart mark - exact official paths -->
-<svg width="0" height="0" style="position:absolute">
-  <defs>
-    <symbol id="hart-heart" viewBox="0 0 204 226" xmlns="http://www.w3.org/2000/svg">
-      <path fill="currentColor" d="M184.5,153.88c-3.5.61-18.27,3.02-38,4.02,2.53-3.92,4.74-8.05,6.58-12.37,14.03-32.9,15.95-94.39-17.63-122.62-33.6-28.21-59.36,1.23-60.73,21.78-1.39,20.55,11.65,43.33,11.65,43.33-19.33-2.76-65.79-3.15-68.32,31.51-2.45,33.52,40.1,48.16,83.73,49.92,6,.25,11.84.21,17.45-.05-20.34,25.16-49.38,39.52-55.95,42.57-.74.34-1.04,1.23-.66,1.95h0c.34.65,1.12.95,1.8.68,30.53-11.95,57.46-26.59,74.83-47,23.55-3.19,40.76-9.25,45.92-11.21.81-.31,1.11-1.31.59-2.01h0c-.3-.4-.79-.6-1.28-.52ZM136.38,138.1c-2.22,7.26-5.42,14.01-9.25,20.23-10.38-.07-21.42-.68-32.47-2.13-45.4-5.99-52.52-26.76-43.82-39.64,8.81-13.04,29.57-15.19,38.76-16.56,3.63-.55,6.99-1.2,9.77-1.8,2.01-.44,3.06-2.63,2.15-4.47-2.04-4.11-4.1-8.7-6.09-13.74-10.43-26.37,17.63-49.23,31.2-34.04,13.57,15.19,24.77,43.09,9.74,92.17Z"/>
-    </symbol>
-  </defs>
-</svg>
-
-<!-- NAV -->
-<nav class="nav" id="nav">
-  <a href="<?php echo esc_url( home_url('/') ); ?>" class="nav-logo">
-    <svg class="nav-logo-mark" viewBox="0 0 204 226" style="color:#B8B0E8">
-      <use href="#hart-heart"/>
-    </svg>
-    <span class="nav-logo-text">Hart<span>HQ</span></span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="<?php echo esc_url( home_url('/heartbeat/') ); ?>">HartBeat Score</a></li>
-    <li><a href="<?php echo esc_url( home_url('/about/') ); ?>" class="active">About</a></li>
-  </ul>
-  <a href="<?php echo esc_url( home_url('/heartbeat/') ); ?>" class="nav-cta">Get your HartBeat score</a>
-  <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<!-- HERO -->
 <section class="hero">
-  <svg class="hero-watermark" viewBox="0 0 204 226" style="color:white">
-    <use href="#hart-heart"/>
-  </svg>
+  <svg class="hero-watermark" viewBox="0 0 204 226" style="color:white"><use href="#hart-heart"/></svg>
   <div class="hero-inner">
-    <div class="hero-eyebrow">
-      <span class="hero-eyebrow-dot"></span>
-      <span>Built by the team behind The Hart Centre</span>
-    </div>
-    <h1>We know what it costs<br>to run a practice <em>alone.</em></h1>
-    <p class="hero-sub">HartHQ was built to change that. Backed by The Hart Centre's 18 years working alongside Australian therapists, we understand what's actually eating your time - and your margins.</p>
+    <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span><span><?php echo esc_html( $about_hero_eyebrow ); ?></span></div>
+    <h1><?php echo wp_kses( $about_hero_heading, $allowed_inline ); ?></h1>
+    <p class="hero-sub"><?php echo esc_html( $about_hero_subtext ); ?></p>
     <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
-      <a href="<?php echo esc_url( home_url('/heartbeat/') ); ?>" class="btn btn-primary">Take the HartBeat quiz - free</a>
-      <a href="#contact" class="btn btn-outline">Get in touch</a>
+      <a href="<?php echo esc_url( $hero_primary_url ); ?>" class="btn btn-primary"><?php echo esc_html( $hero_primary_label ); ?></a>
+      <a href="<?php echo esc_url( $hero_secondary_url ); ?>" class="btn btn-outline"><?php echo esc_html( $hero_secondary_label ); ?></a>
     </div>
   </div>
 </section>
 
-<!-- ORIGIN -->
 <section class="origin">
   <div class="origin-inner">
     <div class="origin-stat-block">
-      <div class="origin-stat">
-        <div class="origin-stat-num">18<em>+</em></div>
-        <div class="origin-stat-label">Years working with Australian psychologists and counsellors through The Hart Centre</div>
-      </div>
-      <div class="origin-stat">
-        <div class="origin-stat-num">400<em>+</em></div>
-        <div class="origin-stat-label">We've worked with over 400 psychologists and therapists across The Hart Centre network over our time, so we know the profession deeply</div>
-      </div>
-      <div class="origin-stat">
-        <div class="origin-stat-num">6<em>hrs</em></div>
-        <div class="origin-stat-label">Typically recovered per week by practitioners using HartHQ admin support</div>
-      </div>
+      <?php foreach ( $about_origin_stats as $origin_stat ) : ?>
+        <div class="origin-stat">
+          <div class="origin-stat-num"><?php echo esc_html( (string) ( $origin_stat['stat_number'] ?? '' ) ); ?></div>
+          <div class="origin-stat-label"><?php echo esc_html( (string) ( $origin_stat['stat_label'] ?? '' ) ); ?></div>
+        </div>
+      <?php endforeach; ?>
     </div>
     <div class="origin-copy">
-      <span class="tag">Our story</span>
-      <h2>Built on 18 years of experience.</h2>
-      <p>The Hart Centre has been connecting clients with therapists across Australia for nearly two decades. Working closely alongside hundreds of psychologists and counsellors in that time, we kept seeing the same problem.</p>
-      <p>Incredibly skilled clinicians spending hours each week on admin that had nothing to do with therapy. Notes. Invoices. Emails. Scheduling. Fee reviews that never happened. Systems that didn't talk to each other. Time that should have been spent with clients, or simply resting.</p>
-      <p>Three years ago, we built HartHQ as our answer to that problem - a dedicated practice support and growth service, built specifically for Australian therapists who are serious about building a practice that's both clinically meaningful and financially sustainable.</p>
+      <span class="tag"><?php echo esc_html( $about_origin_tag ); ?></span>
+      <h2><?php echo esc_html( $about_origin_heading ); ?></h2>
+      <?php foreach ( $about_origin_paragraphs as $origin_para ) : ?>
+        <p><?php echo esc_html( (string) ( $origin_para['text'] ?? '' ) ); ?></p>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>
 
-<!-- WHAT WE BELIEVE -->
 <section class="beliefs">
   <div class="beliefs-inner">
     <div class="beliefs-header">
-      <span class="tag">What we believe</span>
-      <h2>Good therapy starts with a<br><em>well-run practice.</em></h2>
-      <p>We're not here to add complexity. We're here to clear the decks so you can focus on the work you trained for.</p>
+      <span class="tag"><?php echo esc_html( $about_beliefs_tag ); ?></span>
+      <h2><?php echo wp_kses( $about_beliefs_heading, $allowed_inline ); ?></h2>
+      <p><?php echo esc_html( $about_beliefs_intro ); ?></p>
     </div>
     <div class="beliefs-grid">
-      <div class="belief-card">
-        <div class="belief-icon">🕐</div>
-        <h3>Time is clinical</h3>
-        <p>Every hour you spend on admin is an hour you're not spending with a client, on CPD, or on your own wellbeing. That's not a minor inconvenience - it's a clinical quality issue.</p>
-      </div>
-      <div class="belief-card">
-        <div class="belief-icon">📊</div>
-        <h3>Know your numbers</h3>
-        <p>Too many practitioners are running at a loss without realising it. Your fee hasn't kept pace with inflation. Your blended hourly rate is much lower than you think. Knowing changes everything.</p>
-      </div>
-      <div class="belief-card">
-        <div class="belief-icon">🛡️</div>
-        <h3>Sustainable, not just busy</h3>
-        <p>A full caseload isn't the goal - a sustainable one is. We help practices build the systems and margins to still be running, and thriving, five years from now.</p>
-      </div>
+      <?php foreach ( $about_belief_cards as $belief_card ) : ?>
+        <div class="belief-card">
+          <div class="belief-icon"><?php echo wp_kses( (string) ( $belief_card['icon_svg'] ?? '' ), $allowed_svg ); ?></div>
+          <h3><?php echo esc_html( (string) ( $belief_card['title'] ?? '' ) ); ?></h3>
+          <p><?php echo esc_html( (string) ( $belief_card['text'] ?? '' ) ); ?></p>
+        </div>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>
 
-<!-- HART CENTRE CONNECTION -->
 <section class="connection">
   <div class="connection-inner">
     <div class="connection-copy">
-      <span class="tag">The Hart Centre connection</span>
-      <h2>18 years of trust,<br><em>one step further.</em></h2>
-      <p>HartHQ is the practice support arm of The Hart Centre - Australia's trusted relationship therapy referral network, operating for nearly two decades. Three years ago, we launched HartHQ to channel everything we'd learned working alongside practitioners into a dedicated practice growth service.</p>
-      <p>If you're already a Hart Centre associate, you'll recognise our approach: practical, honest, and firmly on the side of the practitioner.</p>
-      <a href="https://thehartcentre.com.au" target="_blank" class="connection-link">
-        Visit The Hart Centre
+      <span class="tag"><?php echo esc_html( $about_connection_tag ); ?></span>
+      <h2><?php echo wp_kses( $about_connection_heading, $allowed_inline ); ?></h2>
+      <?php foreach ( $about_connection_paragraphs as $connection_para ) : ?>
+        <p><?php echo esc_html( (string) ( $connection_para['text'] ?? '' ) ); ?></p>
+      <?php endforeach; ?>
+      <a href="<?php echo esc_url( $connection_btn_url ); ?>"<?php echo $connection_btn_target; ?> class="btn btn-primary">
+        <?php echo esc_html( $connection_btn_label ); ?>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
     <div class="connection-card">
-      <div class="connection-card-label">What this means for you</div>
-      <div class="connection-point">
-        <div class="connection-point-icon">✓</div>
-        <div class="connection-point-text">
-          <strong>Deep practitioner knowledge</strong>
-          <span>We're not a generic VA service. We understand Medicare, rebate systems, clinical notes, and the specific pressures of Australian private practice.</span>
+      <div class="connection-card-label"><?php echo esc_html( $about_connection_card_label ); ?></div>
+      <?php foreach ( $about_connection_points as $connection_point ) : ?>
+        <div class="connection-point">
+          <div class="connection-point-icon">✓</div>
+          <div class="connection-point-text">
+            <strong><?php echo esc_html( (string) ( $connection_point['title'] ?? '' ) ); ?></strong>
+            <span><?php echo esc_html( (string) ( $connection_point['description'] ?? '' ) ); ?></span>
+          </div>
         </div>
-      </div>
-      <div class="connection-point">
-        <div class="connection-point-icon">✓</div>
-        <div class="connection-point-text">
-          <strong>Consistent client flow</strong>
-          <span>Hart Centre associates benefit from referrals to support a steady, full caseload - so your Concierge time goes toward clients, not chasing enquiries.</span>
-        </div>
-      </div>
-      <div class="connection-point">
-        <div class="connection-point-icon">✓</div>
-        <div class="connection-point-text">
-          <strong>Real time back in your week</strong>
-          <span>Practitioners using HartHQ typically recover 6+ hours per week - time that goes back into client work, CPD, or simply switching off.</span>
-        </div>
-      </div>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>
 
-<!-- HOW WE WORK -->
 <section class="how-we-work">
   <div class="how-we-work-inner">
     <div class="how-we-work-header">
-      <span class="tag">How we work</span>
-      <h2>Simple. Practical. <em>No lock-in.</em></h2>
-      <p>We don't believe in complicated onboarding or 12-month commitments. You start where it makes sense for your practice right now.</p>
+      <span class="tag"><?php echo esc_html( $about_how_tag ); ?></span>
+      <h2><?php echo wp_kses( $about_how_heading, $allowed_inline ); ?></h2>
+      <p><?php echo esc_html( $about_how_intro ); ?></p>
     </div>
     <div class="how-grid">
-      <div class="how-card">
-        <div class="how-num">01</div>
-        <h3>Start with your HartBeat</h3>
-        <p>The free HartBeat quiz shows you exactly where your practice is leaking time and money. It takes 5 minutes and gives you a clear picture of where to focus.</p>
-      </div>
-      <div class="how-card">
-        <div class="how-num">02</div>
-        <h3>Pick your entry point</h3>
-        <p>Start with a toolkit, a Fee Review, or jump straight into Concierge support. There's no wrong answer - just the right fit for where you are now.</p>
-      </div>
-      <div class="how-card">
-        <div class="how-num">03</div>
-        <h3>We handle the rest</h3>
-        <p>Our HartHQ admin team takes on the tasks that shouldn't be on your plate. You stay in the room with clients. We keep everything else running.</p>
-      </div>
+      <?php foreach ( $about_how_steps as $how_step ) : ?>
+        <div class="how-card">
+          <div class="how-num"><?php echo esc_html( (string) ( $how_step['step_number'] ?? '' ) ); ?></div>
+          <h3><?php echo esc_html( (string) ( $how_step['title'] ?? '' ) ); ?></h3>
+          <p><?php echo esc_html( (string) ( $how_step['text'] ?? '' ) ); ?></p>
+        </div>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="contact-inner">
-    <span class="tag">Get in touch</span>
-    <h2>Ready to talk about<br><em>your practice?</em></h2>
-    <p style="font-size:18px; margin-bottom:48px; max-width:520px; margin-left:auto; margin-right:auto;">Whether you have a question, want to explore what's right for your practice, or just want to know more - we'd love to hear from you.</p>
+    <span class="tag"><?php echo esc_html( $about_contact_tag ); ?></span>
+    <h2><?php echo wp_kses( $about_contact_heading, $allowed_inline ); ?></h2>
+    <p style="font-size:17px; margin-bottom:48px; max-width:560px; margin-left:auto; margin-right:auto;"><?php echo esc_html( $about_contact_intro ); ?></p>
     <div class="contact-options">
-      <div class="contact-option">
-        <div class="contact-option-icon">📅</div>
-        <h3>Book a chat</h3>
-        <p>A free 20-minute conversation about where you're at and whether HartHQ is the right fit. No pressure, no pitch.</p>
-        <a href="https://hart-hq.zohobookings.com/#/intro" target="_blank" class="btn btn-teal">Book a free call</a>
-      </div>
-      <div class="contact-option">
-        <div class="contact-option-icon">✉️</div>
-        <h3>Send us a message</h3>
-        <p>Prefer to write? Email us directly and someone from our team will get back to you within one business day.</p>
-        <a href="mailto:hq@thehartcentre.com.au" class="btn btn-ghost">hq@thehartcentre.com.au</a>
-      </div>
+      <?php foreach ( $about_contact_options as $contact_option ) : ?>
+        <?php
+        $contact_button = is_array( $contact_option['button'] ?? null ) ? $contact_option['button'] : array();
+        $contact_btn_label = (string) ( $contact_button['label'] ?? '' );
+        $contact_btn_url   = (string) ( $contact_button['url'] ?? '' );
+        $contact_btn_new_tab = ! empty( $contact_button['open_new_tab'] );
+        $contact_btn_target = $contact_btn_new_tab ? ' target="_blank" rel="noopener noreferrer"' : '';
+        $contact_btn_class  = $contact_btn_url !== '' && strpos( $contact_btn_url, 'mailto:' ) === 0 ? 'btn btn-ghost' : 'btn btn-teal';
+        ?>
+        <div class="contact-option">
+          <div class="contact-option-icon"><?php echo wp_kses( (string) ( $contact_option['icon_svg'] ?? '' ), $allowed_svg ); ?></div>
+          <h3><?php echo esc_html( (string) ( $contact_option['title'] ?? '' ) ); ?></h3>
+          <p><?php echo esc_html( (string) ( $contact_option['text'] ?? '' ) ); ?></p>
+          <?php if ( $contact_btn_label !== '' ) : ?>
+            <a href="<?php echo esc_url( $contact_btn_url ); ?>" class="<?php echo esc_attr( $contact_btn_class ); ?>"<?php echo $contact_btn_target; ?>><?php echo esc_html( $contact_btn_label ); ?></a>
+          <?php endif; ?>
+        </div>
+      <?php endforeach; ?>
     </div>
-    <p class="contact-note">Based in Australia. We work with practitioners across all states and territories.<br>HartHQ is part of <a href="https://thehartcentre.com.au" target="_blank">The Hart Centre</a> group. ABN 46 143 297 509.</p>
+    <p class="contact-note"><?php echo wp_kses( $about_contact_note, $allowed_contact_note ); ?></p>
   </div>
 </section>
 
-<!-- CTA FINAL -->
 <section class="cta-final">
-  <span class="tag">Get started</span>
-  <h2>See what your practice<br>score looks like.</h2>
-  <p>The HartBeat quiz is free, takes 5 minutes, and gives you a clear picture of where time and money are being lost.</p>
+  <span class="tag"><?php echo esc_html( $about_final_cta_tag ); ?></span>
+  <h2><?php echo wp_kses( $about_final_cta_heading, $allowed_inline ); ?></h2>
+  <p><?php echo esc_html( $about_final_cta_text ); ?></p>
   <div class="cta-final-actions">
-    <a href="<?php echo esc_url( home_url('/heartbeat/') ); ?>" class="btn btn-primary">Take the HartBeat quiz - free</a>
-    <a href="<?php echo esc_url( home_url('/about/#contact') ); ?>" class="btn btn-outline">Get in touch</a>
+    <a href="<?php echo esc_url( $final_primary_url ); ?>" class="btn btn-primary"><?php echo esc_html( $final_primary_label ); ?></a>
+    <a href="<?php echo esc_url( $final_secondary_url ); ?>" class="btn btn-outline"><?php echo esc_html( $final_secondary_label ); ?></a>
   </div>
-  <p class="cta-note">No lock-in. Cancel anytime. Built by the team behind The Hart Centre.</p>
+  <p class="cta-note"><?php echo esc_html( $about_final_cta_note ); ?></p>
 </section>
 
 <?php get_footer(); ?>

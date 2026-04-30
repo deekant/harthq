@@ -1,0 +1,159 @@
+{
+    "key": "group_harthq_about_hero_section",
+    "title": "About — Hero",
+    "fields": [
+        {
+            "key": "field_harthq_about_hero_eyebrow",
+            "label": "Eyebrow",
+            "name": "about_hero_eyebrow",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "Built by the team behind The Hart Centre",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_harthq_about_hero_heading",
+            "label": "Heading",
+            "name": "about_hero_heading",
+            "type": "textarea",
+            "instructions": "Use <em><\/em> for emphasis. Line breaks allowed.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "We know what it costs\nto run a practice <em>alone<\/em>",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": "br",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_harthq_about_hero_subtext",
+            "label": "Subtext",
+            "name": "about_hero_subtext",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "HartHQ was built to change that. Backed by The Hart Centre's 18 years working alongside Australian therapists, we understand what's actually eating your time - and your margins.",
+            "maxlength": "",
+            "rows": 4,
+            "new_lines": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_harthq_about_hero_primary_cta",
+            "label": "Primary CTA",
+            "name": "about_hero_primary_cta",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "layout": "table",
+            "sub_fields": [
+                {
+                    "key": "field_harthq_about_hero_primary_cta_label",
+                    "label": "Label",
+                    "name": "label",
+                    "type": "text",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "50", "class": "", "id": "" },
+                    "default_value": "Take the HartBeat quiz - free",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_harthq_about_hero_primary_cta_url",
+                    "label": "URL",
+                    "name": "url",
+                    "type": "text",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "50", "class": "", "id": "" },
+                    "default_value": "\/heartbeat\/",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        },
+        {
+            "key": "field_harthq_about_hero_secondary_cta",
+            "label": "Secondary CTA",
+            "name": "about_hero_secondary_cta",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "layout": "table",
+            "sub_fields": [
+                {
+                    "key": "field_harthq_about_hero_secondary_cta_label",
+                    "label": "Label",
+                    "name": "label",
+                    "type": "text",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "50", "class": "", "id": "" },
+                    "default_value": "Get in touch",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_harthq_about_hero_secondary_cta_url",
+                    "label": "URL",
+                    "name": "url",
+                    "type": "text",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "50", "class": "", "id": "" },
+                    "default_value": "#contact",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "about.php"
+            }
+        ]
+    ],
+    "menu_order": 20,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "About page hero section content.",
+    "show_in_rest": 0,
+    "modified": 1777700100
+}

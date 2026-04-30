@@ -1,0 +1,141 @@
+{
+    "key": "group_harthq_about_origin_section",
+    "title": "About — Origin",
+    "fields": [
+        {
+            "key": "field_harthq_about_origin_tag",
+            "label": "Tag",
+            "name": "about_origin_tag",
+            "type": "text",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "Our story",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_harthq_about_origin_heading",
+            "label": "Heading",
+            "name": "about_origin_heading",
+            "type": "text",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "Built on 18 years of experience",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_harthq_about_origin_stats",
+            "label": "Stats",
+            "name": "about_origin_stats",
+            "type": "repeater",
+            "instructions": "Left column stat blocks.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add stat",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_harthq_about_origin_stat_number",
+                    "label": "Number",
+                    "name": "stat_number",
+                    "type": "text",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "", "class": "", "id": "" },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "e.g. 18+",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_harthq_about_origin_stats"
+                },
+                {
+                    "key": "field_harthq_about_origin_stat_label",
+                    "label": "Label",
+                    "name": "stat_label",
+                    "type": "textarea",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "", "class": "", "id": "" },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_harthq_about_origin_stats"
+                }
+            ]
+        },
+        {
+            "key": "field_harthq_about_origin_paragraphs",
+            "label": "Body paragraphs",
+            "name": "about_origin_paragraphs",
+            "type": "repeater",
+            "instructions": "Story copy (each row is one paragraph).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add paragraph",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_harthq_about_origin_paragraph_text",
+                    "label": "Text",
+                    "name": "text",
+                    "type": "textarea",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "", "class": "", "id": "" },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 4,
+                    "new_lines": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_harthq_about_origin_paragraphs"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "about.php"
+            }
+        ]
+    ],
+    "menu_order": 21,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "About page origin / story section.",
+    "show_in_rest": 0,
+    "modified": 1777700200
+}

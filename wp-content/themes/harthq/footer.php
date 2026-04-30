@@ -3,11 +3,11 @@
  * Theme footer.
  */
 
-$footer_logo         = get_field( 'footer_logo', 'option' );
-$footer_tagline      = get_field( 'footer_tagline', 'option' );
-$footer_columns      = get_field( 'footer_columns', 'option' );
-$footer_copyright    = get_field( 'footer_copyright', 'option' );
-$footer_bottom_links = get_field( 'footer_bottom_links', 'option' );
+$footer_logo         = function_exists( 'get_field' ) ? get_field( 'footer_logo', 'option' ) : '';
+$footer_tagline      = function_exists( 'get_field' ) ? get_field( 'footer_tagline', 'option' ) : '';
+$footer_columns      = function_exists( 'get_field' ) ? get_field( 'footer_columns', 'option' ) : array();
+$footer_copyright    = function_exists( 'get_field' ) ? get_field( 'footer_copyright', 'option' ) : '';
+$footer_bottom_links = function_exists( 'get_field' ) ? get_field( 'footer_bottom_links', 'option' ) : array();
 
 $footer_columns      = is_array( $footer_columns ) ? $footer_columns : array();
 $footer_bottom_links = is_array( $footer_bottom_links ) ? $footer_bottom_links : array();

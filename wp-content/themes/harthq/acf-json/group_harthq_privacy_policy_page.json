@@ -1,0 +1,113 @@
+{
+    "key": "group_harthq_privacy_policy_page",
+    "title": "Privacy Policy page",
+    "fields": [
+        {
+            "key": "field_harthq_privacy_header_eyebrow",
+            "label": "Header - eyebrow",
+            "name": "privacy_header_eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "e.g. Last updated date line above the main heading.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "Last updated: April 2026",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_harthq_privacy_header_heading",
+            "label": "Header - heading",
+            "name": "privacy_header_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "Privacy Policy",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_harthq_privacy_header_intro",
+            "label": "Header - intro",
+            "name": "privacy_header_intro",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Short paragraph under the main heading.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "HartHQ is committed to protecting your privacy in accordance with the Australian Privacy Act 1988 and the Australian Privacy Principles (APPs).",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_harthq_privacy_summary_box",
+            "label": "Summary box",
+            "name": "privacy_summary_box",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Plain-language summary shown in the highlighted box.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_harthq_privacy_body",
+            "label": "Main policy content",
+            "name": "privacy_body",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Use one H2 per major section. The sidebar list is generated from these headings; missing H2 ids are added automatically on the front end.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 0,
+            "delay": 0,
+            "allow_in_bindings": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "privacy.php"
+            }
+        ]
+    ],
+    "menu_order": 25,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Privacy Policy template fields. See privacy.php docblock for a field list by section.",
+    "show_in_rest": 1,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1778800200
+}

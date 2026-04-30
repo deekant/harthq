@@ -1,0 +1,117 @@
+{
+    "key": "group_harthq_heartbeat_hero_section",
+    "title": "HartBeat — Hero",
+    "fields": [
+        {
+            "key": "field_harthq_heartbeat_hero_eyebrow",
+            "label": "Eyebrow",
+            "name": "heartbeat_hero_eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "HartBeat Score - Free",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_harthq_heartbeat_hero_heading",
+            "label": "Heading",
+            "name": "heartbeat_hero_heading",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Use <em><\/em> for emphasis. Line breaks allowed.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "How healthy is<br><em>your practice?<\/em>",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": "br",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_harthq_heartbeat_hero_subtext",
+            "label": "Subtext",
+            "name": "heartbeat_hero_subtext",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "20 questions across 5 dimensions of practice health. Takes about 4 minutes. No right or wrong answers - just an honest look at where you are.",
+            "maxlength": "",
+            "rows": 4,
+            "new_lines": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_harthq_heartbeat_hero_pills",
+            "label": "Hero pills",
+            "name": "heartbeat_hero_pills",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Short labels in the row under the subtext (e.g. 5 dimensions, 20 questions).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_harthq_heartbeat_hero_pill_label",
+            "button_label": "Add pill",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_harthq_heartbeat_hero_pill_label",
+                    "label": "Label",
+                    "name": "pill_label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "", "class": "", "id": "" },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_harthq_heartbeat_hero_pills"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "heartbeat.php"
+            }
+        ]
+    ],
+    "menu_order": 30,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "HartBeat hero band copy and pills. Nav and document title stay in the template.",
+    "show_in_rest": 1,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1777586601
+}

@@ -1,0 +1,139 @@
+{
+    "key": "group_harthq_about_beliefs_section",
+    "title": "About — Beliefs",
+    "fields": [
+        {
+            "key": "field_harthq_about_beliefs_tag",
+            "label": "Tag",
+            "name": "about_beliefs_tag",
+            "type": "text",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "What we believe",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_harthq_about_beliefs_heading",
+            "label": "Heading",
+            "name": "about_beliefs_heading",
+            "type": "textarea",
+            "instructions": "Use <em><\/em> and line breaks as needed.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "Good therapy starts with a\n<em>well-run practice<\/em>",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": "br",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_harthq_about_beliefs_intro",
+            "label": "Intro",
+            "name": "about_beliefs_intro",
+            "type": "textarea",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "We're not here to add complexity. We're here to clear the decks so you can focus on the work you trained for.",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_harthq_about_belief_cards",
+            "label": "Belief cards",
+            "name": "about_belief_cards",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_harthq_about_belief_card_title",
+            "button_label": "Add card",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_harthq_about_belief_card_icon_svg",
+                    "label": "Icon SVG",
+                    "name": "icon_svg",
+                    "type": "textarea",
+                    "instructions": "Paste inline SVG (no XML declaration).",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "", "class": "", "id": "" },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 6,
+                    "new_lines": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_harthq_about_belief_cards"
+                },
+                {
+                    "key": "field_harthq_about_belief_card_title",
+                    "label": "Title",
+                    "name": "title",
+                    "type": "text",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "", "class": "", "id": "" },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_harthq_about_belief_cards"
+                },
+                {
+                    "key": "field_harthq_about_belief_card_text",
+                    "label": "Text",
+                    "name": "text",
+                    "type": "textarea",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "", "class": "", "id": "" },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 4,
+                    "new_lines": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_harthq_about_belief_cards"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "about.php"
+            }
+        ]
+    ],
+    "menu_order": 22,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "About page beliefs grid.",
+    "show_in_rest": 0,
+    "modified": 1777700300
+}

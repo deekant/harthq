@@ -4,11 +4,25 @@
  */
 
 function harthq_enqueue_assets() {
+	$chrome_rel  = '/assets/css/style.css';
+	$chrome_path = get_template_directory() . $chrome_rel;
+	$chrome_deps = array();
+
+	if ( file_exists( $chrome_path ) ) {
+		wp_enqueue_style(
+			'harthq-site-chrome',
+			get_template_directory_uri() . $chrome_rel,
+			array(),
+			filemtime( $chrome_path )
+		);
+		$chrome_deps = array( 'harthq-site-chrome' );
+	}
+
 	$style_map = array(
-		'homepage' => is_front_page(),
-		'about' => is_page_template( 'about.php' ),
+		'homepage'  => is_front_page(),
+		'about'     => is_page_template( 'about.php' ),
 		'heartbeat' => is_page_template( 'heartbeat.php' ),
-		'privacy' => is_page_template( 'privacy.php' ),
+		'privacy'   => is_page_template( 'privacy.php' ),
 	);
 
 	foreach ( $style_map as $slug => $should_load ) {
@@ -16,13 +30,13 @@ function harthq_enqueue_assets() {
 			continue;
 		}
 
-		$rel = '/assets/css/' . $slug . '.css';
+		$rel  = '/assets/css/' . $slug . '.css';
 		$path = get_template_directory() . $rel;
 		if ( file_exists( $path ) ) {
 			wp_enqueue_style(
 				'harthq-' . $slug,
 				get_template_directory_uri() . $rel,
-				array(),
+				$chrome_deps,
 				filemtime( $path )
 			);
 		}
@@ -68,7 +82,9 @@ function harthq_acf_json_load_point( $paths ) {
 }
 add_filter( 'acf/settings/load_json', 'harthq_acf_json_load_point' );
 
-// Site-wide options (footer, homepage menu) use the ACF UI Options Page with menu slug `site-settings`.
+require_once get_template_directory() . '/includes/theme-helpers.php';
+
+// Site-wide options (footer, menus): ACF options page menu slug `site-settings`; use get_field( $name, 'option' ) to read.
 
 /**
  * Seed homepage about-section ACF values once.
