@@ -139,8 +139,122 @@
           return document.querySelectorAll('#main-content .question').length;
         }
 
+        function getStepDimensionEls() {
+          return Array.from(document.querySelectorAll('#main-content .dimension.dim-step'));
+        }
+
         let scores = initScoresFromDom();
         let answeredCount = 0;
+        let currentStepIdx = 0;
+
+        function getCurrentDimId() {
+          const els = getStepDimensionEls();
+          const el = els[currentStepIdx];
+          if (!el || !el.id) {
+            return NaN;
+          }
+          return parseInt(el.id.replace(/^dim-/, ''), 10);
+        }
+
+        function isDimensionComplete(dimId) {
+          if (!Number.isFinite(dimId)) {
+            return false;
+          }
+          const qs = document.querySelectorAll(`#dim-${dimId} .question`);
+          if (qs.length === 0) {
+            return true;
+          }
+          return Array.from(qs).every((q) => q.classList.contains('answered'));
+        }
+
+        function updateStepChrome() {
+          const els = getStepDimensionEls();
+          const stepLabel = document.getElementById('progress-step');
+          const backBtn = document.getElementById('dim-step-back');
+          const nextBtn = document.getElementById('dim-step-next');
+          const navEl = document.getElementById('dim-step-nav');
+          if (!els.length || !nextBtn || !backBtn || !navEl) {
+            return;
+          }
+
+          const totalSteps = els.length;
+          const finishLabel = navEl.dataset.finishLabel || 'View results';
+          const nextLabel = navEl.dataset.nextLabel || 'Next';
+
+          if (stepLabel) {
+            stepLabel.textContent = `Dimension ${currentStepIdx + 1} of ${totalSteps}`;
+          }
+
+          backBtn.disabled = currentStepIdx === 0;
+
+          const last = currentStepIdx >= totalSteps - 1;
+          const dimId = getCurrentDimId();
+          const totalQuestions = getTotalQuestions();
+          const allDone = totalQuestions > 0 && answeredCount === totalQuestions;
+
+          if (last) {
+            nextBtn.textContent = finishLabel;
+            nextBtn.disabled = !allDone;
+          } else {
+            nextBtn.textContent = nextLabel;
+            nextBtn.disabled = !isDimensionComplete(dimId);
+          }
+        }
+
+        function showStepAt(index, opts) {
+          const scroll = !opts || opts.scroll !== false;
+          const els = getStepDimensionEls();
+          if (index < 0 || index >= els.length) {
+            return;
+          }
+          currentStepIdx = index;
+          els.forEach((el, i) => {
+            const on = i === index;
+            el.classList.toggle('dim-step--active', on);
+            if (on) {
+              el.classList.add('visible');
+            }
+          });
+          updateStepChrome();
+          if (scroll) {
+            const main = document.getElementById('main-content');
+            if (main) {
+              main.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        }
+
+        function bindDimStepNav() {
+          const backBtn = document.getElementById('dim-step-back');
+          const nextBtn = document.getElementById('dim-step-next');
+          if (!backBtn || !nextBtn) {
+            return;
+          }
+          backBtn.addEventListener('click', () => {
+            if (currentStepIdx > 0) {
+              showStepAt(currentStepIdx - 1);
+            }
+          });
+          nextBtn.addEventListener('click', () => {
+            const els = getStepDimensionEls();
+            if (!els.length) {
+              return;
+            }
+            const last = currentStepIdx >= els.length - 1;
+            if (last) {
+              const tq = getTotalQuestions();
+              if (tq > 0 && answeredCount === tq) {
+                showResults();
+              }
+              return;
+            }
+            const dimId = getCurrentDimId();
+            if (!isDimensionComplete(dimId)) {
+              return;
+            }
+            showStepAt(currentStepIdx + 1);
+          });
+        }
 
         function selectOpt(btn) {
           const question = btn.closest('.question');
@@ -178,11 +292,7 @@
           const pct = totalQuestions > 0 ? (answeredCount / totalQuestions) * 100 : 0;
           document.getElementById('progress-fill').style.width = pct + '%';
           document.getElementById('progress-count').textContent = `${answeredCount} of ${totalQuestions} answered`;
-          const submitWrap = document.getElementById('submit-wrap');
-          if (totalQuestions > 0 && answeredCount === totalQuestions) {
-            submitWrap.classList.add('visible');
-            submitWrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
+          updateStepChrome();
         }
       
         function showResults() {
@@ -202,7 +312,11 @@
           });
           const score100 = maxTotal > 0 ? Math.round((total / maxTotal) * 100) : 0;
 
-          document.getElementById('submit-wrap').style.display = 'none';
+          const submitWrap = document.getElementById('submit-wrap');
+          if (submitWrap) {
+            submitWrap.style.display = 'none';
+            submitWrap.hidden = true;
+          }
 
           const band = getBand(score100);
           const finalScoreEl = document.getElementById('final-score');
@@ -363,7 +477,7 @@
           };
       
           const container = document.getElementById('priority-cards');
-          container.innerHTML = `<div style="font-family:var(--ff-head); font-size:22px; font-weight:400; color:var(--dark); margin-bottom:14px;">Your top 3 priorities</div>`;
+          container.innerHTML = `<div style="font-family:var(--ff-head); font-size:24px; font-weight:400; color:var(--dark); margin-bottom:14px;">Your top 3 priorities</div>`;
       
           sorted.forEach(([dim, score], i) => {
             const a = actions[dim];
@@ -425,7 +539,7 @@
               <div class="hcta-title">${title}</div>
               <div class="hcta-desc">${desc}</div>
             </div>
-            <a href="${btnHref}" class="hcta-btn">${btnText}</a>`;
+            <a href="${btnHref}" target="_blank" class="hcta-btn">${btnText}</a>`;
         }
       
         function restartAssessment() {
@@ -444,11 +558,15 @@
           const tq = getTotalQuestions();
           document.getElementById('progress-count').textContent = `0 of ${tq} answered`;
           const sw = document.getElementById('submit-wrap');
-          sw.classList.remove('visible');
-          sw.style.display = '';
+          if (sw) {
+            sw.classList.remove('visible');
+            sw.style.display = '';
+            sw.hidden = true;
+          }
           const results = document.getElementById('results');
           results.style.display = 'none';
           results.classList.remove('visible');
+          showStepAt(0);
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       
@@ -616,12 +734,18 @@
               </div>
             </div>`;
         }
-      
-        // Scroll reveal
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.08 });
-        document.querySelectorAll('.dimension').forEach(d => observer.observe(d));
+
+        // heartbeat.php uses inline onclick; those handlers resolve on window.
+        window.selectOpt = selectOpt;
+        window.showResults = showResults;
+        window.restartAssessment = restartAssessment;
+        window.showEmailModal = showEmailModal;
+        window.hideEmailModal = hideEmailModal;
+        window.sendResultsEmail = sendResultsEmail;
+        window.updateMiniCalc = updateMiniCalc;
+
+        bindDimStepNav();
+        showStepAt(0, { scroll: false });
     } catch (err) {
       console.error('Script error on heartbeat page:', err);
     }

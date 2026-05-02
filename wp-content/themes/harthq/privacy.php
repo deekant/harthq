@@ -24,35 +24,23 @@ if ( is_singular( 'page' ) ) {
 		$page_id = (int) get_the_ID();
 	}
 }
-$defaults = harthq_privacy_get_default_fields();
-
-$privacy_header_eyebrow = $defaults['privacy_header_eyebrow'];
-$privacy_header_heading = $defaults['privacy_header_heading'];
-$privacy_header_intro   = $defaults['privacy_header_intro'];
-$privacy_summary_box    = $defaults['privacy_summary_box'];
-$privacy_body_raw       = $defaults['privacy_body'];
+$privacy_header_eyebrow = '';
+$privacy_header_heading = '';
+$privacy_header_intro   = '';
+$privacy_summary_box    = '';
+$privacy_body_raw       = '';
 
 if ( function_exists( 'get_field' ) && $page_id ) {
 	$g = get_field( 'privacy_header_eyebrow', $page_id );
-	if ( is_string( $g ) && trim( $g ) !== '' ) {
-		$privacy_header_eyebrow = $g;
-	}
+	$privacy_header_eyebrow = is_string( $g ) ? $g : '';
 	$g = get_field( 'privacy_header_heading', $page_id );
-	if ( is_string( $g ) && trim( $g ) !== '' ) {
-		$privacy_header_heading = $g;
-	}
+	$privacy_header_heading = is_string( $g ) ? $g : '';
 	$g = get_field( 'privacy_header_intro', $page_id );
-	if ( is_string( $g ) && trim( $g ) !== '' ) {
-		$privacy_header_intro = $g;
-	}
+	$privacy_header_intro = is_string( $g ) ? $g : '';
 	$g = get_field( 'privacy_summary_box', $page_id );
-	if ( is_string( $g ) && trim( $g ) !== '' ) {
-		$privacy_summary_box = $g;
-	}
+	$privacy_summary_box = is_string( $g ) ? $g : '';
 	$g = get_field( 'privacy_body', $page_id );
-	if ( is_string( $g ) && trim( $g ) !== '' ) {
-		$privacy_body_raw = $g;
-	}
+	$privacy_body_raw = is_string( $g ) ? $g : '';
 }
 
 $policy_parsed = harthq_policy_h2_nav_from_html( $privacy_body_raw );

@@ -352,7 +352,7 @@ em { font-style: italic; }
 }
 
 .hero-stat-label {
-  font-size: 11px;
+  font-size: 12px;
   color: rgba(255,255,255,0.45);
   font-family: var(--ff-body);
   letter-spacing: 0.3px;

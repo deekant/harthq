@@ -137,6 +137,13 @@ foreach ( $heartbeat_dimensions as $dim_row_count ) {
 	}
 }
 
+$heartbeat_dimension_count = 0;
+foreach ( $heartbeat_dimensions as $dim_row_tally ) {
+	if ( is_array( $dim_row_tally ) ) {
+		++$heartbeat_dimension_count;
+	}
+}
+
 $allowed_hero_heading = array(
 	'em' => array(),
 	'br' => array(),
@@ -168,14 +175,13 @@ $allowed_hero_heading = array(
 </svg>
 
 <!-- NAV -->
-<nav class="nav">
+<nav class="heartbeat-nav">
   <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="nav-logo">
     <svg class="nav-logo-mark" viewBox="0 0 204 226" style="color:#B8B0E8">
       <use href="#hart-heart"/>
     </svg>
     <span class="nav-logo-text">Hart<span>HQ</span></span>
   </a>
-  <span class="nav-tag">Practice Health Assessment</span>
   <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="nav-back">← Back to HartHQ</a>
 </nav>
 
@@ -199,6 +205,7 @@ $allowed_hero_heading = array(
 <div class="progress-bar">
   <div class="progress-label">
     <span class="pl-text">Your progress</span>
+    <span class="pl-step" id="progress-step">Dimension 1 of <?php echo (int) max( 1, $heartbeat_dimension_count ); ?></span>
     <span class="pl-count" id="progress-count">0 of <?php echo (int) $heartbeat_question_count; ?> answered</span>
   </div>
   <div class="progress-track">
@@ -242,8 +249,9 @@ $allowed_hero_heading = array(
 			++$dim_question_count;
 			$dim_max_score += $n_opts;
 		}
+		$dim_step_active = ( 1 === $dim_i ) ? ' dim-step--active' : '';
 		?>
-  <div class="dimension <?php echo esc_attr( $dim_class ); ?>" id="dim-<?php echo (int) $dim_i; ?>">
+  <div class="dimension dim-step<?php echo esc_attr( $dim_step_active ); ?> <?php echo esc_attr( $dim_class ); ?>" id="dim-<?php echo (int) $dim_i; ?>">
     <div class="dim-header">
       <div class="dim-number"><?php echo esc_html( str_pad( (string) $dim_i, 2, '0', STR_PAD_LEFT ) ); ?></div>
       <div class="dim-info">
@@ -300,10 +308,20 @@ $allowed_hero_heading = array(
   </div>
 	<?php endforeach; ?>
 
-  <!-- SUBMIT -->
-  <div class="submit-wrap" id="submit-wrap">
-    <button class="submit-btn" id="submit-btn" onclick="showResults()"><?php echo esc_html( $heartbeat_submit_button_label ); ?></button>
-    <div class="submit-note"><?php echo esc_html( $heartbeat_submit_note ); ?></div>
+  <div
+    class="dim-step-nav"
+    id="dim-step-nav"
+    data-next-label="Next"
+    data-finish-label="<?php echo esc_attr( $heartbeat_submit_button_label ); ?>"
+  >
+    <button type="button" class="dim-step-btn dim-step-back" id="dim-step-back" disabled>Back</button>
+    <button type="button" class="dim-step-btn dim-step-next" id="dim-step-next" disabled>Next</button>
+  </div>
+  <p class="dim-step-finish-hint" id="dim-step-finish-hint"><?php echo esc_html( $heartbeat_submit_note ); ?></p>
+
+  <!-- Legacy hook for JS (results flow); CTA is the final Next button. -->
+  <div class="submit-wrap" id="submit-wrap" hidden aria-hidden="true">
+    <button type="button" class="submit-btn" id="submit-btn" onclick="showResults()"><?php echo esc_html( $heartbeat_submit_button_label ); ?></button>
   </div>
 
   <!-- ── RESULTS ── -->
@@ -315,7 +333,7 @@ $allowed_hero_heading = array(
       <div class="score-band" id="score-band">-</div>
       <div class="score-desc" id="score-desc">-</div>
       <div style="margin-top:20px;">
-        <button type="button" onclick="showEmailModal()" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--ff-body);font-size:14px;font-weight:600;padding:11px 22px;border-radius:100px;border:1.5px solid var(--purple-light);background:transparent;color:var(--purple);cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='var(--purple-pale)'" onmouseout="this.style.background='transparent'">
+        <button type="button" onclick="showEmailModal()" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--ff-body);font-size:14px;font-weight:600;padding:11px 22px;border-radius:100px;border:1.5px solid white;background:transparent;color:white;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='var(--purple)'; this.style.borderColor='var(--purple)'" onmouseout="this.style.background='transparent'; this.style.borderColor='white'">
           <?php echo esc_html( $heartbeat_results_email_button_label ); ?>
         </button>
       </div>
@@ -428,39 +446,39 @@ $allowed_hero_heading = array(
 
       <!-- BLENDED RATE ROW -->
       <div style="margin-top:20px; padding-top:18px; border-top:1px solid var(--light-grey);">
-        <div style="font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-muted);font-family:var(--ff-body);margin-bottom:10px;"><?php echo esc_html( $heartbeat_calc_blended_section_title ); ?></div>
+        <div style="font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-muted);font-family:var(--ff-body);margin-bottom:10px;"><?php echo esc_html( $heartbeat_calc_blended_section_title ); ?></div>
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
           <div style="background:var(--off-white);border:1px solid var(--light-grey);border-radius:10px;padding:14px;text-align:center;">
-            <div style="font-size:9px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--text-muted);font-family:var(--ff-body);margin-bottom:6px;line-height:1.3;"><?php echo esc_html( $heartbeat_calc_blended_col_now_title ); ?></div>
-            <div style="font-family:var(--ff-head);font-size:22px;font-weight:600;color:var(--dark);line-height:1;" id="mc-blended-now">-</div>
-            <div style="font-size:9px;color:var(--text-muted);margin-top:4px;font-family:var(--ff-body);"><?php echo esc_html( $heartbeat_calc_blended_col_now_sub ); ?></div>
+            <div style="font-size:12px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--text-muted);font-family:var(--ff-body);margin-bottom:6px;line-height:1.3;"><?php echo esc_html( $heartbeat_calc_blended_col_now_title ); ?></div>
+            <div style="font-family:var(--ff-head);font-size:28px;font-weight:600;color:var(--dark);line-height:1;" id="mc-blended-now">-</div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:4px;font-family:var(--ff-body);"><?php echo esc_html( $heartbeat_calc_blended_col_now_sub ); ?></div>
           </div>
           <div style="background:var(--purple-pale);border:1px solid var(--purple-light);border-radius:10px;padding:14px;text-align:center;">
-            <div style="font-size:9px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--purple);font-family:var(--ff-body);margin-bottom:6px;line-height:1.3;"><?php echo esc_html( $heartbeat_calc_blended_col_mid_title ); ?></div>
-            <div style="font-family:var(--ff-head);font-size:22px;font-weight:600;color:var(--purple);line-height:1;" id="mc-blended-mid">-</div>
-            <div style="font-size:9px;color:var(--purple);margin-top:4px;font-family:var(--ff-body);opacity:0.8;"><?php echo esc_html( $heartbeat_calc_blended_col_mid_sub ); ?></div>
+            <div style="font-size:12px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--purple);font-family:var(--ff-body);margin-bottom:6px;line-height:1.3;"><?php echo esc_html( $heartbeat_calc_blended_col_mid_title ); ?></div>
+            <div style="font-family:var(--ff-head);font-size:28px;font-weight:600;color:var(--purple);line-height:1;" id="mc-blended-mid">-</div>
+            <div style="font-size:12px;color:var(--purple);margin-top:4px;font-family:var(--ff-body);opacity:0.8;"><?php echo esc_html( $heartbeat_calc_blended_col_mid_sub ); ?></div>
           </div>
           <div style="background:var(--teal-pale);border:1px solid var(--teal-light);border-radius:10px;padding:14px;text-align:center;">
-            <div style="font-size:9px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--teal);font-family:var(--ff-body);margin-bottom:6px;line-height:1.3;"><?php echo esc_html( $heartbeat_calc_blended_col_best_title ); ?></div>
-            <div style="font-family:var(--ff-head);font-size:22px;font-weight:600;color:var(--teal);line-height:1;" id="mc-blended-best">-</div>
-            <div style="font-size:9px;color:var(--teal);margin-top:4px;font-family:var(--ff-body);opacity:0.8;"><?php echo esc_html( $heartbeat_calc_blended_col_best_sub ); ?></div>
+            <div style="font-size:12px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--teal);font-family:var(--ff-body);margin-bottom:6px;line-height:1.3;"><?php echo esc_html( $heartbeat_calc_blended_col_best_title ); ?></div>
+            <div style="font-family:var(--ff-head);font-size:28px;font-weight:600;color:var(--teal);line-height:1;" id="mc-blended-best">-</div>
+            <div style="font-size:12px;color:var(--teal);margin-top:4px;font-family:var(--ff-body);opacity:0.8;"><?php echo esc_html( $heartbeat_calc_blended_col_best_sub ); ?></div>
           </div>
         </div>
       </div>
 
       <!-- WEEK BREAKDOWN TABLE -->
       <div style="margin-top:16px;background:var(--off-white);border:1px solid var(--light-grey);border-radius:10px;padding:14px 16px;">
-        <div style="font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-muted);font-family:var(--ff-body);margin-bottom:10px;"><?php echo esc_html( $heartbeat_calc_week_section_title ); ?></div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;font-family:var(--ff-body);padding:5px 0;border-bottom:1px solid var(--light-grey);color:var(--text-muted);">
+        <div style="font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-muted);font-family:var(--ff-body);margin-bottom:10px;"><?php echo esc_html( $heartbeat_calc_week_section_title ); ?></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;font-family:var(--ff-body);padding:6px 0;border-bottom:1px solid var(--light-grey);color:var(--text-muted);">
           <span><?php echo esc_html( $heartbeat_calc_week_row_sessions ); ?></span><span id="wb-sessions">-</span>
         </div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;font-family:var(--ff-body);padding:5px 0;border-bottom:1px solid var(--light-grey);color:var(--text-muted);">
+        <div style="display:flex;justify-content:space-between;font-size:14px;font-family:var(--ff-body);padding:6px 0;border-bottom:1px solid var(--light-grey);color:var(--text-muted);">
           <span><?php echo esc_html( $heartbeat_calc_week_row_notes ); ?></span><span id="wb-notes">-</span>
         </div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;font-family:var(--ff-body);padding:5px 0;border-bottom:1px solid var(--light-grey);color:var(--text-muted);">
+        <div style="display:flex;justify-content:space-between;font-size:14px;font-family:var(--ff-body);padding:6px 0;border-bottom:1px solid var(--light-grey);color:var(--text-muted);">
           <span><?php echo esc_html( $heartbeat_calc_week_row_admin ); ?></span><span id="wb-admin" style="color:#e05555;">-</span>
         </div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;font-family:var(--ff-body);padding:6px 0 0;font-weight:600;color:var(--text);">
+        <div style="display:flex;justify-content:space-between;font-size:14px;font-family:var(--ff-body);padding:6px 0 0;font-weight:600;color:var(--text);">
           <span><?php echo esc_html( $heartbeat_calc_week_row_total ); ?></span><span id="wb-total">-</span>
         </div>
       </div>

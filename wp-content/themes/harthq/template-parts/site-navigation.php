@@ -20,7 +20,7 @@ $nav_cta_new_tab = ! empty( $site_nav_cta['open_new_tab'] );
 $nav_cta_target  = $nav_cta_new_tab ? ' target="_blank" rel="noopener noreferrer"' : '';
 $nav_cta_href    = harthq_resolve_nav_cta_href( $nav_cta_url, $nav_cta_label );
 
-// Inner pages: full Menu tab (nav_links). Default to HartBeat + About only if repeater is empty.
+// Inner pages: Menu tab (nav_links) from ACF only.
 if ( ! harthq_nav_uses_homepage_menu() ) {
 	$valid_nav_items = array();
 	foreach ( $site_nav_items as $menu_item ) {
@@ -35,20 +35,7 @@ if ( ! harthq_nav_uses_homepage_menu() ) {
 		$valid_nav_items[] = $menu_item;
 	}
 
-	if ( $valid_nav_items !== array() ) {
-		$site_nav_items = $valid_nav_items;
-	} else {
-		$site_nav_items = array(
-			array(
-				'label' => 'HartBeat Score',
-				'url'   => '/heartbeat/',
-			),
-			array(
-				'label' => 'About',
-				'url'   => '/about/',
-			),
-		);
-	}
+	$site_nav_items = $valid_nav_items;
 }
 ?>
 <!-- Shared Hart Centre heart mark - exact official paths -->
