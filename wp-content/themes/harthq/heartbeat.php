@@ -16,46 +16,47 @@ $heartbeat_hero_heading  = '';
 $heartbeat_hero_subtext  = '';
 $heartbeat_hero_pills    = array();
 $heartbeat_dimensions    = array();
-$heartbeat_submit_button_label    = '';
+$heartbeat_submit_button_label    = 'Calculate my HartBeat Score';
 $heartbeat_submit_note            = '';
-$heartbeat_results_hero_tag     = '';
-$heartbeat_results_email_button_label = '';
-$heartbeat_email_modal_title    = '';
-$heartbeat_email_modal_intro    = '';
-$heartbeat_email_modal_field_label = '';
-$heartbeat_email_modal_placeholder = '';
-$heartbeat_email_modal_submit_label = '';
-$heartbeat_email_modal_footer_note = '';
-$heartbeat_dim_bars_title       = '';
-$heartbeat_calc_title           = '';
-$heartbeat_calc_subtitle        = '';
-$heartbeat_calc_label_fee       = '';
-$heartbeat_calc_label_sessions = '';
-$heartbeat_calc_label_admin     = '';
-$heartbeat_calc_label_weeks     = '';
-$heartbeat_calc_notes_hint      = '';
-$heartbeat_calc_result_label_cost = '';
-$heartbeat_calc_result_sub_cost = '';
-$heartbeat_calc_result_label_hours = '';
-$heartbeat_calc_result_sub_hours = '';
-$heartbeat_calc_result_label_net = '';
-$heartbeat_calc_result_sub_net = '';
-$heartbeat_calc_disclaimer     = '';
-$heartbeat_calc_blended_section_title = '';
-$heartbeat_calc_blended_col_now_title = '';
-$heartbeat_calc_blended_col_now_sub = '';
-$heartbeat_calc_blended_col_mid_title = '';
-$heartbeat_calc_blended_col_mid_sub = '';
-$heartbeat_calc_blended_col_best_title = '';
-$heartbeat_calc_blended_col_best_sub = '';
-$heartbeat_calc_week_section_title = '';
-$heartbeat_calc_week_row_sessions = '';
-$heartbeat_calc_week_row_notes = '';
-$heartbeat_calc_week_row_admin = '';
-$heartbeat_calc_week_row_total = '';
-$heartbeat_product_cards = array();
-$heartbeat_results_disclaimer = '';
-$heartbeat_restart_label = '';
+
+// ── RESULTS (static; not from ACF) ─────────────────────────────────────────
+$heartbeat_results_hero_tag           = 'Your HartBeat Score';
+$heartbeat_results_email_button_label = '✉ Email my results to myself';
+$heartbeat_email_modal_title          = 'Email my results';
+$heartbeat_email_modal_intro          = 'Enter your email and we\'ll open a pre-filled message with your full HartBeat results. Hit send from your email client to get a copy.';
+$heartbeat_email_modal_field_label    = 'Your email address';
+$heartbeat_email_modal_placeholder    = 'you@yourpractice.com.au';
+$heartbeat_email_modal_submit_label   = 'Open in my email app →';
+$heartbeat_email_modal_footer_note    = 'A copy will also go to the HartHQ team so we can follow up.';
+$heartbeat_dim_bars_title             = 'Score by dimension';
+$heartbeat_calc_title                 = 'What is your admin actually costing you?';
+$heartbeat_calc_subtitle              = 'Enter your numbers to see the revenue impact of getting your admin time back.';
+$heartbeat_calc_label_fee             = 'Your session fee';
+$heartbeat_calc_label_sessions        = 'Sessions / week';
+$heartbeat_calc_label_admin           = 'Admin hrs / week';
+$heartbeat_calc_label_weeks           = 'Working weeks / yr';
+$heartbeat_calc_notes_hint            = '+ 10 hrs notes + prep est.';
+$heartbeat_calc_result_label_cost     = 'Your admin costs you';
+$heartbeat_calc_result_sub_cost       = 'per year at your rate';
+$heartbeat_calc_result_label_hours    = 'Hours returned / week';
+$heartbeat_calc_result_sub_hours      = 'admin drops to ~2 hrs';
+$heartbeat_calc_result_label_net      = 'Net gain if hours filled';
+$heartbeat_calc_result_sub_net        = 'after HartHQ from $250/wk';
+$heartbeat_calc_disclaimer            = 'Assumes HartHQ reduces your admin to ~2 hrs/week. 75% of saved hours realistically become sessions. Net gain shown after estimated HartHQ Individual Support & Administration cost from $250/wk. Estimates only - run your own numbers with your accountant.';
+$heartbeat_calc_blended_section_title = 'Your blended hourly rate';
+$heartbeat_calc_blended_col_now_title = 'Your rate now';
+$heartbeat_calc_blended_col_now_sub   = 'per hour actually worked';
+$heartbeat_calc_blended_col_mid_title = 'Admin off your plate';
+$heartbeat_calc_blended_col_mid_sub    = 'same revenue, fewer hours';
+$heartbeat_calc_blended_col_best_title = 'Admin off + hours filled';
+$heartbeat_calc_blended_col_best_sub  = 'more revenue, fewer hours';
+$heartbeat_calc_week_section_title    = 'Your working week, broken down';
+$heartbeat_calc_week_row_sessions     = 'Client sessions';
+$heartbeat_calc_week_row_notes        = 'Notes + Prep (est. 30 min each)';
+$heartbeat_calc_week_row_admin        = 'Admin';
+$heartbeat_calc_week_row_total        = 'Total hours worked';
+$heartbeat_results_disclaimer         = 'HartBeat Score is a self-reported practice health indicator. It is not a clinical or financial assessment and results should not be used as the basis for significant business decisions without independent advice. Scores reflect your responses at the time of completion and will change as your practice evolves.';
+$heartbeat_restart_label              = '↩ Start over';
 
 if ( function_exists( 'get_field' ) && $page_id ) {
 	$heartbeat_hero_eyebrow  = (string) get_field( 'heartbeat_hero_eyebrow', $page_id );
@@ -65,47 +66,7 @@ if ( function_exists( 'get_field' ) && $page_id ) {
 	$heartbeat_hero_pills    = is_array( $pills ) ? $pills : array();
 	$dims                    = get_field( 'heartbeat_dimensions', $page_id );
 	$heartbeat_dimensions    = is_array( $dims ) ? $dims : array();
-	$heartbeat_submit_button_label       = (string) get_field( 'heartbeat_submit_button_label', $page_id );
-	$heartbeat_submit_note               = (string) get_field( 'heartbeat_submit_note', $page_id );
-	$heartbeat_results_hero_tag        = (string) get_field( 'heartbeat_results_hero_tag', $page_id );
-	$heartbeat_results_email_button_label = (string) get_field( 'heartbeat_results_email_button_label', $page_id );
-	$heartbeat_email_modal_title         = (string) get_field( 'heartbeat_email_modal_title', $page_id );
-	$heartbeat_email_modal_intro         = (string) get_field( 'heartbeat_email_modal_intro', $page_id );
-	$heartbeat_email_modal_field_label   = (string) get_field( 'heartbeat_email_modal_field_label', $page_id );
-	$heartbeat_email_modal_placeholder   = (string) get_field( 'heartbeat_email_modal_placeholder', $page_id );
-	$heartbeat_email_modal_submit_label  = (string) get_field( 'heartbeat_email_modal_submit_label', $page_id );
-	$heartbeat_email_modal_footer_note   = (string) get_field( 'heartbeat_email_modal_footer_note', $page_id );
-	$heartbeat_dim_bars_title            = (string) get_field( 'heartbeat_dim_bars_title', $page_id );
-	$heartbeat_calc_title                = (string) get_field( 'heartbeat_calc_title', $page_id );
-	$heartbeat_calc_subtitle             = (string) get_field( 'heartbeat_calc_subtitle', $page_id );
-	$heartbeat_calc_label_fee            = (string) get_field( 'heartbeat_calc_label_fee', $page_id );
-	$heartbeat_calc_label_sessions       = (string) get_field( 'heartbeat_calc_label_sessions', $page_id );
-	$heartbeat_calc_label_admin          = (string) get_field( 'heartbeat_calc_label_admin', $page_id );
-	$heartbeat_calc_label_weeks          = (string) get_field( 'heartbeat_calc_label_weeks', $page_id );
-	$heartbeat_calc_notes_hint           = (string) get_field( 'heartbeat_calc_notes_hint', $page_id );
-	$heartbeat_calc_result_label_cost    = (string) get_field( 'heartbeat_calc_result_label_cost', $page_id );
-	$heartbeat_calc_result_sub_cost      = (string) get_field( 'heartbeat_calc_result_sub_cost', $page_id );
-	$heartbeat_calc_result_label_hours   = (string) get_field( 'heartbeat_calc_result_label_hours', $page_id );
-	$heartbeat_calc_result_sub_hours     = (string) get_field( 'heartbeat_calc_result_sub_hours', $page_id );
-	$heartbeat_calc_result_label_net     = (string) get_field( 'heartbeat_calc_result_label_net', $page_id );
-	$heartbeat_calc_result_sub_net       = (string) get_field( 'heartbeat_calc_result_sub_net', $page_id );
-	$heartbeat_calc_disclaimer           = (string) get_field( 'heartbeat_calc_disclaimer', $page_id );
-	$heartbeat_calc_blended_section_title = (string) get_field( 'heartbeat_calc_blended_section_title', $page_id );
-	$heartbeat_calc_blended_col_now_title = (string) get_field( 'heartbeat_calc_blended_col_now_title', $page_id );
-	$heartbeat_calc_blended_col_now_sub  = (string) get_field( 'heartbeat_calc_blended_col_now_sub', $page_id );
-	$heartbeat_calc_blended_col_mid_title = (string) get_field( 'heartbeat_calc_blended_col_mid_title', $page_id );
-	$heartbeat_calc_blended_col_mid_sub  = (string) get_field( 'heartbeat_calc_blended_col_mid_sub', $page_id );
-	$heartbeat_calc_blended_col_best_title = (string) get_field( 'heartbeat_calc_blended_col_best_title', $page_id );
-	$heartbeat_calc_blended_col_best_sub = (string) get_field( 'heartbeat_calc_blended_col_best_sub', $page_id );
-	$heartbeat_calc_week_section_title   = (string) get_field( 'heartbeat_calc_week_section_title', $page_id );
-	$heartbeat_calc_week_row_sessions    = (string) get_field( 'heartbeat_calc_week_row_sessions', $page_id );
-	$heartbeat_calc_week_row_notes       = (string) get_field( 'heartbeat_calc_week_row_notes', $page_id );
-	$heartbeat_calc_week_row_admin       = (string) get_field( 'heartbeat_calc_week_row_admin', $page_id );
-	$heartbeat_calc_week_row_total       = (string) get_field( 'heartbeat_calc_week_row_total', $page_id );
-	$cards                               = get_field( 'heartbeat_product_cards', $page_id );
-	$heartbeat_product_cards             = is_array( $cards ) ? $cards : array();
-	$heartbeat_results_disclaimer        = (string) get_field( 'heartbeat_results_disclaimer', $page_id );
-	$heartbeat_restart_label             = (string) get_field( 'heartbeat_restart_label', $page_id );
+	$heartbeat_submit_note   = (string) get_field( 'heartbeat_submit_note', $page_id );
 }
 
 $heartbeat_question_count = 0;
@@ -447,7 +408,7 @@ $allowed_hero_heading = array(
       <!-- BLENDED RATE ROW -->
       <div style="margin-top:20px; padding-top:18px; border-top:1px solid var(--light-grey);">
         <div style="font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-muted);font-family:var(--ff-body);margin-bottom:10px;"><?php echo esc_html( $heartbeat_calc_blended_section_title ); ?></div>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+        <div class="blended-rate-grid">
           <div style="background:var(--off-white);border:1px solid var(--light-grey);border-radius:10px;padding:14px;text-align:center;">
             <div style="font-size:12px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--text-muted);font-family:var(--ff-body);margin-bottom:6px;line-height:1.3;"><?php echo esc_html( $heartbeat_calc_blended_col_now_title ); ?></div>
             <div style="font-family:var(--ff-head);font-size:28px;font-weight:600;color:var(--dark);line-height:1;" id="mc-blended-now">-</div>
@@ -484,26 +445,28 @@ $allowed_hero_heading = array(
       </div>
     </div>
 
-    <!-- PRODUCT CTA CARDS -->
+    <!-- PRODUCT CTA CARDS (static) -->
     <div class="product-ctas">
-		<?php
-		$card_n = 0;
-		foreach ( $heartbeat_product_cards as $card ) :
-			if ( ! is_array( $card ) ) {
-				continue;
-			}
-			++$card_n;
-			$accent = ( 0 === $card_n % 2 ) ? 'pcc-accent-teal' : 'pcc-accent-purple';
-			$href   = harthq_heartbeat_esc_link_href( (string) ( $card['card_link_url'] ?? '' ) );
-			?>
-      <a href="<?php echo $href; ?>" class="product-cta-card <?php echo esc_attr( $accent ); ?>">
-        <div class="pcc-tag"><?php echo esc_html( (string) ( $card['card_tag'] ?? '' ) ); ?></div>
-        <div class="pcc-title"><?php echo esc_html( (string) ( $card['card_title'] ?? '' ) ); ?></div>
-        <div class="pcc-price"><?php echo esc_html( (string) ( $card['card_price_line'] ?? '' ) ); ?></div>
-        <div class="pcc-desc"><?php echo esc_html( (string) ( $card['card_description'] ?? '' ) ); ?></div>
-        <div class="pcc-link"><?php echo esc_html( (string) ( $card['card_link_label'] ?? '' ) ); ?></div>
+      <?php
+		$heartbeat_concierge_href = esc_url( 'https://hart-hq.zohobookings.com/#/intro' );
+		$pcc_price_allowed        = array(
+			'span' => array( 'style' => true ),
+		);
+		?>
+      <a href="<?php echo $heartbeat_concierge_href; ?>" target="_blank" class="product-cta-card pcc-accent-purple">
+        <div class="pcc-tag"><?php echo esc_html( 'Full admin support' ); ?></div>
+        <div class="pcc-title"><?php echo esc_html( 'Individual Support & Administration' ); ?></div>
+        <div class="pcc-price"><?php echo wp_kses( 'From $250<span style="font-size:14px;color:var(--text-muted);font-family:var(--ff-body);font-weight:400;">/week</span>', $pcc_price_allowed ); ?></div>
+        <div class="pcc-desc"><?php echo esc_html( 'Our HartHQ admin team handles your calls, calendar and invoicing. Practitioners typically recover 6+ hours per week.' ); ?></div>
+        <div class="pcc-link"><?php echo wp_kses_post( 'Enquire about Concierge <span>→</span>' ); ?></div>
       </a>
-		<?php endforeach; ?>
+      <a href="<?php echo $heartbeat_concierge_href; ?>" target="_blank" class="product-cta-card pcc-accent-teal">
+        <div class="pcc-tag"><?php echo esc_html( 'For group practices' ); ?></div>
+        <div class="pcc-title"><?php echo esc_html( 'Group Support & Administration' ); ?></div>
+        <div class="pcc-price"><?php echo wp_kses( 'From $350<span style="font-size:14px;color:var(--text-muted);font-family:var(--ff-body);font-weight:400;">/week</span>', $pcc_price_allowed ); ?></div>
+        <div class="pcc-desc"><?php echo esc_html( 'Everything in Individual, scaled for a group practice. Coordinate across multiple clinicians with one dedicated support team.' ); ?></div>
+        <div class="pcc-link"><?php echo wp_kses_post( 'Enquire about Group <span>→</span>' ); ?></div>
+      </a>
     </div>
 
     <div class="disclaimer"><?php echo esc_html( $heartbeat_results_disclaimer ); ?></div>

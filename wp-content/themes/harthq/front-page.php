@@ -58,10 +58,13 @@ $testimonials_section_heading = get_field( 'testimonials_section_heading' );
 $testimonials_section_intro   = get_field( 'testimonials_section_intro' );
 $testimonials_items           = get_field( 'testimonials_items' );
 
-$calculator_section_tag    = get_field( 'calculator_section_tag' );
-$calculator_section_heading = get_field( 'calculator_section_heading' );
-$calculator_section_intro   = get_field( 'calculator_section_intro' );
-$calculator_section_button  = get_field( 'calculator_section_button' );
+$calculator_section_tag      = (string) get_field( 'calculator_section_tag' );
+$calculator_section_heading  = (string) get_field( 'calculator_section_heading' );
+$calculator_section_intro    = (string) get_field( 'calculator_section_intro' );
+$calculator_section_button   = get_field( 'calculator_section_button' );
+$calculator_section_button   = is_array( $calculator_section_button ) ? $calculator_section_button : array();
+$calculator_button_label       = (string) ( $calculator_section_button['label'] ?? '' );
+$calculator_button_url         = (string) ( $calculator_section_button['url'] ?? '' );
 
 $cta_section_tag              = get_field( 'cta_section_tag' );
 $cta_section_heading          = get_field( 'cta_section_heading' );
@@ -414,42 +417,43 @@ $nav_cta_href    = ( $nav_cta_label !== '' && $nav_cta_url === '' ) ? '#' : $nav
       <span class="tag"><?php echo esc_html( $calculator_section_tag ); ?></span>
       <h2><?php echo wp_kses( $calculator_section_heading, array( 'em' => array(), 'br' => array() ) ); ?></h2>
       <p><?php echo esc_html( $calculator_section_intro ); ?></p>
-      <a href="<?php echo esc_url( $calculator_section_button['url'] ); ?>" class="btn btn-primary"><?php echo esc_html( $calculator_section_button['label'] ); ?></a>
+      <a href="<?php echo esc_url( $calculator_button_url ); ?>" class="btn btn-primary"><?php echo esc_html( $calculator_button_label ); ?></a>
     </div>
 
     <div class="calc-preview">
       <div class="calc-slider-wrap">
         <div class="calc-slider-label">
-          <span>Session fee</span>
-          <span style="color:var(--dark);font-weight:600">$220/hr</span>
+          <span><?php esc_html_e( 'Session fee', 'harthq' ); ?></span>
+          <span class="calc-fee-display" style="color:var(--dark);font-weight:600">$220/hr</span>
         </div>
-        <input type="range" min="100" max="400" value="220" style="width:100%;accent-color:var(--purple)">
+        <input type="range" min="100" max="400" step="10" value="220" class="calc-fee-slider" style="width:100%;accent-color:var(--purple)">
       </div>
       <div class="calc-slider-wrap">
         <div class="calc-slider-label">
-          <span>Sessions per week</span>
-          <span style="color:var(--dark);font-weight:600">22 sessions</span>
+          <span><?php esc_html_e( 'Sessions per week', 'harthq' ); ?></span>
+          <span class="calc-sessions-display" style="color:var(--dark);font-weight:600">22 sessions</span>
         </div>
-        <input type="range" min="5" max="40" value="22" style="width:100%;accent-color:var(--teal)">
+        <input type="range" min="5" max="40" value="22" class="calc-sessions-slider" style="width:100%;accent-color:var(--teal)">
       </div>
       <div class="calc-divider"></div>
       <div class="calc-row">
-        <span class="calc-label">Annual revenue (current)</span>
-        <span class="calc-value">$222,640</span>
+        <span class="calc-label"><?php esc_html_e( 'Annual revenue (current)', 'harthq' ); ?></span>
+        <span class="calc-value calc-revenue">$222,640</span>
       </div>
       <div class="calc-row">
-        <span class="calc-label">Hours spent on admin</span>
-        <span class="calc-value">312 hrs/yr</span>
-      </div>
-      <div class="calc-row">
-        <span class="calc-label">Admin cost at your rate</span>
-        <span class="calc-value" style="color:#e05555">$68,640</span>
+        <span class="calc-label"><?php echo wp_kses( __( 'Real blended rate <span class="calc-sublabel">(after notes, prep &amp; admin)</span>', 'harthq' ), array( 'span' => array( 'class' => true ) ) ); ?></span>
+        <span class="calc-value calc-blended" style="color:#e05555">$118/hr</span>
       </div>
       <div class="calc-divider"></div>
       <div class="calc-row">
-        <span class="calc-label">Potential annual gain</span>
-        <span class="calc-value positive">+$20,240</span>
+        <span class="calc-label"><?php echo wp_kses( __( 'Hours you\'d get back per year <span class="calc-sublabel">(with Concierge)</span>', 'harthq' ), array( 'span' => array( 'class' => true ) ) ); ?></span>
+        <span class="calc-value positive calc-hours">276 hours</span>
       </div>
+      <div class="calc-row">
+        <span class="calc-label"><?php echo wp_kses( __( 'Potential additional revenue <span class="calc-sublabel">(if filled with sessions)</span>', 'harthq' ), array( 'span' => array( 'class' => true ) ) ); ?></span>
+        <span class="calc-value positive calc-gain">+$42,866/yr</span>
+      </div>
+      <p class="calc-disclaimer"><?php esc_html_e( 'Illustrative. Based on 46 working weeks/year, ~10 hrs/week admin (typical range 7-13), 25 min notes & prep per 50-min session, and recovering at least 6 hrs/week with HartHQ Concierge support. Additional revenue assumes recovered hours are filled with new client sessions and is not guaranteed.', 'harthq' ); ?></p>
     </div>
   </div>
 </section>

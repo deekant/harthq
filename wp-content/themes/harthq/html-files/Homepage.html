@@ -1161,7 +1161,13 @@ em { font-style: italic; }
   margin-bottom: 16px;
 }
 
-.calc-row:last-child { margin-bottom: 0; }
+.calc-preview .calc-row:last-of-type {
+  margin-bottom: 0;
+}
+
+.calc-preview .calc-row {
+  align-items: flex-start;
+}
 
 .calc-label {
   font-size: 13px;
@@ -1194,6 +1200,24 @@ em { font-style: italic; }
   height: 1px;
   background: var(--light-grey);
   margin: 16px 0;
+}
+
+.calc-sublabel {
+  display: block;
+  font-size: 12px;
+  color: #888;
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+.calc-disclaimer {
+  font-size: 12px;
+  color: #888;
+  line-height: 1.5;
+  margin-top: 18px;
+  margin-bottom: 0;
+  padding-top: 14px;
+  border-top: 1px solid #eee;
 }
 
 /* ─── CTA FINAL ─── */
@@ -1823,43 +1847,44 @@ em { font-style: italic; }
     <div class="calc-content">
       <span class="tag">Practice calculator</span>
       <h2>See what your<br>practice <em>could</em> earn.</h2>
-      <p>Enter your session fee and current hours and we'll show you exactly what six recovered hours per week adds up to across a year - plus what your blended hourly rate actually looks like right now.</p>
-      <a href="#" class="btn btn-primary">Open the full calculator →</a>
+      <p>Enter your session fee and current sessions and we'll show you what your hourly rate really works out to once notes, prep and admin are factored in - plus what recovering 6 hours a week could mean for your practice.</p>
+      <a href="/heartbeat" class="btn btn-primary">Get your HartBeat score →</a>
     </div>
 
     <div class="calc-preview">
       <div class="calc-slider-wrap">
         <div class="calc-slider-label">
           <span>Session fee</span>
-          <span style="color:var(--dark);font-weight:600">$220/hr</span>
+          <span class="calc-fee-display" style="color:var(--dark);font-weight:600">$220/hr</span>
         </div>
-        <input type="range" min="100" max="400" value="220" style="width:100%;accent-color:var(--purple)">
+        <input type="range" min="100" max="400" step="10" value="220" class="calc-fee-slider" style="width:100%;accent-color:var(--purple)">
       </div>
       <div class="calc-slider-wrap">
         <div class="calc-slider-label">
           <span>Sessions per week</span>
-          <span style="color:var(--dark);font-weight:600">22 sessions</span>
+          <span class="calc-sessions-display" style="color:var(--dark);font-weight:600">22 sessions</span>
         </div>
-        <input type="range" min="5" max="40" value="22" style="width:100%;accent-color:var(--teal)">
+        <input type="range" min="5" max="40" value="22" class="calc-sessions-slider" style="width:100%;accent-color:var(--teal)">
       </div>
       <div class="calc-divider"></div>
       <div class="calc-row">
         <span class="calc-label">Annual revenue (current)</span>
-        <span class="calc-value">$222,640</span>
+        <span class="calc-value calc-revenue">$222,640</span>
       </div>
       <div class="calc-row">
-        <span class="calc-label">Hours spent on admin</span>
-        <span class="calc-value">312 hrs/yr</span>
-      </div>
-      <div class="calc-row">
-        <span class="calc-label">Admin cost at your rate</span>
-        <span class="calc-value" style="color:#e05555">$68,640</span>
+        <span class="calc-label">Real blended rate <span class="calc-sublabel">(after notes, prep &amp; admin)</span></span>
+        <span class="calc-value calc-blended" style="color:#e05555">$118/hr</span>
       </div>
       <div class="calc-divider"></div>
       <div class="calc-row">
-        <span class="calc-label">Potential annual gain</span>
-        <span class="calc-value positive">+$20,240</span>
+        <span class="calc-label">Hours you'd get back per year <span class="calc-sublabel">(with Concierge)</span></span>
+        <span class="calc-value positive calc-hours">276 hours</span>
       </div>
+      <div class="calc-row">
+        <span class="calc-label">Potential additional revenue <span class="calc-sublabel">(if filled with sessions)</span></span>
+        <span class="calc-value positive calc-gain">+$42,866/yr</span>
+      </div>
+      <p class="calc-disclaimer">Illustrative. Based on 46 working weeks/year, ~10 hrs/week admin (typical range 7-13), 25 min notes &amp; prep per 50-min session, and recovering at least 6 hrs/week with HartHQ Concierge support. Additional revenue assumes recovered hours are filled with new client sessions and is not guaranteed.</p>
     </div>
   </div>
 </section>
@@ -1953,6 +1978,52 @@ document.querySelectorAll('.service-card').forEach((card, i) => {
 document.querySelectorAll('.testi-card').forEach((card, i) => {
   card.style.transitionDelay = (i * 0.12) + 's';
 });
+
+// Practice calculator teaser — live slider updates
+(function() {
+  const feeSlider = document.querySelector('.calc-fee-slider');
+  const sessionSlider = document.querySelector('.calc-sessions-slider');
+  if (!feeSlider || !sessionSlider) return;
+
+  const feeDisplay = document.querySelector('.calc-fee-display');
+  const sessionDisplay = document.querySelector('.calc-sessions-display');
+  const revenueOut = document.querySelector('.calc-revenue');
+  const blendedOut = document.querySelector('.calc-blended');
+  const hoursOut = document.querySelector('.calc-hours');
+  const gainOut = document.querySelector('.calc-gain');
+
+  const WORKING_WEEKS = 46;
+  const ADMIN_HRS_WEEK = 10;
+  const NOTES_HRS_PER_SESSION = 25 / 60;
+  const RECOVERED_HRS_WEEK = 6;
+  const HRS_PER_BILLABLE_SESSION = 1 + NOTES_HRS_PER_SESSION;
+
+  function fmt(n) { return '$' + Math.round(n).toLocaleString(); }
+
+  function update() {
+    const fee = +feeSlider.value;
+    const sessions = +sessionSlider.value;
+
+    feeDisplay.textContent = '$' + fee + '/hr';
+    sessionDisplay.textContent = sessions + ' sessions';
+
+    const annualRevenue = fee * sessions * WORKING_WEEKS;
+    const weeklyHours = sessions + (sessions * NOTES_HRS_PER_SESSION) + ADMIN_HRS_WEEK;
+    const blendedRate = annualRevenue / (weeklyHours * WORKING_WEEKS);
+    const hoursBack = RECOVERED_HRS_WEEK * WORKING_WEEKS;
+    const extraSessionsPerWeek = RECOVERED_HRS_WEEK / HRS_PER_BILLABLE_SESSION;
+    const potentialRevenue = extraSessionsPerWeek * fee * WORKING_WEEKS;
+
+    revenueOut.textContent = fmt(annualRevenue);
+    blendedOut.textContent = '$' + Math.round(blendedRate) + '/hr';
+    hoursOut.textContent = hoursBack + ' hours';
+    gainOut.textContent = '+' + fmt(potentialRevenue) + '/yr';
+  }
+
+  feeSlider.addEventListener('input', update);
+  sessionSlider.addEventListener('input', update);
+  update();
+})();
 </script>
 
 </body>

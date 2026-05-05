@@ -330,7 +330,6 @@ body {
 
 .dim-step-nav {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
@@ -994,6 +993,12 @@ body {
   font-family: var(--ff-body);
 }
 
+.blended-rate-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
 /* PRODUCT CTA CARDS */
 .product-ctas {
   display: grid;
@@ -1141,21 +1146,14 @@ body {
     --heartbeat-sticky-nav-height: 4rem;
   }
   .hero { padding: 48px 20px 40px; }
-  .hero-pills { flex-wrap: wrap; border-radius: 12px; }
+  .hero-pills { flex-wrap: wrap; border-radius: 12px; justify-content: center;}
   .hero-pill + .hero-pill { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); }
   .heartbeat-nav { padding: 14px 20px; }
   .progress-bar { padding: 0 20px 12px; }
-  .progress-label {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    text-align: center;
-  }
-  .pl-text { justify-self: center; }
-  .pl-count { justify-self: center; text-align: center; }
-  .dim-step-next { margin-left: 0; width: 100%; }
-  .dim-step-back { width: 100%; }
+  .priority-card { flex-direction: column; }
   .calc-inputs { grid-template-columns: 1fr 1fr; }
   .calc-results { grid-template-columns: 1fr; }
+  .blended-rate-grid { grid-template-columns: 1fr; }
   .product-ctas { grid-template-columns: 1fr; }
   .hardhq-cta { flex-direction: column; gap: 16px; }
   .results-hero { padding: 36px 24px; }

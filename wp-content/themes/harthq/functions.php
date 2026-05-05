@@ -4,7 +4,7 @@
  */
 
 function harthq_enqueue_assets() {
-	$chrome_rel  = '/assets/css/style.css';
+	$chrome_rel  = '/style.css';
 	$chrome_path = get_template_directory() . $chrome_rel;
 	$chrome_deps = array();
 
@@ -23,6 +23,7 @@ function harthq_enqueue_assets() {
 		'about'     => is_page_template( 'about.php' ),
 		'heartbeat' => is_page_template( 'heartbeat.php' ),
 		'privacy'   => is_page_template( 'privacy.php' ),
+		'404'       => is_404(),
 	);
 
 	foreach ( $style_map as $slug => $should_load ) {
@@ -83,5 +84,6 @@ function harthq_acf_json_load_point( $paths ) {
 add_filter( 'acf/settings/load_json', 'harthq_acf_json_load_point' );
 
 require_once get_template_directory() . '/includes/theme-helpers.php';
+require_once get_template_directory() . '/includes/hartbeat-leads.php';
 
 // Site-wide options (footer, menus): ACF options page menu slug `site-settings`; use get_field( $name, 'option' ) to read.
