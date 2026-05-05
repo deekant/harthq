@@ -1,0 +1,79 @@
+:root {
+	--navy: #0f1a3e;
+	--teal-dark: #1a4a42;
+	--purple: #7b6fd4;
+	--purple-hover: #6960c0;
+	--text: #2a2a35;
+	--text-muted: #6b6b78;
+	--off-white: #f5f4f0;
+	--ff-head: 'Playfair Display', Georgia, serif;
+	--ff-body: 'Figtree', system-ui, sans-serif;
+}
+
+/* Same gradient band as Privacy `.page-header` so fixed nav sits on dark (matches About/Privacy). */
+.inner-page-hero-strip {
+	background: linear-gradient(135deg, var(--navy) 0%, var(--teal-dark) 100%);
+	padding: 40px var(--gutter, 24px) 40px;
+	margin: 0;
+}
+
+.error-404 {
+	min-height: min(70vh, 640px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: clamp(48px, 10vh, 80px) var(--gutter, 24px) clamp(64px, 12vh, 120px);
+	background: var(--off-white);
+	color: var(--text);
+	text-align: center;
+}
+
+.error-404-inner {
+	max-width: 36rem;
+	margin: 0 auto;
+}
+
+.error-404-code {
+	font-family: var(--ff-head);
+	font-size: clamp(12rem, 14vw, 8rem);
+	font-weight: 600;
+	line-height: 1;
+	letter-spacing: -0.04em;
+	margin: 0 0 1rem;
+	color: var(--navy);
+}
+
+.error-404-subtitle {
+	font-family: var(--ff-body);
+	font-size: clamp(1rem, 2.5vw, 1.25rem);
+	font-weight: 400;
+	line-height: 1.55;
+	color: var(--text-muted);
+	margin: 0 0 2rem;
+}
+
+.error-404-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-family: var(--ff-body);
+	font-size: 15px;
+	font-weight: 600;
+	text-decoration: none;
+	color: #fff;
+	background: var(--purple);
+	padding: 14px 28px;
+	border-radius: 100px;
+	border: none;
+	cursor: pointer;
+	transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.error-404-btn:hover,
+.error-404-btn:focus-visible {
+	background: var(--purple-hover);
+	transform: translateY(-1px);
+	box-shadow: 0 8px 24px rgba(123, 111, 212, 0.35);
+	color: #fff;
+	outline: none;
+}
